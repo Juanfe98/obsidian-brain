@@ -5,6 +5,7 @@
 | File | Topics |
 |------|--------|
 | `nextjs-app-router.md` | App Router vs Pages Router, Server vs Client Components, Server Actions, file-based routing, layouts, templates, route groups, parallel routes, intercepting routes, loading UI, error handling |
+| `nextjs-pages-router.md` | Pages Router deep dive — `getStaticProps`, `getServerSideProps`, `getStaticPaths` + fallback, `_app.tsx`, `_document.tsx`, `useRouter` (next/router), API routes, error pages, ISR, per-page layouts, migration to App Router |
 | `nextjs-rendering-and-caching.md` | SSG vs SSR vs ISR vs dynamic rendering, the 4 caching layers (request memoization, data cache, full route cache, router cache), data fetching patterns, streaming, Route Handlers, Middleware |
 | `nextjs-config-and-deployment.md` | Edge Runtime vs Node.js Runtime, next.config.js (redirects, rewrites, headers, webpack), environment variables, Metadata API & SEO, next/image & next/font, authentication (NextAuth/Auth.js), deployment (Vercel, Docker, self-hosting), testing (unit, integration, E2E) |
 

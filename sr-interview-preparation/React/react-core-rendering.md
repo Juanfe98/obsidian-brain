@@ -15,6 +15,7 @@
 | **Effect**                 | Side effects in React: data fetching, subscriptions, DOM manipulation — managed by `useEffect`                            |
 | **Controlled component**   | A form element whose value is driven by React state — React is the source of truth                                        |
 | **Uncontrolled component** | A form element that manages its own value internally — you read it via `ref`                                              |
+| **Hydration**              | The process where React attaches event listeners and state to server-rendered HTML — making static markup interactive      |
 
 ---
 
@@ -356,6 +357,88 @@ function UncontrolledInput() {
 
 ---
 
+## Hydration
+
+When a page is rendered on the server (SSR/SSG), the browser receives plain HTML — it displays fast but is not interactive yet.
+**Hydration** is the process where React takes that existing HTML and "wakes it up": attaches event listeners, connects state, and makes the page fully interactive.
+
+```
+Server → renders HTML string → sends to browser
+Browser → displays HTML immediately (no blank screen)
+React JS bundle loads → React "hydrates" the HTML
+         → walks the DOM, matches it to the component tree
+         → attaches event listeners and state
+         → page is now interactive
+```
+
+### What React does during hydration
+
+1. React renders the component tree in memory (same as SSR)
+2. Walks the existing server-rendered DOM
+3. Matches each DOM node to the corresponding component
+4. Attaches event handlers (onClick, onChange, etc.)
+5. Initializes state from the serialized data sent with the HTML
+
+React does **not** re-create DOM nodes during hydration — it reuses the server-rendered HTML. This is why SSR pages appear instantly even before JS loads.
+
+### Hydration mismatch — the most common hydration bug
+
+If the HTML React generates on the client differs from what the server sent, React throws a **hydration mismatch** error and falls back to a full client-side re-render (slow, potential flicker).
+
+```tsx
+// BUG: date/time rendered on server vs client will differ
+export default function Page() {
+    return <p>Rendered at: {new Date().toISOString()}</p>;
+    //          ↑ server renders "2026-01-01T00:00:00Z"
+    //            client renders "2026-01-01T00:00:05Z" → MISMATCH
+}
+
+// FIX: render the dynamic value only on the client
+'use client';
+export default function Page() {
+    const [time, setTime] = useState<string | null>(null);
+
+    useEffect(() => {
+        setTime(new Date().toISOString()); // runs only in browser, after hydration
+    }, []);
+
+    return <p>Rendered at: {time ?? 'loading...'}</p>;
+}
+```
+
+Other common mismatch causes:
+- `window`, `localStorage`, `document` accessed during render (server doesn't have these)
+- Browser extensions that modify the DOM before React hydrates
+- `Math.random()` or `Date.now()` called during render
+
+### Hydration in Next.js
+
+| Rendering mode | Hydration behavior |
+|---|---|
+| **SSG** | HTML pre-built at build time → React hydrates on page load |
+| **SSR** | HTML built per request on server → React hydrates on page load |
+| **Client-only (`'use client'`)** | No server HTML for this subtree → React renders + hydrates from scratch |
+| **Server Components (RSC)** | Never hydrated — they send no JS to the browser; only Client Components hydrate |
+
+### Selective hydration (React 18+)
+
+React 18 introduced **selective hydration** via `<Suspense>`: React can hydrate parts of the page independently and prioritize hydrating components the user interacts with first.
+
+```tsx
+// React can hydrate Sidebar and Content independently
+// If user clicks Content before Sidebar is hydrated, React prioritizes Content
+<Suspense fallback={<Spinner />}>
+    <Sidebar />
+</Suspense>
+<Suspense fallback={<Spinner />}>
+    <Content />
+</Suspense>
+```
+
+Before React 18, hydration was all-or-nothing: the entire tree had to hydrate before any of it was interactive.
+
+---
+
 ## Interview answers
 
 ### How does React's reconciliation work?
@@ -375,3 +458,12 @@ Both manage state. `useState` is simpler — good for independent values. `useRe
 
 ### What is the difference between controlled and uncontrolled components?
 Controlled: React state is the source of truth; you set `value` and update it on every change. Uncontrolled: the DOM is the source of truth; you use `defaultValue` and read via `ref` when needed. Use controlled when you need to react to every input change; use uncontrolled for simpler forms where you only care about the final value.
+
+### What is hydration?
+Hydration is the process where React takes server-rendered HTML (which is static and non-interactive) and attaches event listeners, initializes state, and connects it to the React component tree — making the page fully interactive. React reuses the existing DOM nodes rather than recreating them, which is why SSR pages appear instantly. A hydration mismatch occurs when the HTML the client renders doesn't match what the server sent, causing React to fall back to a full client re-render.
+
+### What causes a hydration mismatch?
+Any difference between what the server renders and what the client renders. Common causes: using `Date.now()`, `Math.random()`, or browser-only APIs (`window`, `localStorage`) during render — the server doesn't have these. Fix: move browser-specific code into `useEffect` (which only runs on the client, after hydration) or use `suppressHydrationWarning` for intentionally differing content.
+
+### What is selective hydration in React 18?
+In React 18, wrapping subtrees in `<Suspense>` allows React to hydrate each subtree independently rather than blocking on the entire tree. If the user interacts with a component before it's hydrated, React prioritizes hydrating that component first. Before React 18, hydration was synchronous and all-or-nothing.
