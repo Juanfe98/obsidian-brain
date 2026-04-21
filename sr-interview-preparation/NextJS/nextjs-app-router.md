@@ -844,6 +844,133 @@ app/
 
 ---
 
+## Middleware
+
+Middleware runs before a request is processed — before the page or route handler. It executes at the **Edge Runtime** (no Node.js APIs).
+
+```
+Request → Middleware → Route Handler / Page
+```
+
+```tsx
+// middleware.ts — must be at the project root (same level as app/ or pages/)
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+    const { pathname } = request.nextUrl;
+
+    // Auth check — redirect unauthenticated users
+    const token = request.cookies.get('auth-token')?.value;
+    const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/settings');
+
+    if (isProtected && !token) {
+        const loginUrl = new URL('/login', request.url);
+        loginUrl.searchParams.set('from', pathname); // preserve destination
+        return NextResponse.redirect(loginUrl);
+    }
+
+    // Rewrite — serve /old-path from /new-path without changing the URL
+    if (pathname === '/old-path') {
+        return NextResponse.rewrite(new URL('/new-path', request.url));
+    }
+
+    // Add response headers
+    const response = NextResponse.next();
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
+}
+
+// Matcher — which routes middleware runs on (avoid running on static assets)
+export const config = {
+    matcher: [
+        // Match all routes except static files and Next.js internals
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|gif|webp)).*)',
+    ],
+};
+```
+
+### Common middleware use cases
+
+| Use case | How |
+|---|---|
+| Auth redirect | Read cookie/header, redirect if missing |
+| Role-based access | Decode JWT, check role, redirect or 403 |
+| A/B testing | Set a cookie with variant, rewrite to variant URL |
+| Locale detection | Read `Accept-Language`, redirect to `/en/` or `/fr/` |
+| Rate limiting | Check request count in Edge KV store |
+| Bot protection | Check user agent, return 403 |
+
+### What middleware cannot do
+- Use Node.js APIs (`fs`, `crypto`, `bcrypt`) — Edge Runtime only
+- Access databases directly (no TCP connections at the edge) — use a lightweight token check instead
+- Return large responses — keep it fast, delegate heavy work to route handlers
+
+---
+
+## `next/link` — Prefetching Behavior
+
+`<Link>` is the primary navigation component. Understanding its prefetching behavior is a senior differentiator.
+
+```tsx
+import Link from 'next/link';
+
+// Basic usage
+<Link href="/about">About</Link>
+
+// Disable prefetching
+<Link href="/heavy-page" prefetch={false}>Heavy Page</Link>
+
+// Programmatic navigation equivalent
+import { useRouter } from 'next/navigation';
+const router = useRouter();
+router.push('/about');         // adds history entry
+router.replace('/about');      // replaces current history entry
+router.prefetch('/about');     // manually trigger prefetch
+```
+
+### How prefetching works
+
+| Router | Behavior |
+|---|---|
+| **App Router** | Links visible in the viewport are prefetched automatically in production. Static routes: full page prefetched. Dynamic routes: only the loading.tsx shell is prefetched (not the full data). |
+| **Pages Router** | Links visible in the viewport are prefetched in production. The full page including data (`getStaticProps` result) is prefetched for static pages. |
+
+```tsx
+// Static route — full HTML prefetched when link enters viewport
+<Link href="/about">About</Link>
+
+// Dynamic route (App Router) — only loading.tsx shell is prefetched
+// Data is NOT prefetched (would be stale anyway)
+<Link href="/dashboard">Dashboard</Link>
+
+// Opt out — for pages that are expensive or change per-user
+<Link href="/account" prefetch={false}>My Account</Link>
+
+// Prefetching only happens in production (next build + next start)
+// In development (next dev), no prefetching occurs
+```
+
+### `router.prefetch` — manual prefetch on hover
+
+```tsx
+// Prefetch on hover before user clicks — common pattern for faster navigation
+function NavLink({ href, children }: { href: string; children: ReactNode }) {
+    const router = useRouter();
+
+    return (
+        <Link
+            href={href}
+            onMouseEnter={() => router.prefetch(href)} // fire early
+        >
+            {children}
+        </Link>
+    );
+}
+```
+
+---
+
 ## Interview Answers
 
 ### What is the main difference between App Router and Pages Router?
@@ -869,3 +996,12 @@ Use `useSearchParams()` from `next/navigation` — it returns a read-only `URLSe
 
 ### What are intercepting routes good for?
 They let a route "intercept" navigation to show contextual UI (like a modal) while keeping the original URL. Classic example: Instagram-style photo grid — clicking a photo shows it in a modal overlay, but if you share the link or refresh, you see the full photo page. The intercepted route handles in-context navigation; the real route handles direct URL access.
+
+### What is Next.js Middleware and what runtime does it run on?
+Middleware runs before any request is processed — before pages, layouts, or route handlers. It runs on the Edge Runtime, not Node.js, which means no Node.js APIs (`fs`, `crypto`, TCP connections). It's ideal for auth redirects, locale detection, A/B testing, and adding security headers — lightweight checks that apply globally without loading the full app. The `matcher` config controls which routes it applies to, and you should always exclude static assets to avoid unnecessary overhead.
+
+### What is the difference between Middleware, Server Components, and Server Actions for auth?
+Middleware handles auth at the network edge — fast redirects before the page even loads. It reads cookies/headers and redirects unauthenticated requests without running any app code. Server Components handle auth inside the page — for fine-grained, data-aware authorization (can this user see this specific resource?). Server Actions handle auth for mutations — verify the session before performing a write. In practice: use Middleware for coarse-grained route protection, Server Components for data-level checks.
+
+### How does `next/link` prefetching work in App Router?
+In production, links that are visible in the viewport are prefetched automatically. For static routes, the full HTML is prefetched. For dynamic routes, only the `loading.tsx` shell is prefetched — not the data, since it would be stale. Prefetching doesn't happen in development. You can disable it with `prefetch={false}` for expensive or highly personalized pages, or trigger it manually with `router.prefetch(href)` for hover-based prefetching.
