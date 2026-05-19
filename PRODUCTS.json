@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Keyboard",
+    "category": "Tech",
+    "price": 79.99,
+    "rating": 4.8,
+    "imageUrl": "https://placehold.co/200x140?text=Keyboard"
+  },
+  {
+    "id": 2,
+    "name": "Gaming Laptop",
+    "category": "Tech",
+    "price": 1299.99,
+    "rating": 4.5,
+    "imageUrl": "https://placehold.co/200x140?text=Laptop"
+  },
+  {
+    "id": 3,
+    "name": "Standing Desk",
+    "category": "Furniture",
+    "price": 449.0,
+    "rating": 4.2,
+    "imageUrl": "https://placehold.co/200x140?text=Desk"
+  },
+  {
+    "id": 4,
+    "name": "Monitor 27\"",
+    "category": "Tech",
+    "price": 349.0,
+    "rating": 3.9,
+    "imageUrl": "https://placehold.co/200x140?text=Monitor"
+  },
+  {
+    "id": 5,
+    "name": "Noise Cancelling Headset",
+    "category": "Accessory",
+    "price": 59.99,
+    "rating": 4.6,
+    "imageUrl": "https://placehold.co/200x140?text=Headset"
+  },
+  {
+    "id": 6,
+    "name": "Ergonomic Chair",
+    "category": "Furniture",
+    "price": 599.0,
+    "rating": 4.7,
+    "imageUrl": "https://placehold.co/200x140?text=Chair"
+  },
+  {
+    "id": 7,
+    "name": "USB-C Hub",
+    "category": "Accessory",
+    "price": 39.99,
+    "rating": 4.1,
+    "imageUrl": "https://placehold.co/200x140?text=Hub"
+  },
+  {
+    "id": 8,
+    "name": "Mechanical Keyboard",
+    "category": "Tech",
+    "price": 129.99,
+    "rating": 4.9,
+    "imageUrl": "https://placehold.co/200x140?text=Mech"
+  },
+  {
+    "id": 9,
+    "name": "Desk Lamp",
+    "category": "Furniture",
+    "price": 34.99,
+    "rating": 3.7,
+    "imageUrl": "https://placehold.co/200x140?text=Lamp"
+  },
+  {
+    "id": 10,
+    "name": "Webcam 4K",
+    "category": "Tech",
+    "price": 199.99,
+    "rating": 4.4,
+    "imageUrl": "https://placehold.co/200x140?text=Webcam"
+  },
+  {
+    "id": 11,
+    "name": "Mouse Pad XL",
+    "category": "Accessory",
+    "price": 19.99,
+    "rating": 4.3,
+    "imageUrl": "https://placehold.co/200x140?text=Pad"
+  },
+  {
+    "id": 12,
+    "name": "Monitor Arm",
+    "category": "Accessory",
+    "price": 89.99,
+    "rating": 4.0,
+    "imageUrl": "https://placehold.co/200x140?text=Arm"
+  }
+]
