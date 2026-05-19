@@ -152,3 +152,89 @@ useEffect(() => {
   };
 }, []);
 ```
+
+# useFetch - Custom Hook
+
+```ts
+import { useEffect, useState } from "react";
+
+type UseFetchState<T> = {
+  data: T | null;
+  isLoading: boolean;
+  error: string | null;
+};
+
+export function useFetch<T>(url: string): UseFetchState<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!url) {
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await fetch(url, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const result: T = await response.json();
+
+        setData(result);
+      } catch (error) {
+        if (error instanceof Error && error.name === "AbortError") {
+          return;
+        }
+
+        setError("Could not load data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      controller.abort();
+    };
+  }, [url]);
+
+  return {
+    data,
+    isLoading,
+    error,
+  };
+}
+```
+
+## Custom Hook Usage
+
+```ts
+ const { data, isLoading, error } = useFetch<ProductsResponse>(
+    "http://localhost:3000/products",
+  );
+
+  if (isLoading) {
+    return <p>Loading products...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (!data || data.products.length === 0) {
+    return <p>No products found.</p>;
+  }
+
+```
