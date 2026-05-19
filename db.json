@@ -1,0 +1,32 @@
+{
+  "products": [
+  {
+    "id": 1,
+    "name": "Wireless Keyboard",
+    "category": "Tech",
+    "price": 79.99,
+    "rating": 4.8
+  },
+  {
+    "id": 2,
+    "name": "Gaming Laptop",
+    "category": "Tech",
+    "price": 1299.99,
+    "rating": 4.5
+  },
+  {
+    "id": 3,
+    "name": "Standing Desk",
+    "category": "Furniture",
+    "price": 449.0,
+    "rating": 4.2
+  },
+  {
+    "id": 4,
+    "name": "Monitor 27\"",
+    "category": "Tech",
+    "price": 349.0,
+    "rating": 3.9
+  }
+]
+}
