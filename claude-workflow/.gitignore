@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Claude runtime/state files that should not be versioned here
+.claude/
+file-history/
+history.jsonl
+jobs/
+paste-cache/
+projects/
+sessions/
+shell-snapshots/
+tasks/
+telemetry/
+stats-cache.json
+mcp-needs-auth-cache.json
+daemon.lock
+daemon.log
+daemon.status.json
+daemon/
+cache/
+backups/
+
+# Generated graphify outputs
+graphify-out/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
