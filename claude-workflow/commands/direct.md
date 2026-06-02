@@ -40,6 +40,35 @@ Examples:
 - validation run
 - risks or follow-ups
 
+## Definition of Ready
+
+Direct Mode is ready for implementation only when:
+
+- expected behavior is clear
+- current behavior or root cause is understood enough to make a safe change
+- scope is localized, low risk, and still fits Direct Mode
+- files likely affected are identified
+- validation approach is known
+- approval has been obtained when required
+
+If any readiness condition is missing, stop and ask for clarification, continue investigation, or recommend a more structured workflow.
+
+## Escalate Out of Direct Mode
+
+Stop and recommend Spec Kit or a structured workflow when:
+
+- acceptance criteria are needed
+- requirements or expected behavior are unclear
+- the change is likely to touch multiple modules or broad user flows
+- public APIs, types, schemas, contracts, or data models may change
+- architecture, state ownership, data flow, or UX behavior needs a decision
+- new loading, error, empty, permission, or accessibility states need definition
+- the fix becomes larger than the original focused task
+- validation requires broad integration testing rather than a targeted check
+- the implementation cannot be described as one small safe plan
+
+When escalation is needed, summarize what was learned, why Direct Mode is no longer appropriate, and the recommended next workflow.
+
 ## Approval Before Editing
 
 Approval is required before editing when:
@@ -53,6 +82,19 @@ Approval is required before editing when:
 - The change may affect user-facing behavior beyond the requested scope.
 
 For obvious, low-risk single-file fixes, proceed after explaining the plan unless the user requested approval first.
+
+## Validation Plan
+
+Before implementation, identify the smallest relevant validation plan:
+
+- Targeted test:
+- Typecheck:
+- Lint:
+- Build:
+- Manual QA:
+- Skipped validation and why:
+
+Only include checks that are relevant to the scoped change. If validation cannot be run, explain why and suggest what the human should run.
 
 ## Definition of Done
 

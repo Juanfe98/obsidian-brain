@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Caching Field Guide — System Design from Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F1EA;
+  --bg-elev: #FBF8F2;
+  --bg-card: #FFFFFF;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A48;
+  --ink-mute: #807F7B;
+  --line: #E0DACE;
+  --line-soft: #ECE6DA;
+  --accent: #1F4D3D;
+  --accent-soft: #DCE7E2;
+  --rust: #B5421E;
+  --rust-soft: #F4E0D6;
+  --amber: #B07A1A;
+  --amber-soft: #F4E8CC;
+  --blue: #2C5282;
+  --blue-soft: #D9E2EE;
+  --grey: #6B6B68;
+  --grey-soft: #E7E4DB;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Geist', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Layout === */
+.shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 48px;
+  padding: 0 32px;
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; padding: 0 20px; gap: 0; }
+  .sidebar { display: none; }
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 48px 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.brand em { font-style: italic; color: var(--accent); }
+
+.brand-sub {
+  font-size: 11px;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 36px;
+}
+
+.toc { list-style: none; }
+.toc-section {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  margin: 24px 0 8px;
+  font-weight: 500;
+}
+.toc a {
+  display: block;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 13.5px;
+  padding: 4px 0;
+  border-left: 1px solid transparent;
+  padding-left: 12px;
+  margin-left: -12px;
+  transition: all 0.15s;
+}
+.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+
+/* === Main === */
+main {
+  padding: 64px 0 120px;
+  max-width: 760px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--rust);
+  padding: 4px 12px;
+  background: var(--rust-soft);
+  border-radius: 99px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+h1.hero {
+  font-family: var(--serif);
+  font-size: 72px;
+  line-height: 0.96;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+h1.hero em { font-style: italic; color: var(--accent); }
+
+.lede {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 48px;
+  max-width: 620px;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin: 72px 0 8px;
+  scroll-margin-top: 32px;
+}
+h2 .num {
+  font-size: 14px;
+  font-family: var(--mono);
+  font-style: normal;
+  color: var(--rust);
+  display: block;
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+}
+
+h3 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 40px 0 14px;
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin: 28px 0 10px;
+}
+
+p { margin-bottom: 16px; color: var(--ink-soft); }
+p strong { color: var(--ink); font-weight: 500; }
+p em { font-style: italic; }
+
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--bg-elev);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+}
+
+ul, ol { margin: 0 0 20px 24px; color: var(--ink-soft); }
+li { margin-bottom: 8px; }
+li strong { color: var(--ink); font-weight: 500; }
+
+.section-intro { font-size: 17px; max-width: 640px; margin-bottom: 32px; }
+
+/* === Card components === */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0;
+}
+@media (max-width: 700px) {
+  .card-row { grid-template-columns: 1fr; }
+}
+
+.mini-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.mini-card h5 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.mini-card p { font-size: 14px; margin-bottom: 0; }
+
+.callout {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin: 32px 0;
+  border-radius: 0 8px 8px 0;
+}
+.callout-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.callout p { color: var(--ink); margin-bottom: 0; font-size: 15px; }
+
+.callout.warn { background: var(--rust-soft); border-left-color: var(--rust); }
+.callout.warn .callout-label { color: var(--rust); }
+
+.callout.amber { background: var(--amber-soft); border-left-color: var(--amber); }
+.callout.amber .callout-label { color: var(--amber); }
+
+/* === Stat / latency === */
+.latency-table {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+  margin: 24px 0;
+}
+.latency-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 100px;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line-soft);
+  gap: 20px;
+}
+.latency-row:last-child { border-bottom: none; }
+.latency-label { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.latency-bar-wrap { background: var(--line-soft); height: 6px; border-radius: 3px; overflow: hidden; }
+.latency-bar { background: var(--accent); height: 100%; border-radius: 3px; }
+.latency-val { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); text-align: right; }
+
+/* === Comparison table === */
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.compare th, .compare td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+.compare th {
+  background: var(--bg-elev);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+}
+.compare tr:last-child td { border-bottom: none; }
+.compare td:first-child { font-weight: 500; color: var(--ink); }
+
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+.pill.green { background: var(--accent-soft); color: var(--accent); }
+.pill.red { background: var(--rust-soft); color: var(--rust); }
+.pill.amber { background: var(--amber-soft); color: var(--amber); }
+.pill.grey { background: var(--grey-soft); color: var(--grey); }
+
+/* === Diagrams === */
+.diagram-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 32px 24px 24px;
+  margin: 24px 0;
+}
+.diagram-wrap svg { width: 100%; height: auto; display: block; }
+.diagram-caption {
+  font-size: 13px;
+  color: var(--ink-mute);
+  text-align: center;
+  margin-top: 16px;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* SVG text utility */
+.svg-label { font-family: 'Geist', sans-serif; font-size: 13px; fill: var(--ink); }
+.svg-label-bold { font-family: 'Geist', sans-serif; font-size: 13px; fill: var(--ink); font-weight: 500; }
+.svg-label-mute { font-family: 'Geist', sans-serif; font-size: 11px; fill: var(--ink-mute); }
+.svg-label-mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--ink-soft); }
+
+/* Code blocks */
+pre {
+  background: #1A1A1A;
+  color: #E8E8E8;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 20px 24px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 20px 0;
+  line-height: 1.65;
+}
+pre .k { color: #C792EA; }
+pre .s { color: #C3E88D; }
+pre .c { color: #676E95; font-style: italic; }
+pre .n { color: #FFCB6B; }
+pre .o { color: #89DDFF; }
+
+/* Step-by-step */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 56px;
+  padding-bottom: 24px;
+  border-left: 1px solid var(--line);
+  margin-left: 18px;
+  margin-bottom: 0;
+}
+.steps li:last-child { border-left: 1px solid transparent; padding-bottom: 0; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: -18px;
+  top: -4px;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.steps li strong { display: block; margin-bottom: 4px; color: var(--ink); }
+
+/* Cheat sheet */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 32px 0;
+}
+@media (max-width: 700px) { .cheat-grid { grid-template-columns: 1fr; } }
+.cheat-item {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.cheat-item h6 {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rust);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.cheat-item p { font-size: 13.5px; margin: 0; }
+
+/* Footer */
+.footer {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-mute);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* Section divider */
+.section-rule {
+  border: none;
+  height: 1px;
+  background: var(--line);
+  margin: 0;
+  position: relative;
+}
+.section-rule::after {
+  content: '✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 12px;
+  color: var(--rust);
+  font-size: 14px;
+}
+
+/* TL;DR box */
+.tldr {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.tldr-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rust);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.tldr p { margin: 0; font-size: 15px; color: var(--ink); }
+
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">The Caching <em>Field Guide</em></div>
+    <div class="brand-sub">System design · From zero</div>
+
+    <nav>
+      <div class="toc-section">Fundamentals</div>
+      <ul class="toc">
+        <li><a href="#what">What is a cache?</a></li>
+        <li><a href="#latency">Latency numbers</a></li>
+        <li><a href="#where">Where to cache</a></li>
+      </ul>
+
+      <div class="toc-section">Strategies</div>
+      <ul class="toc">
+        <li><a href="#cache-aside">Cache-aside</a></li>
+        <li><a href="#write-through">Write-through</a></li>
+        <li><a href="#write-back">Write-back</a></li>
+        <li><a href="#write-around">Write-around</a></li>
+      </ul>
+
+      <div class="toc-section">Invalidation</div>
+      <ul class="toc">
+        <li><a href="#ttl">TTL</a></li>
+        <li><a href="#event-invalidation">Event-driven</a></li>
+        <li><a href="#eviction">Eviction policies</a></li>
+      </ul>
+
+      <div class="toc-section">Advanced</div>
+      <ul class="toc">
+        <li><a href="#two-tier">Two-tier caching</a></li>
+        <li><a href="#stampede">Cache stampede</a></li>
+        <li><a href="#consistent-hashing">Consistent hashing</a></li>
+        <li><a href="#hot-key">Hot key problem</a></li>
+      </ul>
+
+      <div class="toc-section">Reference</div>
+      <ul class="toc">
+        <li><a href="#decision">Decision framework</a></li>
+        <li><a href="#cheat">Cheat sheet</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+    <span class="eyebrow">Backend · System Design</span>
+    <h1 class="hero">A complete guide to <em>caching</em>, from first principles.</h1>
+    <p class="lede">Caching is one of the most powerful tools in system design — and one of the hardest to get right. This guide walks you through every concept you need, in the order you need them.</p>
+
+    <div class="tldr">
+      <div class="tldr-label">If you remember only one thing</div>
+      <p>A cache is a fast, temporary storage layer that sits between your application and a slower data source. Every caching decision is a tradeoff between <strong>speed</strong>, <strong>freshness</strong>, and <strong>complexity</strong>. There is no universally correct answer — only answers that fit your specific constraints.</p>
+    </div>
+
+    <!-- ============ SECTION 1: FUNDAMENTALS ============ -->
+
+    <h2 id="what"><span class="num">01 — Fundamentals</span>What a cache <em>actually</em> is</h2>
+    <p class="section-intro">Forget the implementation for a moment. A cache is fundamentally an answer to a single question: "I'm about to do something slow. Did I already do it recently?"</p>
+
+    <p>If yes — return the saved result. If no — do the slow thing, save the result, and return it. That's the entire idea. Everything else in this guide is variations on that theme.</p>
+
+    <h3>Why caches exist: the speed hierarchy</h3>
+    <p>Computers have a fundamental physics problem: <strong>fast storage is small and expensive, big storage is slow.</strong> Every system you've ever used works around this by layering storage from fastest-and-smallest to slowest-and-largest.</p>
+
+    <div class="latency-table">
+      <div class="latency-row">
+        <div class="latency-label">L1 CPU cache</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 1%; background: var(--accent);"></div></div>
+        <div class="latency-val">~1 ns</div>
+      </div>
+      <div class="latency-row">
+        <div class="latency-label">RAM access</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 3%; background: var(--accent);"></div></div>
+        <div class="latency-val">~100 ns</div>
+      </div>
+      <div class="latency-row">
+        <div class="latency-label">SSD read</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 12%; background: var(--amber);"></div></div>
+        <div class="latency-val">~100 μs</div>
+      </div>
+      <div class="latency-row">
+        <div class="latency-label">Network (same DC)</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 25%; background: var(--amber);"></div></div>
+        <div class="latency-val">~500 μs</div>
+      </div>
+      <div class="latency-row">
+        <div class="latency-label">Database query</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 55%; background: var(--rust);"></div></div>
+        <div class="latency-val">~1–10 ms</div>
+      </div>
+      <div class="latency-row">
+        <div class="latency-label">Cross-region network</div>
+        <div class="latency-bar-wrap"><div class="latency-bar" style="width: 95%; background: var(--rust);"></div></div>
+        <div class="latency-val">~100 ms</div>
+      </div>
+    </div>
+
+    <p>The gap between RAM (nanoseconds) and a database query (milliseconds) is <strong>roughly 10,000×</strong>. That's the gap caches exploit. A cache hit in RAM returns a result before a database query has even finished crossing the network.</p>
+
+    <div class="callout">
+      <div class="callout-label">Mental model</div>
+      <p>If a database query takes 5ms and you serve it from a Redis cache in 0.5ms, that's a 10× speedup. If you serve it from in-process memory in 0.0001ms, that's a 50,000× speedup. Caches are essentially time travel for the parts of your system you do over and over.</p>
+    </div>
+
+    <!-- ============ LATENCY ============ -->
+
+    <h2 id="latency"><span class="num">02 — Fundamentals</span>The two metrics that <em>matter</em></h2>
+
+    <h3>Latency reduction</h3>
+    <p>How much faster does a single request become? This is the user-facing metric — the one that decides whether your product feels snappy or sluggish.</p>
+
+    <h3>Database load reduction</h3>
+    <p>How many requests <em>never reach</em> the database? This is the infrastructure metric — the one that decides whether your database melts under traffic spikes.</p>
+
+    <p>The number that captures both is the <strong>cache hit ratio</strong>: the percentage of requests that are served from cache rather than going to the slower source.</p>
+
+    <div class="card">
+      <h4>Hit ratio math, made concrete</h4>
+      <p>Imagine your app receives 100,000 requests per second. Each database query costs 5ms.</p>
+      <ul>
+        <li><strong>No cache:</strong> All 100k req/s hit the database. Your DB is probably already on fire.</li>
+        <li><strong>90% hit ratio:</strong> Only 10k req/s reach the database — 10× reduction.</li>
+        <li><strong>99% hit ratio:</strong> Only 1k req/s reach the database — 100× reduction.</li>
+        <li><strong>99.9% hit ratio:</strong> Only 100 req/s reach the database — 1000× reduction.</li>
+      </ul>
+      <p>Notice that going from 90% to 99% is a 10× DB load improvement, not a 9% one. Hit ratio improvements compound exponentially.</p>
+    </div>
+
+    <!-- ============ WHERE TO CACHE ============ -->
+
+    <h2 id="where"><span class="num">03 — Fundamentals</span>The four places you can cache</h2>
+    <p class="section-intro">Caching isn't one decision — it's many decisions at different layers of your stack. Each layer trades off speed, control, and consistency differently.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#807F7B"/>
+          </marker>
+        </defs>
+
+        <!-- User -->
+        <circle cx="80" cy="180" r="28" fill="#FBF8F2" stroke="#1A1A1A" stroke-width="1"/>
+        <text x="80" y="184" text-anchor="middle" class="svg-label-bold">User</text>
+
+        <!-- Browser cache -->
+        <rect x="150" y="140" width="100" height="80" rx="8" fill="#DCE7E2" stroke="#1F4D3D" stroke-width="1"/>
+        <text x="200" y="165" text-anchor="middle" class="svg-label-bold" style="fill:#1F4D3D">Browser</text>
+        <text x="200" y="183" text-anchor="middle" class="svg-label-mute" style="fill:#1F4D3D">Client-side</text>
+        <text x="200" y="200" text-anchor="middle" class="svg-label-mono" style="fill:#1F4D3D">~0 ms</text>
+
+        <!-- CDN -->
+        <rect x="290" y="140" width="100" height="80" rx="8" fill="#F4E0D6" stroke="#B5421E" stroke-width="1"/>
+        <text x="340" y="165" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">CDN</text>
+        <text x="340" y="183" text-anchor="middle" class="svg-label-mute" style="fill:#B5421E">Edge</text>
+        <text x="340" y="200" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">~10 ms</text>
+
+        <!-- App / Redis -->
+        <rect x="430" y="80" width="100" height="80" rx="8" fill="#F4E8CC" stroke="#B07A1A" stroke-width="1"/>
+        <text x="480" y="105" text-anchor="middle" class="svg-label-bold" style="fill:#B07A1A">App server</text>
+        <text x="480" y="123" text-anchor="middle" class="svg-label-mute" style="fill:#B07A1A">In-process</text>
+        <text x="480" y="140" text-anchor="middle" class="svg-label-mono" style="fill:#B07A1A">~0.001 ms</text>
+
+        <rect x="430" y="200" width="100" height="80" rx="8" fill="#D9E2EE" stroke="#2C5282" stroke-width="1"/>
+        <text x="480" y="225" text-anchor="middle" class="svg-label-bold" style="fill:#2C5282">Redis</text>
+        <text x="480" y="243" text-anchor="middle" class="svg-label-mute" style="fill:#2C5282">Distributed</text>
+        <text x="480" y="260" text-anchor="middle" class="svg-label-mono" style="fill:#2C5282">~1 ms</text>
+
+        <!-- DB -->
+        <ellipse cx="610" cy="180" rx="40" ry="50" fill="#FBF8F2" stroke="#1A1A1A" stroke-width="1"/>
+        <path d="M 570 165 Q 610 175 650 165" fill="none" stroke="#1A1A1A" stroke-width="1"/>
+        <path d="M 570 180 Q 610 190 650 180" fill="none" stroke="#1A1A1A" stroke-width="1"/>
+        <path d="M 570 195 Q 610 205 650 195" fill="none" stroke="#1A1A1A" stroke-width="1"/>
+        <text x="610" y="155" text-anchor="middle" class="svg-label-bold">Database</text>
+        <text x="610" y="248" text-anchor="middle" class="svg-label-mono">~5 ms</text>
+
+        <!-- Arrows -->
+        <line x1="110" y1="180" x2="146" y2="180" stroke="#807F7B" stroke-width="1" marker-end="url(#arrow1)"/>
+        <line x1="252" y1="180" x2="286" y2="180" stroke="#807F7B" stroke-width="1" marker-end="url(#arrow1)"/>
+        <line x1="392" y1="180" x2="426" y2="120" stroke="#807F7B" stroke-width="1" marker-end="url(#arrow1)"/>
+        <line x1="392" y1="180" x2="426" y2="240" stroke="#807F7B" stroke-width="1" marker-end="url(#arrow1)"/>
+        <line x1="532" y1="240" x2="572" y2="200" stroke="#807F7B" stroke-width="1" marker-end="url(#arrow1)"/>
+
+        <!-- Labels -->
+        <text x="340" y="50" text-anchor="middle" class="svg-label-bold">Each request can be answered at any of these layers</text>
+        <text x="340" y="68" text-anchor="middle" class="svg-label-mute">Lower latency the closer you stay to the user</text>
+
+        <text x="80" y="240" text-anchor="middle" class="svg-label-mute">request</text>
+        <text x="340" y="330" text-anchor="middle" class="svg-label" style="fill:#807F7B">Direction of fallback: cache miss → next layer → DB</text>
+      </svg>
+      <div class="diagram-caption">Caching isn't one place — it's a stack of layers, each closer to the user.</div>
+    </div>
+
+    <h3>Layer 1 — Client-side cache</h3>
+    <p>The user's browser or mobile app holds onto responses. Zero network cost. You have almost no control once it's been sent — you can't reliably invalidate it. Used for assets, static API responses, things that change infrequently.</p>
+
+    <h3>Layer 2 — CDN cache</h3>
+    <p>Geographically distributed edge nodes (Cloudflare, Akamai, Fastly) cache content close to users worldwide. Brilliant for static assets and even some API responses. The user in Tokyo and the user in Berlin can both get cached responses from servers ~50ms away instead of crossing oceans.</p>
+
+    <h3>Layer 3 — Application-level (in-process) cache</h3>
+    <p>A hashmap living inside your app server's memory. The fastest possible cache — no network hop at all, just a memory lookup. The catch: every app server has its <em>own</em> independent copy, and they diverge the moment any of them writes.</p>
+
+    <h3>Layer 4 — Distributed cache (Redis, Memcached)</h3>
+    <p>A dedicated cache service that all your app servers talk to over the network. Slower than in-process (one network hop), but every server sees the same data. The standard answer for stateless, horizontally-scaled architectures.</p>
+
+    <div class="callout amber">
+      <div class="callout-label">The core tension you'll see everywhere</div>
+      <p>The closer to the user, the faster — but the less control you have over freshness. The further from the user (closer to the DB), the slower — but the easier to invalidate. Every cache layer is somewhere on this spectrum.</p>
+    </div>
+
+    <!-- ============ SECTION 2: STRATEGIES ============ -->
+
+    <hr class="section-rule">
+
+    <h2 id="cache-aside"><span class="num">04 — Strategies</span>Cache-aside <em>(the default)</em></h2>
+    <p class="section-intro">This is the pattern you'll see most often in production. The application manages the cache directly — checking it before reading, populating it on a miss.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrCA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1F4D3D"/>
+          </marker>
+          <marker id="arrCA2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#B5421E"/>
+          </marker>
+        </defs>
+
+        <text x="170" y="30" text-anchor="middle" class="svg-label-bold" style="fill:#1F4D3D">Cache HIT (fast path)</text>
+        <text x="510" y="30" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">Cache MISS (slow path)</text>
+
+        <!-- HIT diagram (left) -->
+        <rect x="60" y="60" width="100" height="50" rx="8" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="110" y="90" text-anchor="middle" class="svg-label-bold">App</text>
+
+        <rect x="220" y="60" width="100" height="50" rx="8" fill="#DCE7E2" stroke="#1F4D3D"/>
+        <text x="270" y="83" text-anchor="middle" class="svg-label-bold" style="fill:#1F4D3D">Cache</text>
+        <text x="270" y="100" text-anchor="middle" class="svg-label-mute" style="fill:#1F4D3D">Redis</text>
+
+        <line x1="161" y1="78" x2="218" y2="78" stroke="#1F4D3D" stroke-width="1.5" marker-end="url(#arrCA)"/>
+        <text x="190" y="70" text-anchor="middle" class="svg-label-mono" style="fill:#1F4D3D">1. get</text>
+
+        <line x1="218" y1="95" x2="161" y2="95" stroke="#1F4D3D" stroke-width="1.5" marker-end="url(#arrCA)"/>
+        <text x="190" y="115" text-anchor="middle" class="svg-label-mono" style="fill:#1F4D3D">2. value ✓</text>
+
+        <text x="195" y="155" text-anchor="middle" class="svg-label" style="fill:#1F4D3D">Done in ~1ms.</text>
+        <text x="195" y="172" text-anchor="middle" class="svg-label" style="fill:#1F4D3D">DB untouched.</text>
+
+        <!-- Divider -->
+        <line x1="340" y1="50" x2="340" y2="200" stroke="#E0DACE" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <!-- MISS diagram (right) -->
+        <rect x="380" y="60" width="80" height="44" rx="8" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="420" y="86" text-anchor="middle" class="svg-label-bold">App</text>
+
+        <rect x="490" y="60" width="80" height="44" rx="8" fill="#F4E0D6" stroke="#B5421E"/>
+        <text x="530" y="86" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">Cache</text>
+
+        <ellipse cx="630" cy="82" rx="30" ry="22" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="630" y="86" text-anchor="middle" class="svg-label-bold">DB</text>
+
+        <line x1="461" y1="72" x2="488" y2="72" stroke="#B5421E" stroke-width="1.5" marker-end="url(#arrCA2)"/>
+        <line x1="488" y1="92" x2="461" y2="92" stroke="#B5421E" stroke-width="1.5" marker-end="url(#arrCA2)"/>
+        <text x="475" y="60" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">1. get</text>
+        <text x="475" y="110" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">2. ✗ null</text>
+
+        <line x1="461" y1="140" x2="600" y2="82" stroke="#B5421E" stroke-width="1.5" marker-end="url(#arrCA2)"/>
+        <text x="510" y="135" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">3. query DB</text>
+
+        <line x1="600" y1="100" x2="461" y2="155" stroke="#B5421E" stroke-width="1.5" marker-end="url(#arrCA2)"/>
+        <text x="535" y="165" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">4. value</text>
+
+        <line x1="461" y1="175" x2="488" y2="175" stroke="#B5421E" stroke-width="1.5" marker-end="url(#arrCA2)"/>
+        <text x="475" y="190" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">5. set(value)</text>
+
+        <text x="510" y="225" text-anchor="middle" class="svg-label" style="fill:#B5421E">Slow first time (~5ms).</text>
+        <text x="510" y="242" text-anchor="middle" class="svg-label" style="fill:#B5421E">Future reads will hit.</text>
+
+        <!-- Code snippet -->
+        <rect x="60" y="270" width="560" height="90" rx="8" fill="#1A1A1A"/>
+        <text x="78" y="295" class="svg-label-mono" style="fill:#C792EA">def</text>
+        <text x="105" y="295" class="svg-label-mono" style="fill:#FFCB6B">get_user(id):</text>
+        <text x="78" y="313" class="svg-label-mono" style="fill:#E8E8E8">    user = cache.get(f"user:{id}")</text>
+        <text x="78" y="331" class="svg-label-mono" style="fill:#E8E8E8">    if user is None:</text>
+        <text x="78" y="349" class="svg-label-mono" style="fill:#E8E8E8">        user = db.query("SELECT ..."); cache.set(f"user:{id}", user, ttl=3600)</text>
+      </svg>
+      <div class="diagram-caption">The application checks the cache, then falls back to the database on miss.</div>
+    </div>
+
+    <div class="card-row">
+      <div class="mini-card">
+        <h5>Pros</h5>
+        <p>Cache only stores data that's actually requested. If the cache dies, your app keeps working — just slower. Simple to implement and reason about.</p>
+      </div>
+      <div class="mini-card">
+        <h5>Cons</h5>
+        <p>First request to any key is slow (the miss penalty). Stale data risk if the DB is updated by something that doesn't invalidate the cache. Vulnerable to <em>cache stampede</em> on popular keys.</p>
+      </div>
+    </div>
+
+    <p><strong>When to use it:</strong> Read-heavy workloads where most data is hot and you can tolerate slight staleness. The default choice for most caching layers.</p>
+
+    <!-- ============ WRITE-THROUGH ============ -->
+
+    <h2 id="write-through"><span class="num">05 — Strategies</span>Write-through</h2>
+    <p class="section-intro">Every write goes to <em>both</em> the cache and the database synchronously. The cache and database are always in lockstep.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrWT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#2C5282"/>
+          </marker>
+        </defs>
+
+        <rect x="60" y="80" width="100" height="60" rx="8" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="110" y="115" text-anchor="middle" class="svg-label-bold">App</text>
+
+        <rect x="280" y="40" width="100" height="60" rx="8" fill="#D9E2EE" stroke="#2C5282"/>
+        <text x="330" y="70" text-anchor="middle" class="svg-label-bold" style="fill:#2C5282">Cache</text>
+        <text x="330" y="86" text-anchor="middle" class="svg-label-mute" style="fill:#2C5282">write</text>
+
+        <rect x="280" y="120" width="100" height="60" rx="8" fill="#D9E2EE" stroke="#2C5282"/>
+        <text x="330" y="150" text-anchor="middle" class="svg-label-bold" style="fill:#2C5282">Database</text>
+        <text x="330" y="166" text-anchor="middle" class="svg-label-mute" style="fill:#2C5282">write</text>
+
+        <line x1="161" y1="100" x2="278" y2="68" stroke="#2C5282" stroke-width="1.5" marker-end="url(#arrWT)"/>
+        <line x1="161" y1="120" x2="278" y2="148" stroke="#2C5282" stroke-width="1.5" marker-end="url(#arrWT)"/>
+
+        <text x="220" y="80" text-anchor="middle" class="svg-label-mono" style="fill:#2C5282">1a. set</text>
+        <text x="220" y="145" text-anchor="middle" class="svg-label-mono" style="fill:#2C5282">1b. write</text>
+
+        <text x="470" y="90" text-anchor="start" class="svg-label" style="fill:#2C5282">Both must succeed</text>
+        <text x="470" y="108" text-anchor="start" class="svg-label" style="fill:#2C5282">before the write</text>
+        <text x="470" y="126" text-anchor="start" class="svg-label" style="fill:#2C5282">is acknowledged.</text>
+      </svg>
+      <div class="diagram-caption">Cache and DB are written atomically. Reads always find fresh data.</div>
+    </div>
+
+    <div class="card-row">
+      <div class="mini-card">
+        <h5>Pros</h5>
+        <p>Cache is never stale on reads. No "first request is slow" problem since data is pre-populated on write.</p>
+      </div>
+      <div class="mini-card">
+        <h5>Cons</h5>
+        <p>Every write is slower because you wait for both systems. Pollutes the cache with data that may never be read. Failure mode: what if the DB write succeeds but the cache write fails? Now they're inconsistent.</p>
+      </div>
+    </div>
+
+    <!-- ============ WRITE-BACK ============ -->
+
+    <h2 id="write-back"><span class="num">06 — Strategies</span>Write-back <em>(write-behind)</em></h2>
+    <p class="section-intro">Write to the cache only. The cache asynchronously flushes to the database later — in batches, on a timer, or on eviction.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrWB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#B07A1A"/>
+          </marker>
+          <marker id="arrWB2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#807F7B"/>
+          </marker>
+        </defs>
+
+        <rect x="60" y="80" width="100" height="60" rx="8" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="110" y="115" text-anchor="middle" class="svg-label-bold">App</text>
+
+        <rect x="260" y="80" width="100" height="60" rx="8" fill="#F4E8CC" stroke="#B07A1A"/>
+        <text x="310" y="110" text-anchor="middle" class="svg-label-bold" style="fill:#B07A1A">Cache</text>
+        <text x="310" y="126" text-anchor="middle" class="svg-label-mute" style="fill:#B07A1A">+ queue</text>
+
+        <rect x="500" y="80" width="100" height="60" rx="8" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="550" y="115" text-anchor="middle" class="svg-label-bold">Database</text>
+
+        <line x1="161" y1="110" x2="258" y2="110" stroke="#B07A1A" stroke-width="2" marker-end="url(#arrWB)"/>
+        <text x="210" y="100" text-anchor="middle" class="svg-label-mono" style="fill:#B07A1A">1. set (fast)</text>
+
+        <line x1="361" y1="110" x2="498" y2="110" stroke="#807F7B" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrWB2)"/>
+        <text x="430" y="100" text-anchor="middle" class="svg-label-mono" style="fill:#807F7B">2. async flush</text>
+        <text x="430" y="128" text-anchor="middle" class="svg-label-mute" style="fill:#807F7B">(batched, later)</text>
+      </svg>
+      <div class="diagram-caption">Writes return instantly. Data flushed to DB asynchronously in batches.</div>
+    </div>
+
+    <div class="card-row">
+      <div class="mini-card">
+        <h5>Pros</h5>
+        <p>Extremely fast writes — the app returns as soon as the cache acknowledges. DB receives batched, optimized writes instead of a flood of individual ones.</p>
+      </div>
+      <div class="mini-card">
+        <h5>Cons</h5>
+        <p><strong>Data loss risk:</strong> if the cache crashes before flushing, the writes are gone forever. Never use this for financial transactions, audit logs, or anything where durability matters.</p>
+      </div>
+    </div>
+
+    <p><strong>When to use it:</strong> Write-heavy workloads where occasional data loss is acceptable — metrics, analytics events, view counters, leaderboard updates.</p>
+
+    <!-- ============ WRITE-AROUND ============ -->
+
+    <h2 id="write-around"><span class="num">07 — Strategies</span>Write-around</h2>
+    <p class="section-intro">Writes bypass the cache entirely and go straight to the database. The cache is only populated when something is later <em>read</em>.</p>
+
+    <p>This is essentially "don't bother caching on write." Useful when written data is unlikely to be read again soon — logs, batch imports, audit trails. Why pay the cache-write cost for data nobody will ask for?</p>
+
+    <div class="callout amber">
+      <div class="callout-label">Tip</div>
+      <p>Write-around pairs naturally with cache-aside for reads. Many real systems use this combo: writes go straight to DB, reads check cache first and populate on miss.</p>
+    </div>
+
+    <!-- ============ STRATEGY COMPARISON ============ -->
+
+    <h3>Side-by-side comparison</h3>
+
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Write cost</th>
+          <th>Read freshness</th>
+          <th>Failure risk</th>
+          <th>Best for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cache-aside</td>
+          <td><span class="pill green">low</span></td>
+          <td><span class="pill amber">eventual</span></td>
+          <td><span class="pill green">tolerant</span></td>
+          <td>Read-heavy general use</td>
+        </tr>
+        <tr>
+          <td>Write-through</td>
+          <td><span class="pill amber">2× slower</span></td>
+          <td><span class="pill green">strong</span></td>
+          <td><span class="pill amber">partial writes</span></td>
+          <td>Read-heavy + needs freshness</td>
+        </tr>
+        <tr>
+          <td>Write-back</td>
+          <td><span class="pill green">fastest</span></td>
+          <td><span class="pill green">strong</span></td>
+          <td><span class="pill red">data loss</span></td>
+          <td>Write-heavy, durability optional</td>
+        </tr>
+        <tr>
+          <td>Write-around</td>
+          <td><span class="pill green">low</span></td>
+          <td><span class="pill amber">eventual</span></td>
+          <td><span class="pill green">tolerant</span></td>
+          <td>Write-once, read-rarely data</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ============ SECTION 3: INVALIDATION ============ -->
+
+    <hr class="section-rule">
+
+    <h2 id="ttl"><span class="num">08 — Invalidation</span>TTL — <em>let time decide</em></h2>
+    <p class="section-intro">The simplest invalidation strategy: every cached entry has an expiration timestamp. Once expired, it's treated as missing.</p>
+
+    <p>You set a TTL (Time To Live) — say, 60 seconds — when you write to the cache. After 60 seconds, the next read sees a miss, fetches fresh data from the DB, and writes it back with a new 60-second TTL.</p>
+
+    <pre><span class="c"># Redis example</span>
+cache.set("user:42:profile", profile_data, <span class="n">ex</span>=<span class="n">300</span>)  <span class="c"># 300 seconds</span></pre>
+
+    <h4>Choosing TTL values</h4>
+    <p>The right TTL is a business question, not a technical one. Ask: <em>"how stale can this data be before it causes a real problem for the user?"</em></p>
+
+    <div class="cheat-grid">
+      <div class="cheat-item">
+        <h6>Stock prices</h6>
+        <p>~1 second. Stale prices cost real money.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Social media feed</h6>
+        <p>~30 seconds. Nobody notices a brief delay.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Product catalog</h6>
+        <p>~1 hour. Updates are rare; freshness rarely matters.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>User permissions</h6>
+        <p>~5 minutes. Revocation needs to propagate, but not instantly.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Currency conversion rates</h6>
+        <p>~10 minutes. Rates change but slowly.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Static content (images, JS)</h6>
+        <p>Days to weeks with versioned URLs.</p>
+      </div>
+    </div>
+
+    <!-- ============ EVENT INVALIDATION ============ -->
+
+    <h2 id="event-invalidation"><span class="num">09 — Invalidation</span>Event-driven invalidation</h2>
+    <p class="section-intro">Don't wait for time to expire — invalidate the moment you know data has changed.</p>
+
+    <p>When something writes to the database, also tell the cache: "this key is stale now." There are two flavors:</p>
+
+    <div class="card-row">
+      <div class="mini-card">
+        <h5>Delete-on-write</h5>
+        <p>On update, <code>cache.delete(key)</code>. The next read will miss, fetch from DB, and repopulate. Simple, safe, the default choice.</p>
+      </div>
+      <div class="mini-card">
+        <h5>Update-on-write</h5>
+        <p>On update, <code>cache.set(key, new_value)</code>. No cache miss penalty on the next read. Risk: race conditions if multiple writers update the same key.</p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-label">The hardest problem in CS</div>
+      <p>"There are only two hard things in computer science: cache invalidation and naming things." — Phil Karlton. The difficulty is rarely <em>invalidating one key</em> — it's knowing <strong>which keys</strong> need to be invalidated when something changes. Updating a user profile might invalidate that user's profile cache, their friends list cache, every page that displays their name, every search index entry...</p>
+    </div>
+
+    <!-- ============ EVICTION ============ -->
+
+    <h2 id="eviction"><span class="num">10 — Invalidation</span>Eviction policies</h2>
+    <p class="section-intro">RAM is finite. When the cache fills up and you need to add a new entry, something must be removed. The eviction policy decides what.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+        <text x="340" y="25" text-anchor="middle" class="svg-label-bold">LRU eviction — least recently used gets kicked out</text>
+
+        <!-- Cache slots -->
+        <g transform="translate(60, 60)">
+          <text x="0" y="-8" class="svg-label-mute">Before — cache is full, "user:A" is the oldest read</text>
+          <rect x="0" y="0" width="100" height="40" rx="6" fill="#F4E0D6" stroke="#B5421E"/>
+          <text x="50" y="20" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">user:A</text>
+          <text x="50" y="34" text-anchor="middle" class="svg-label-mute" style="fill:#B5421E">read 10m ago</text>
+
+          <rect x="110" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="160" y="20" text-anchor="middle" class="svg-label-bold">user:B</text>
+          <text x="160" y="34" text-anchor="middle" class="svg-label-mute">read 5m ago</text>
+
+          <rect x="220" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="270" y="20" text-anchor="middle" class="svg-label-bold">user:C</text>
+          <text x="270" y="34" text-anchor="middle" class="svg-label-mute">read 1m ago</text>
+
+          <rect x="330" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="380" y="20" text-anchor="middle" class="svg-label-bold">user:D</text>
+          <text x="380" y="34" text-anchor="middle" class="svg-label-mute">read 30s ago</text>
+        </g>
+
+        <!-- New write arrow -->
+        <text x="600" y="60" text-anchor="middle" class="svg-label-mono" style="fill:#1F4D3D">+ user:E</text>
+        <path d="M 580 70 L 510 80" stroke="#1F4D3D" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <!-- After -->
+        <g transform="translate(60, 130)">
+          <text x="0" y="-8" class="svg-label-mute">After — user:A evicted, user:E added</text>
+          <rect x="0" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="50" y="20" text-anchor="middle" class="svg-label-bold">user:B</text>
+
+          <rect x="110" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="160" y="20" text-anchor="middle" class="svg-label-bold">user:C</text>
+
+          <rect x="220" y="0" width="100" height="40" rx="6" fill="#FBF8F2" stroke="#807F7B"/>
+          <text x="270" y="20" text-anchor="middle" class="svg-label-bold">user:D</text>
+
+          <rect x="330" y="0" width="100" height="40" rx="6" fill="#DCE7E2" stroke="#1F4D3D"/>
+          <text x="380" y="20" text-anchor="middle" class="svg-label-bold" style="fill:#1F4D3D">user:E</text>
+          <text x="380" y="34" text-anchor="middle" class="svg-label-mute" style="fill:#1F4D3D">just now</text>
+        </g>
+      </svg>
+      <div class="diagram-caption">LRU keeps "recently used" things; everything older gets discarded.</div>
+    </div>
+
+    <div class="card-row">
+      <div class="mini-card">
+        <h5>LRU — Least Recently Used</h5>
+        <p>Evict whatever hasn't been accessed for the longest time. The default in most caches. Works well when recent data is likely to be re-requested.</p>
+      </div>
+      <div class="mini-card">
+        <h5>LFU — Least Frequently Used</h5>
+        <p>Evict whatever has been accessed the <em>fewest</em> times overall. Better when popularity matters more than recency. More complex to track.</p>
+      </div>
+      <div class="mini-card">
+        <h5>FIFO</h5>
+        <p>Evict the oldest entry, regardless of access pattern. Simple but rarely optimal.</p>
+      </div>
+      <div class="mini-card">
+        <h5>Random / TTL-based</h5>
+        <p>Random eviction is surprisingly competitive and dead simple. TTL-based evicts whatever's closest to expiring.</p>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 4: ADVANCED ============ -->
+
+    <hr class="section-rule">
+
+    <h2 id="two-tier"><span class="num">11 — Advanced</span>Two-tier caching <em>(L1 + L2)</em></h2>
+    <p class="section-intro">Why pick between in-process and Redis when you can have both? High-scale systems often layer them like a CPU cache hierarchy.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrTT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#807F7B"/>
+          </marker>
+        </defs>
+
+        <!-- App servers -->
+        <g>
+          <rect x="40" y="40" width="160" height="100" rx="10" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="120" y="60" text-anchor="middle" class="svg-label-bold">App server 1</text>
+          <rect x="60" y="78" width="120" height="44" rx="6" fill="#F4E8CC" stroke="#B07A1A"/>
+          <text x="120" y="98" text-anchor="middle" class="svg-label-bold" style="fill:#B07A1A">L1 cache</text>
+          <text x="120" y="114" text-anchor="middle" class="svg-label-mute" style="fill:#B07A1A">in-process</text>
+        </g>
+
+        <g>
+          <rect x="240" y="40" width="160" height="100" rx="10" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="320" y="60" text-anchor="middle" class="svg-label-bold">App server 2</text>
+          <rect x="260" y="78" width="120" height="44" rx="6" fill="#F4E8CC" stroke="#B07A1A"/>
+          <text x="320" y="98" text-anchor="middle" class="svg-label-bold" style="fill:#B07A1A">L1 cache</text>
+          <text x="320" y="114" text-anchor="middle" class="svg-label-mute" style="fill:#B07A1A">in-process</text>
+        </g>
+
+        <g>
+          <rect x="440" y="40" width="160" height="100" rx="10" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="520" y="60" text-anchor="middle" class="svg-label-bold">App server 3</text>
+          <rect x="460" y="78" width="120" height="44" rx="6" fill="#F4E8CC" stroke="#B07A1A"/>
+          <text x="520" y="98" text-anchor="middle" class="svg-label-bold" style="fill:#B07A1A">L1 cache</text>
+          <text x="520" y="114" text-anchor="middle" class="svg-label-mute" style="fill:#B07A1A">in-process</text>
+        </g>
+
+        <!-- Arrows to L2 -->
+        <line x1="120" y1="140" x2="280" y2="195" stroke="#807F7B" stroke-width="1" marker-end="url(#arrTT)"/>
+        <line x1="320" y1="140" x2="320" y2="195" stroke="#807F7B" stroke-width="1" marker-end="url(#arrTT)"/>
+        <line x1="520" y1="140" x2="360" y2="195" stroke="#807F7B" stroke-width="1" marker-end="url(#arrTT)"/>
+
+        <text x="180" y="170" class="svg-label-mute">on L1 miss</text>
+
+        <!-- L2 Redis -->
+        <rect x="220" y="200" width="200" height="60" rx="10" fill="#D9E2EE" stroke="#2C5282"/>
+        <text x="320" y="225" text-anchor="middle" class="svg-label-bold" style="fill:#2C5282">L2 cache (Redis)</text>
+        <text x="320" y="244" text-anchor="middle" class="svg-label-mute" style="fill:#2C5282">shared across fleet</text>
+
+        <!-- Pub/sub invalidation lines -->
+        <path d="M 320 200 Q 100 170 100 140" fill="none" stroke="#B5421E" stroke-width="1" stroke-dasharray="3 3"/>
+        <path d="M 320 200 Q 540 170 540 140" fill="none" stroke="#B5421E" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="420" y="180" class="svg-label-mono" style="fill:#B5421E">pub/sub: "invalidate user:42"</text>
+
+        <!-- DB -->
+        <line x1="320" y1="260" x2="320" y2="295" stroke="#807F7B" stroke-width="1" marker-end="url(#arrTT)"/>
+        <text x="335" y="282" class="svg-label-mute">on L2 miss</text>
+
+        <ellipse cx="320" cy="320" rx="60" ry="22" fill="#FBF8F2" stroke="#1A1A1A"/>
+        <text x="320" y="324" text-anchor="middle" class="svg-label-bold">Database</text>
+      </svg>
+      <div class="diagram-caption">Each server checks its local L1 first, then shared L2, then DB. Writes invalidate via pub/sub.</div>
+    </div>
+
+    <p>The flow:</p>
+
+    <ol class="steps">
+      <li><strong>Read arrives at App server 2</strong>. Check L1 (its own in-process map). Hit? Return. Miss? Continue.</li>
+      <li><strong>Check L2 (Redis)</strong>. Hit? Populate L1, return. Miss? Continue.</li>
+      <li><strong>Query database</strong>. Populate L2 and L1. Return.</li>
+      <li><strong>On write</strong>: update DB, update L2, publish invalidation message to a pub/sub channel.</li>
+      <li><strong>All other servers receive</strong> the invalidation message and drop that key from their L1.</li>
+    </ol>
+
+    <div class="callout">
+      <div class="callout-label">Why this works so well</div>
+      <p>Hot keys get absorbed by L1 with zero network cost. Cold-but-shared keys get served by L2 across the fleet. The pub/sub layer keeps L1 caches roughly coherent. You're essentially building a CPU cache hierarchy for your distributed application.</p>
+    </div>
+
+    <!-- ============ STAMPEDE ============ -->
+
+    <h2 id="stampede"><span class="num">12 — Advanced</span>Cache stampede <em>(thundering herd)</em></h2>
+    <p class="section-intro">A classic failure mode that brings down systems at the worst possible moment — when a popular cache key expires.</p>
+
+    <h4>The problem</h4>
+    <p>You have a popular cache key serving 10,000 requests per second. Its TTL expires. At that <em>exact instant</em>, all 10,000 concurrent requests see a cache miss simultaneously. All 10,000 fire identical queries at the database. Your database — which was happily handling ~100 req/s of "cache misses" — now sees 10,000 in one millisecond.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrST" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#B5421E"/>
+          </marker>
+        </defs>
+
+        <text x="340" y="25" text-anchor="middle" class="svg-label-bold">10,000 concurrent requests miss the same expired key</text>
+
+        <!-- Many app servers -->
+        <g>
+          <rect x="50" y="60" width="60" height="36" rx="6" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="80" y="82" text-anchor="middle" class="svg-label">req 1</text>
+
+          <rect x="50" y="105" width="60" height="36" rx="6" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="80" y="127" text-anchor="middle" class="svg-label">req 2</text>
+
+          <rect x="50" y="150" width="60" height="36" rx="6" fill="#FBF8F2" stroke="#1A1A1A"/>
+          <text x="80" y="172" text-anchor="middle" class="svg-label">req 3</text>
+
+          <text x="80" y="205" text-anchor="middle" class="svg-label-mute">⋮</text>
+          <text x="80" y="220" text-anchor="middle" class="svg-label-mute">10,000</text>
+        </g>
+
+        <!-- Expired cache -->
+        <rect x="220" y="100" width="120" height="60" rx="8" fill="#F4E0D6" stroke="#B5421E" stroke-dasharray="4 4"/>
+        <text x="280" y="125" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">Cache</text>
+        <text x="280" y="143" text-anchor="middle" class="svg-label-mute" style="fill:#B5421E">EXPIRED ✗</text>
+
+        <line x1="115" y1="80" x2="218" y2="115" stroke="#807F7B" stroke-width="1"/>
+        <line x1="115" y1="125" x2="218" y2="125" stroke="#807F7B" stroke-width="1"/>
+        <line x1="115" y1="170" x2="218" y2="145" stroke="#807F7B" stroke-width="1"/>
+
+        <!-- DB on fire -->
+        <ellipse cx="540" cy="130" rx="60" ry="40" fill="#F4E0D6" stroke="#B5421E" stroke-width="2"/>
+        <text x="540" y="125" text-anchor="middle" class="svg-label-bold" style="fill:#B5421E">Database</text>
+        <text x="540" y="145" text-anchor="middle" class="svg-label-mute" style="fill:#B5421E">overwhelmed</text>
+
+        <line x1="343" y1="125" x2="478" y2="125" stroke="#B5421E" stroke-width="2" marker-end="url(#arrST)"/>
+        <text x="410" y="115" text-anchor="middle" class="svg-label-mono" style="fill:#B5421E">10,000 queries</text>
+        <text x="410" y="145" text-anchor="middle" class="svg-label-mute" style="fill:#B5421E">all at once</text>
+      </svg>
+      <div class="diagram-caption">A single expired key triggers a tidal wave of duplicate DB queries.</div>
+    </div>
+
+    <h4>Three mitigations</h4>
+
+    <ol class="steps">
+      <li><strong>Mutex lock (single-flight).</strong> When a request misses the cache, it acquires a lock before querying the DB. Other requests for the same key wait for the lock-holder to finish, then read the freshly populated cache. Only one DB query is made.</li>
+      <li><strong>Probabilistic early expiry.</strong> Don't wait for TTL to actually expire. As the key approaches expiration, each read has a small (and increasing) probability of refreshing it proactively. This spreads refreshes across time so there's no synchronized cliff.</li>
+      <li><strong>Background refresh.</strong> A separate worker periodically refreshes hot keys before they expire. The application code never sees a miss on those keys.</li>
+    </ol>
+
+    <!-- ============ CONSISTENT HASHING ============ -->
+
+    <h2 id="consistent-hashing"><span class="num">13 — Advanced</span>Consistent hashing</h2>
+    <p class="section-intro">When you scale your cache across many nodes, you need to decide which node owns which key. Consistent hashing is the algorithm that makes this scale gracefully.</p>
+
+    <h4>The naive approach (and why it breaks)</h4>
+    <p>Simple sharding: <code>node = hash(key) % N</code>, where N is the number of nodes. Works fine — until you add or remove a node. Now <code>hash(key) % 5</code> gives different answers than <code>hash(key) % 4</code>, and <strong>almost every key is suddenly on the wrong node</strong>. Your cache hit ratio collapses to ~0%.</p>
+
+    <h4>The consistent hashing solution</h4>
+    <p>Imagine a giant ring of all possible hash values (0 to 2³². Place each node at a position on the ring based on a hash of its name. Place each key at a position based on a hash of the key. The key belongs to the <em>first node clockwise</em> from its position.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ring -->
+        <circle cx="340" cy="160" r="110" fill="none" stroke="#807F7B" stroke-width="1"/>
+
+        <!-- Nodes on ring -->
+        <circle cx="340" cy="50" r="14" fill="#1F4D3D"/>
+        <text x="340" y="32" text-anchor="middle" class="svg-label-bold">Node A</text>
+
+        <circle cx="445" cy="220" r="14" fill="#B5421E"/>
+        <text x="475" y="225" text-anchor="start" class="svg-label-bold">Node B</text>
+
+        <circle cx="235" cy="220" r="14" fill="#B07A1A"/>
+        <text x="205" y="225" text-anchor="end" class="svg-label-bold">Node C</text>
+
+        <!-- Keys on ring -->
+        <circle cx="395" cy="68" r="5" fill="#1F4D3D" opacity="0.6"/>
+        <text x="405" y="55" class="svg-label-mute">key:1 → A</text>
+
+        <circle cx="430" cy="120" r="5" fill="#B5421E" opacity="0.6"/>
+        <text x="455" y="115" class="svg-label-mute">key:2 → B</text>
+
+        <circle cx="420" cy="200" r="5" fill="#B5421E" opacity="0.6"/>
+        <text x="455" y="195" class="svg-label-mute">key:3 → B</text>
+
+        <circle cx="280" cy="240" r="5" fill="#B07A1A" opacity="0.6"/>
+        <text x="280" y="265" class="svg-label-mute">key:4 → C</text>
+
+        <circle cx="250" cy="100" r="5" fill="#1F4D3D" opacity="0.6"/>
+        <text x="225" y="95" class="svg-label-mute" text-anchor="end">key:5 → A</text>
+
+        <!-- Caption -->
+        <text x="340" y="170" text-anchor="middle" class="svg-label-bold">Hash ring</text>
+        <text x="340" y="185" text-anchor="middle" class="svg-label-mute">Each key belongs to next clockwise node</text>
+
+        <text x="600" y="80" text-anchor="end" class="svg-label" style="fill:#1F4D3D">Adding a node only</text>
+        <text x="600" y="98" text-anchor="end" class="svg-label" style="fill:#1F4D3D">reassigns the keys that</text>
+        <text x="600" y="116" text-anchor="end" class="svg-label" style="fill:#1F4D3D">fall in its new slice</text>
+        <text x="600" y="134" text-anchor="end" class="svg-label" style="fill:#1F4D3D">— roughly 1/N of total.</text>
+      </svg>
+      <div class="diagram-caption">Adding or removing a node only shuffles ~1/N of keys, not all of them.</div>
+    </div>
+
+    <p>In practice, each node is placed at <em>many</em> positions on the ring (called "virtual nodes") so the keyspace is distributed evenly. Redis Cluster, DynamoDB, Cassandra, and most modern distributed caches use variants of this approach.</p>
+
+    <!-- ============ HOT KEY ============ -->
+
+    <h2 id="hot-key"><span class="num">14 — Advanced</span>The hot key problem</h2>
+    <p class="section-intro">One cache key receives a wildly disproportionate share of traffic. The node holding it melts while the rest of the cluster sits idle.</p>
+
+    <p>Classic examples: a celebrity's profile during a viral moment, a trending product on Black Friday, a flash-sale item, the homepage feed during breaking news. Even with consistent hashing distributing keys evenly across nodes, one <em>request pattern</em> can hammer one node.</p>
+
+    <h4>Mitigations</h4>
+    <ul>
+      <li><strong>Key replication.</strong> Store the hot key on multiple nodes. Route reads to a random replica to spread load.</li>
+      <li><strong>Local in-process cache.</strong> Cache the hot key in each app server's memory. Most reads never touch the network. This is exactly the L1 in two-tier caching above.</li>
+      <li><strong>Request coalescing.</strong> Within a single app server, collapse multiple concurrent requests for the same key into one upstream fetch.</li>
+    </ul>
+
+    <!-- ============ SECTION 5: DECISIONS ============ -->
+
+    <hr class="section-rule">
+
+    <h2 id="decision"><span class="num">15 — Reference</span>A decision framework</h2>
+    <p class="section-intro">When you're designing a caching layer, work through these questions in order. They'll lead you to the right architecture.</p>
+
+    <ol class="steps">
+      <li><strong>How stale is acceptable?</strong> Seconds? Minutes? Never? This determines TTL and invalidation strategy. Bank balances need strong consistency; social feeds tolerate eventual.</li>
+      <li><strong>Read-heavy or write-heavy?</strong> Read-heavy → cache-aside is your default. Write-heavy with durability requirements → write-through. Write-heavy with tolerance for loss → write-back.</li>
+      <li><strong>How many app servers?</strong> One server → in-process cache is fine. Multiple stateless servers → you need Redis or similar for shared state.</li>
+      <li><strong>What's your hit ratio target?</strong> Higher targets need bigger caches, smarter eviction, and possibly two-tier setups.</li>
+      <li><strong>Where are your users?</strong> Geographically distributed → CDN cache for read-heavy public content.</li>
+      <li><strong>Any known hot keys?</strong> Anticipated viral content, celebrity profiles, popular products → plan replication or local caching ahead of time.</li>
+      <li><strong>What happens when the cache fails?</strong> Cache-aside lets the app fall back to DB. Write-back risks data loss. Design for graceful degradation.</li>
+    </ol>
+
+    <!-- ============ CHEAT SHEET ============ -->
+
+    <h2 id="cheat"><span class="num">16 — Reference</span>The cheat sheet</h2>
+    <p class="section-intro">Print this. Pin it next to your monitor. Everything important from this guide condensed into single lines.</p>
+
+    <div class="cheat-grid">
+      <div class="cheat-item">
+        <h6>Cache</h6>
+        <p>Fast temporary storage answering "did I do this recently?"</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Hit ratio</h6>
+        <p>% of requests served from cache. Going 90→99% = 10× DB load reduction.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Cache-aside</h6>
+        <p>App checks cache, falls back to DB on miss, populates cache. Default pattern.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Write-through</h6>
+        <p>Write to cache + DB together. Fresh reads, slow writes.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Write-back</h6>
+        <p>Write to cache only, flush to DB async. Fast but loses data on crash.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Write-around</h6>
+        <p>Skip cache on writes. Good for write-once, read-rarely data.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>TTL</h6>
+        <p>Time-based expiration. Pick based on tolerable staleness.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Event invalidation</h6>
+        <p>Delete/update cache when source data changes. Synchronous freshness.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>LRU</h6>
+        <p>Evict the least recently accessed entry. Default eviction policy.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>LFU</h6>
+        <p>Evict the least frequently accessed entry. Better for popularity-based access.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Two-tier caching</h6>
+        <p>In-process L1 + distributed L2 + pub/sub invalidation. Maximum speed.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Cache stampede</h6>
+        <p>Mass DB hit when popular key expires. Solve with mutex / probabilistic refresh.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Consistent hashing</h6>
+        <p>Hash ring distributes keys across nodes; adding/removing only shuffles 1/N keys.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Hot key</h6>
+        <p>One key gets disproportionate traffic. Solve with replication or local caching.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>Strong vs eventual consistency</h6>
+        <p>Banking = strong. Social feeds = eventual. Pick based on cost of staleness.</p>
+      </div>
+      <div class="cheat-item">
+        <h6>The one rule</h6>
+        <p>Every cache decision trades speed, freshness, and complexity. Pick deliberately.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>End of guide. Use the sidebar to jump back to anything that didn't fully land. Caching is a topic you internalize through repetition, not on first read — come back to this often.</p>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

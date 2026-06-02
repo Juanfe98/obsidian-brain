@@ -11,7 +11,7 @@ CLAUDE.md          Global Claude instructions
 commands/          Slash command workflows
 skills/            Reusable Claude skills
 scripts/           Sync/install helper scripts
-templates/         Templates for repo-specific Claude setup
+templates/         Templates for repo-specific Claude and product artifacts
 *.md               Workflow documentation and diagrams
 ```
 
@@ -80,6 +80,25 @@ Verify:
 - no secrets, credentials, or private environment details are included
 - `github-code-reviewer` remains preview-only unless `--post` or explicit approval is provided
 - sync/install scripts still pass `bash -n scripts/*.sh`
+
+## Workflow modes
+
+```txt
+Product Mode       Raw idea → MVP-ready requirements
+Spec-Driven Mode   Clear non-trivial requirements → plan/tasks/implementation
+Direct Mode        Small clear engineering tasks
+```
+
+Product Mode uses:
+
+```txt
+/product-idea
+/product-discovery
+/product-brief
+/product-requirements
+```
+
+See `claude-code-product-mode-workflow.md` for the full product workflow.
 
 ## Project-specific setup
 

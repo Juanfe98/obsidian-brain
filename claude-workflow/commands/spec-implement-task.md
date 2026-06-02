@@ -40,6 +40,20 @@ Example:
 17. Confirm the task meets the Spec Kit task definition of done.
 18. Summarize the result.
 
+## Definition of Ready
+
+A Spec Kit task is ready for implementation only when:
+
+- the selected task exists in `tasks.md`
+- the task maps clearly to the feature `spec.md` and `plan.md`
+- the task scope is small, clear, and independently implementable
+- required context and likely affected files are identified
+- the validation approach is known
+- no unresolved product, architecture, API, schema, contract, or data-model question blocks the task
+- approval has been obtained when required
+
+If any readiness condition is missing, do not implement. Ask for clarification, recommend splitting the task, or return to spec/plan/task refinement.
+
 ## Definition of Done
 
 A Spec Kit task is done only when:
@@ -81,6 +95,15 @@ If the task cannot be marked complete, report the blocker and the safest next ac
 
 ## Validation
 
+Before implementation, identify the smallest relevant validation plan for the selected task:
+
+- Targeted test:
+- Typecheck:
+- Lint:
+- Build:
+- Manual QA:
+- Skipped validation and why:
+
 Run the smallest relevant validation first, such as:
 
 - targeted test file
@@ -89,7 +112,7 @@ Run the smallest relevant validation first, such as:
 - lint
 - build check
 
-Infer commands from the repository.
+Infer commands from the repository. Only include checks that are relevant to the selected task. If validation cannot be run, explain why and suggest what the human should run.
 
 ## Output
 
