@@ -22,6 +22,7 @@ Examples:
    - likely root cause, if applicable
    - smallest safe plan
    - files likely affected
+   - risk level: Low / Medium / High
    - validation needed
 6. Decide if the task is still small:
    - If yes, continue Direct Mode.
@@ -37,6 +38,7 @@ Examples:
 
 - files changed
 - what changed
+- risk level
 - validation run
 - risks or follow-ups
 
@@ -68,6 +70,20 @@ Stop and recommend Spec Kit or a structured workflow when:
 - the implementation cannot be described as one small safe plan
 
 When escalation is needed, summarize what was learned, why Direct Mode is no longer appropriate, and the recommended next workflow.
+
+## Risk Classification
+
+Classify the task before implementation:
+
+- Low: localized, reversible, clear behavior, no public contract changes, targeted validation available
+- Medium: multiple files, user-facing behavior, moderate integration risk, non-trivial tests, or meaningful state/data-flow changes
+- High: public APIs/contracts, schemas, data models, migrations, security/privacy, permissions, dependencies, CI/CD, architecture, broad refactors, or unclear requirements
+
+Risk handling:
+
+- Low risk: proceed after exploration and any required approval
+- Medium risk: require an explicit scoped plan, approval before editing, and targeted validation plus any relevant type/lint checks
+- High risk: recommend Spec Kit or a structured workflow unless the user explicitly confirms the constrained scope
 
 ## Approval Before Editing
 

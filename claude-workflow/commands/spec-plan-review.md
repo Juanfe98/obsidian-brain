@@ -36,6 +36,16 @@ Check:
 - dependency or tooling changes
 - migration or rollout risks
 
+## Risk Classification
+
+Classify the plan risk:
+
+- Low: localized, reversible, clear behavior, no public contract changes, targeted validation available
+- Medium: multiple files, user-facing behavior, moderate integration risk, non-trivial tests, or meaningful state/data-flow changes
+- High: public APIs/contracts, schemas, data models, migrations, security/privacy, permissions, dependencies, CI/CD, architecture, broad refactors, or unclear requirements
+
+Use the risk level to decide whether the plan is safe to turn into tasks, needs refinement, or should be split into smaller specs.
+
 ## Red Flags
 
 Call out:
@@ -55,8 +65,9 @@ Call out:
 Return:
 
 1. Plan readiness verdict: Ready / Needs refinement
-2. Main risks
-3. Suggested plan improvements
-4. Over-engineered or unnecessary parts
-5. Missing validation/testing details
-6. Whether it is safe to proceed to `/speckit.tasks`
+2. Risk level: Low / Medium / High
+3. Main risks
+4. Suggested plan improvements
+5. Over-engineered or unnecessary parts
+6. Missing validation/testing details
+7. Whether it is safe to proceed to `/speckit.tasks`

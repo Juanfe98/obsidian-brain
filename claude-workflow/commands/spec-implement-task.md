@@ -30,15 +30,16 @@ Example:
 7. Locate the requested task.
 8. Summarize the task scope in plain language.
 9. Explore only the files relevant to this task.
-10. Propose a small implementation plan.
-11. If the task scope is unclear, too broad, or risky, stop and ask for clarification.
-12. Implement only the selected task.
-13. Add or update tests required by this task.
-14. Run targeted validation.
-15. Self-review the diff.
-16. Fix only must-fix issues.
-17. Confirm the task meets the Spec Kit task definition of done.
-18. Summarize the result.
+10. Classify task risk: Low / Medium / High.
+11. Propose a small implementation plan.
+12. If the task scope is unclear, too broad, or risky, stop and ask for clarification.
+13. Implement only the selected task.
+14. Add or update tests required by this task.
+15. Run targeted validation.
+16. Self-review the diff.
+17. Fix only must-fix issues.
+18. Confirm the task meets the Spec Kit task definition of done.
+19. Summarize the result.
 
 ## Definition of Ready
 
@@ -93,6 +94,20 @@ If the task cannot be marked complete, report the blocker and the safest next ac
 - Do not claim validation passed unless commands were actually run.
 - If implementation reveals the task is too large, stop and recommend splitting it.
 
+## Risk Classification
+
+Classify the selected task before implementation:
+
+- Low: localized, reversible, clear behavior, no public contract changes, targeted validation available
+- Medium: multiple files, user-facing behavior, moderate integration risk, non-trivial tests, or meaningful state/data-flow changes
+- High: public APIs/contracts, schemas, data models, migrations, security/privacy, permissions, dependencies, CI/CD, architecture, broad refactors, or unclear requirements
+
+Risk handling:
+
+- Low risk: implement task-by-task after readiness checks and any required approval
+- Medium risk: require explicit scoped plan, approval before editing, and targeted validation plus relevant type/lint checks
+- High risk: stop and confirm the task is correctly scoped; recommend splitting or returning to spec/plan/task refinement when needed
+
 ## Validation
 
 Before implementation, identify the smallest relevant validation plan for the selected task:
@@ -119,8 +134,9 @@ Infer commands from the repository. Only include checks that are relevant to the
 Return:
 
 1. Task implemented
-2. Files changed
-3. Tests or validation run
-4. Any scope changes avoided
-5. Risks or follow-ups
-6. Whether the task can be marked complete
+2. Risk level: Low / Medium / High
+3. Files changed
+4. Tests or validation run
+5. Any scope changes avoided
+6. Risks or follow-ups
+7. Whether the task can be marked complete

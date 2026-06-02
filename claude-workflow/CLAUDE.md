@@ -211,6 +211,24 @@ Rules:
 - Before final summary, distinguish between files changed by Claude and files that were already modified.
 - Do not stage, commit, push, reset, checkout, clean, or stash changes unless explicitly asked.
 
+## Risk Classification
+
+Classify engineering work before implementation and use the risk level to choose approval and validation depth.
+
+Risk levels:
+
+- Low: localized, reversible, clear expected behavior, no public contract changes, targeted validation available.
+- Medium: multiple files, user-facing behavior, moderate integration risk, non-trivial tests, or meaningful state/data-flow changes.
+- High: public APIs/contracts, schemas, data models, migrations, security/privacy, permissions, dependencies, CI/CD, architecture, broad refactors, or unclear requirements.
+
+Risk handling:
+
+- Low risk: Direct Mode may proceed after exploration and any required approval.
+- Medium risk: require an explicit scoped plan, approval before editing, and targeted validation plus any relevant type/lint checks.
+- High risk: recommend Spec Kit or a structured workflow unless the user explicitly confirms the constrained scope; require explicit approval and stronger validation.
+
+Include risk level in implementation plans and final summaries when the work is not obviously low risk.
+
 ## Validation
 
 Run the smallest relevant validation first.
