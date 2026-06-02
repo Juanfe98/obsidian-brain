@@ -103,6 +103,22 @@ Direct Mode is done only when:
 - No unrelated changes were introduced.
 - The final summary includes changed files, validation, and risks/follow-ups.
 
+## Onboarding Mode
+
+Use Onboarding Mode when the user is new to a repository, returning to an unfamiliar codebase, or needs broad product/domain/architecture understanding before making changes.
+
+Onboarding Mode is read-only by default and should explain:
+
+- product purpose, target users, and problem solved
+- domain concepts, business rules, and main workflows
+- tech stack, architecture, module boundaries, and key files
+- data/request/user flows, integrations, tests, and operational signals
+- risks, unknowns, assumptions, recommended next reading, and next workflow
+
+Use `/repo-onboarding` for this flow. Do not edit files or create artifacts unless explicitly asked.
+
+Do not use `/repo-onboarding` as a substitute for targeted exploration in Direct or Spec workflows. Use it only when broad repository/product/domain understanding is the user's explicit goal or the repository context itself is the task.
+
 ## Product Mode
 
 Use Product Mode before engineering when the user has a raw idea, unclear product direction, or undefined MVP.
@@ -323,6 +339,20 @@ Rules:
 - Run destructive git commands
 - Stage files
 - Commit or push changes
+
+## Final Diff Change-Control Check
+
+Before final summary or PR readiness, explicitly check whether the diff changed any high-control areas:
+
+- dependencies or lockfiles
+- generated files
+- CI/CD or deployment configuration
+- environment, secret, or private configuration files
+- public APIs, contracts, schemas, or data models
+- migrations or persistence behavior
+- broad formatting, unrelated refactors, or cross-cutting architecture
+
+If any high-control area changed, call it out in the final summary with whether approval was obtained, why it was needed, and what validation was run. Do not hide these changes inside a generic files-changed list.
 
 ## Review Standards
 

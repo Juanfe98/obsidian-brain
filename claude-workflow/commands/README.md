@@ -6,7 +6,7 @@ Slash command workflows for the Git-controlled Claude setup.
 
 | Category | Commands | Edit behavior |
 |---|---|---|
-| Read-only / advisory | `/workflow-router`, `/explain-code`, `/review-diff`, `/spec-review`, `/spec-plan-review`, `/spec-task-review`, `/spec-status`, `/product-idea`, `/product-discovery`, `/product-brief`, `/product-requirements` | Do not edit files unless the user explicitly asks to persist an artifact or apply a specific change. |
+| Read-only / advisory | `/workflow-router`, `/repo-onboarding`, `/explain-code`, `/review-diff`, `/spec-review`, `/spec-plan-review`, `/spec-task-review`, `/spec-status`, `/product-idea`, `/product-discovery`, `/product-brief`, `/product-requirements` | Do not edit files unless the user explicitly asks to persist an artifact or apply a specific change. |
 | Implementation-capable | `/direct`, `/debug-failure`, `/spec-implement-task` | May edit files after required exploration, readiness checks, approval rules, and scoped plan. |
 | Session / handoff | `/close-session`, `/spec-close` | Summary-only by default. May persist session notes only with explicit approval. |
 
@@ -17,6 +17,12 @@ When in doubt, treat a command as read-only and ask before editing.
 | Command | Use when | Output / behavior |
 |---|---|---|
 | `/workflow-router` | You are unsure which workflow to use | Classifies the request, assesses scope/risk, and recommends the safest next command without editing files. |
+
+## Onboarding Mode
+
+| Command | Use when | Output / behavior |
+|---|---|---|
+| `/repo-onboarding` | You are joining or revisiting an unfamiliar repository | Read-only product, domain, architecture, codebase, validation, risk, and next-reading map. |
 
 ## Product Mode
 
@@ -51,6 +57,7 @@ When in doubt, treat a command as read-only and ask before editing.
 ## Operating rules
 
 - Use `/workflow-router` when the safest workflow is unclear.
+- Prefer `/repo-onboarding` when the repository, product/domain, architecture, or engineering context is unfamiliar.
 - Prefer Product Mode when the idea, target user, problem, or MVP is unclear.
 - Prefer `/direct` for small, clear, low-risk work.
 - Prefer Spec Kit commands for clear but non-trivial, multi-step, high-risk, or acceptance-criteria-driven work.

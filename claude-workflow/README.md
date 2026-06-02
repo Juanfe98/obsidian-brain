@@ -85,9 +85,16 @@ Verify:
 ## Workflow modes
 
 ```txt
+Onboarding Mode    New repo → product/domain/architecture understanding
 Product Mode       Raw idea → MVP-ready requirements
 Spec-Driven Mode   Clear non-trivial requirements → plan/tasks/implementation
 Direct Mode        Small clear engineering tasks
+```
+
+Onboarding Mode uses:
+
+```txt
+/repo-onboarding
 ```
 
 Product Mode uses:

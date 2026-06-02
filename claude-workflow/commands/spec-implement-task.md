@@ -155,6 +155,20 @@ Check whether the selected task:
 
 If architecture impact is significant, stop and confirm the task is correctly scoped, approved, and represented in the spec/plan before implementation.
 
+## Final Diff Change-Control Check
+
+Before final summary or marking the task complete, check whether the diff changed:
+
+- dependencies or lockfiles
+- generated files
+- CI/CD or deployment configuration
+- environment, secret, or private configuration files
+- public APIs, contracts, schemas, or data models
+- migrations or persistence behavior
+- broad formatting, unrelated refactors, or cross-cutting architecture
+
+If any high-control area changed, call it out explicitly with approval status, reason, and validation. If it was not part of the selected task, do not mark the task complete.
+
 ## Validation
 
 Before implementation, identify the smallest relevant validation plan for the selected task:
@@ -186,7 +200,8 @@ Return:
 4. Files changed
 5. Validation commands run and results
 6. Completion evidence
-7. Any scope changes avoided
-8. Risks or follow-ups
-9. Whether the task can be marked complete
-10. Task status update made, if any
+7. High-control diff check
+8. Any scope changes avoided
+9. Risks or follow-ups
+10. Whether the task can be marked complete
+11. Task status update made, if any

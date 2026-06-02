@@ -41,6 +41,7 @@ Examples:
 - what changed
 - risk level
 - architecture impact
+- high-control diff check
 - validation run
 - risks or follow-ups
 
@@ -132,6 +133,20 @@ Before implementation, identify the smallest relevant validation plan:
 - Skipped validation and why:
 
 Only include checks that are relevant to the scoped change. If validation cannot be run, explain why and suggest what the human should run.
+
+## Final Diff Change-Control Check
+
+Before final summary, check whether the diff changed:
+
+- dependencies or lockfiles
+- generated files
+- CI/CD or deployment configuration
+- environment, secret, or private configuration files
+- public APIs, contracts, schemas, or data models
+- migrations or persistence behavior
+- broad formatting, unrelated refactors, or cross-cutting architecture
+
+If any high-control area changed, call it out explicitly with approval status, reason, and validation.
 
 ## Definition of Done
 

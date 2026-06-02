@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: Generate senior-level PR descriptions from your current branch diff. Includes context, changes, breaking changes, and QA steps.
+description: Generate senior-level PR descriptions from your current branch diff. Includes context, changes, breaking changes, QA steps, validation, risk, and high-control change checks.
 allowed-tools: Read, Glob, Grep, Bash(python3 scripts/*), Bash(git *)
 argument-hint: [--base <branch>]
 disable-model-invocation: true
@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 # Senior-Level PR Description Generator
 
-Generate a well-structured PR description that gives reviewers the context they need.
+Generate a well-structured PR description that gives reviewers the context they need, including PR readiness signals.
 
 ## Inputs
 
@@ -62,6 +62,24 @@ Review the diff to understand:
 - Config/environment changes (new required env vars, changed defaults)
 - Removed or renamed public functions/classes/exports
 
+**High-Control Change Detection:**
+
+Explicitly check whether the diff changes:
+
+- dependencies or lockfiles
+- generated files
+- CI/CD or deployment configuration
+- environment, secret, or private configuration files
+- public APIs, contracts, schemas, or data models
+- migrations or persistence behavior
+- broad formatting, unrelated refactors, or cross-cutting architecture
+
+**Risk and Validation Detection:**
+
+- Classify PR risk as Low / Medium / High
+- Identify validation commands or evidence visible in commits/diff/context, if any
+- If validation is unknown, say what should be run instead of claiming it passed
+
 **Issue/Ticket Detection:**
 
 - Look for issue references in commit messages (e.g., #123, JIRA-456, fixes #789)
@@ -100,6 +118,13 @@ Example:
 - **API**: `GET /users` now requires `org_id` query param. Clients must update their calls.
 - **Database**: New required column `users.email_verified`. Run migration before deploying.
 
+### Risk / Readiness
+
+- **Risk level**: Low / Medium / High
+- **High-control changes**: None / [List dependencies, lockfiles, generated files, CI/CD, config, env/secret files, schemas, migrations, public contracts, or architecture]
+- **Validation**: [Commands actually run if known, otherwise "Not provided in diff/context"]
+- **Reviewer focus**: [1-3 areas reviewers should pay attention to]
+
 ## Steps to QA
 
 ### Setup
@@ -135,6 +160,14 @@ Example:
 - If no breaking changes, write "None." - this explicitly signals you checked
 - If breaking changes exist, include migration path (what consumers need to do)
 - Be specific: which endpoint, which field, which function
+
+**Risk / Readiness section:**
+
+- Always include risk level
+- Always include high-control changes, even if "None"
+- Do not claim validation passed unless evidence is present in the provided context
+- If validation is unknown, list recommended validation instead
+- Reviewer focus should highlight risky behavior, contracts, edge cases, or UX states
 
 **Steps to QA section:**
 

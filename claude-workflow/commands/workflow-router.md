@@ -4,7 +4,7 @@ Classify a user request and recommend the safest workflow before implementation 
 
 ## Purpose
 
-Use this command when it is unclear whether a request belongs in Product Mode, Direct Mode, Debug Failure, Review, Spec-Driven Workflow, or session closing.
+Use this command when it is unclear whether a request belongs in Onboarding Mode, Product Mode, Direct Mode, Debug Failure, Review, Spec-Driven Workflow, or session closing.
 
 The goal is to prevent starting with the wrong workflow, especially when a request looks small but actually needs product clarification, acceptance criteria, broader planning, or stronger validation.
 
@@ -13,6 +13,7 @@ The goal is to prevent starting with the wrong workflow, especially when a reque
 1. Read the user request carefully.
 2. Check `git status --short` when working inside a repository.
 3. Identify the request type:
+   - new or unfamiliar repository onboarding
    - raw product idea
    - product discovery / MVP shaping
    - small clear engineering task
@@ -28,6 +29,16 @@ The goal is to prevent starting with the wrong workflow, especially when a reque
 8. Do not edit files or implement code.
 
 ## Routing Rules
+
+Recommend `/repo-onboarding` when:
+
+- the user is new to a repository or team
+- the user asks to understand the repo from product, domain, and engineering perspectives
+- the product purpose, business problem, domain concepts, or architecture are unclear and broad understanding is the explicit goal
+- the user needs a broad read-only codebase map before deciding what work to do
+- the user asks what to read first or how to become productive in the repo
+
+Do not recommend `/repo-onboarding` just because Claude lacks context for a normal implementation task. For Direct or Spec workflows, prefer targeted exploration of relevant files.
 
 Recommend Product Mode when:
 
