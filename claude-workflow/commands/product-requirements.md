@@ -24,6 +24,24 @@ Use this after `/product-brief` when the product direction is clear enough to de
 - Keep non-goals explicit to prevent scope creep.
 - If requirements are ambiguous, ask questions instead of inventing product decisions.
 
+## Product → Spec Handoff Checklist
+
+The requirements are ready for Spec Kit only when:
+
+- target user is clear
+- problem statement is clear
+- MVP goal is clear
+- functional requirements are testable
+- acceptance criteria are defined for each important requirement
+- UX states are defined, including empty, loading, error, success, first-use, and repeat-use when relevant
+- edge cases that affect trust, correctness, or learning goals are defined
+- non-goals and out-of-scope behavior are explicit
+- success metrics or learning signals are identified
+- unresolved product questions are listed
+- suggested `/speckit.specify` prompt is included when ready
+
+If any required handoff item is missing, do not recommend proceeding to Spec Kit yet. Ask focused questions or recommend returning to `/product-discovery` or `/product-brief`.
+
 ## Output
 
 Return MVP Requirements:
@@ -36,8 +54,9 @@ Return MVP Requirements:
 6. Analytics / learning signals
 7. Non-goals
 8. Open questions
-9. Readiness verdict: Ready for `/speckit.specify` / Needs refinement
-10. Suggested `/speckit.specify` prompt, if ready
+9. Product → Spec handoff checklist result
+10. Readiness verdict: Ready for `/speckit.specify` / Needs refinement
+11. Suggested `/speckit.specify` prompt, if ready
 
 ## Optional Persistence
 

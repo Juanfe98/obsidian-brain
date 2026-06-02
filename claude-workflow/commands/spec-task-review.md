@@ -53,6 +53,17 @@ Check for:
 
 If traceability is unclear, call out the missing link and recommend refining `spec.md`, `plan.md`, or `tasks.md` before implementation.
 
+## Quality Score
+
+Assign one quality score:
+
+- Ready: safe to start task-by-task implementation; tasks are clear, ordered, traceable, testable, and scoped.
+- Minor gaps: mostly safe to start, but small non-blocking task refinements are recommended.
+- Major gaps: do not start implementation yet; tasks need splitting, validation coverage, ordering, traceability, or scope refinement.
+- Blocked: cannot start until a missing artifact, conflicting requirement, unclear task, or human decision is resolved.
+
+Use the quality score to make the start/refine/split decision explicit.
+
 ## Red Flags
 
 Call out:
@@ -76,12 +87,13 @@ Call out:
 Return:
 
 1. Task readiness verdict: Ready / Needs refinement
-2. Traceability findings
-3. Requirements or acceptance criteria without tasks
-4. Tasks without clear spec/plan source
-5. Tasks that should be split
-6. Missing tasks
-7. Risky tasks
-8. Missing validation coverage
-9. Suggested implementation order
-10. Whether task-by-task implementation can start
+2. Quality score: Ready / Minor gaps / Major gaps / Blocked
+3. Traceability findings
+4. Requirements or acceptance criteria without tasks
+5. Tasks without clear spec/plan source
+6. Tasks that should be split
+7. Missing tasks
+8. Risky tasks
+9. Missing validation coverage
+10. Suggested implementation order
+11. Whether task-by-task implementation can start

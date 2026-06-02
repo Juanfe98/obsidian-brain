@@ -183,8 +183,23 @@ A Spec Kit task is done only when:
 - Required tests or validation were run, or the reason they were not run is documented.
 - The diff was self-reviewed against the spec, plan, task, and constitution.
 - No adjacent tasks or unrelated refactors were included.
+- Completion evidence is provided in the final summary.
 - Any task status update is justified by implementation and validation results.
 - Remaining risks, follow-ups, or skipped validation are documented.
+
+Spec Kit task completion evidence must include:
+
+- selected task ID and task description.
+- files changed for this task.
+- confirmation that no adjacent tasks were implemented.
+- validation commands actually run and pass/fail results.
+- skipped validation, if any, with reason and recommended human follow-up.
+- self-review result against the spec, plan, task, and constitution.
+- risk level and architecture impact.
+- rationale for whether the task can be marked complete.
+- exact `tasks.md` status update, if one was made.
+
+Do not mark a Spec Kit task complete when validation failed or was skipped without explicit user acceptance, the task is only partially implemented, adjacent work was included, scope changed without approval, or completion evidence is incomplete.
 
 ## Tool and Prompt Safety
 
@@ -228,6 +243,29 @@ Risk handling:
 - High risk: recommend Spec Kit or a structured workflow unless the user explicitly confirms the constrained scope; require explicit approval and stronger validation.
 
 Include risk level in implementation plans and final summaries when the work is not obviously low risk.
+
+## Architecture Decision Checkpoint
+
+Before implementation or task generation, identify whether the work makes or implies an architecture decision.
+
+Architecture impact levels:
+
+- None: follows existing patterns and does not change boundaries, ownership, contracts, dependencies, or data flow.
+- Low: small extension of an existing pattern with no new architectural direction.
+- Significant: introduces or changes abstractions, module boundaries, state ownership, data flow, public APIs/contracts, schemas, dependencies, tooling, migrations, or cross-cutting behavior.
+
+Check:
+
+- Does this introduce a new abstraction, layer, service, helper pattern, or framework usage?
+- Does this change state ownership, data flow, persistence, or responsibility boundaries?
+- Does this change public APIs, schemas, contracts, data models, or migrations?
+- Does this add dependencies, tooling, generated files, CI/CD, or configuration changes?
+- Does this mix feature work with refactoring or architectural cleanup?
+- Does this diverge from existing project conventions?
+
+If architecture impact is significant, stop and ask for approval, recommend Spec Kit, or return to spec/plan refinement before implementation.
+
+Include architecture impact in plans and final summaries when it is not obviously `None`.
 
 ## Validation
 

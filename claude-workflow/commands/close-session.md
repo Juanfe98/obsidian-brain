@@ -26,6 +26,7 @@ If persistence is approved:
 
 - Prefer updating `docs/ai/session-summary.md` if it exists.
 - If no summary file exists, ask where to create one.
+- Use `templates/session-summary.md` as the structure when applicable.
 - Keep the update factual and concise.
 - Do not include secrets, credentials, or private environment details.
 

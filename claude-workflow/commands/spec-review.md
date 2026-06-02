@@ -32,6 +32,17 @@ Check whether the spec clearly defines:
 - Accessibility expectations, if UI is involved
 - Error/loading/empty states, if applicable
 
+## Quality Score
+
+Assign one quality score:
+
+- Ready: safe to proceed to technical planning; requirements are clear, scoped, and testable.
+- Minor gaps: mostly safe to proceed, but small non-blocking refinements are recommended.
+- Major gaps: do not proceed yet; important requirements, acceptance criteria, UX states, edge cases, or scope boundaries need refinement.
+- Blocked: cannot proceed until a missing artifact, conflicting requirement, constitution issue, or human decision is resolved.
+
+Use the quality score to make the proceed/refine decision explicit.
+
 ## Red Flags
 
 Call out:
@@ -50,7 +61,8 @@ Call out:
 Return:
 
 1. Spec readiness verdict: Ready / Needs refinement
-2. Missing or unclear requirements
-3. Suggested refinements
-4. Questions for the human
-5. Whether it is safe to proceed to `/speckit.plan`
+2. Quality score: Ready / Minor gaps / Major gaps / Blocked
+3. Missing or unclear requirements
+4. Suggested refinements
+5. Questions for the human
+6. Whether it is safe to proceed to `/speckit.plan`

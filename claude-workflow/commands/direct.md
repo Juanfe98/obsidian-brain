@@ -23,6 +23,7 @@ Examples:
    - smallest safe plan
    - files likely affected
    - risk level: Low / Medium / High
+   - architecture impact: None / Low / Significant
    - validation needed
 6. Decide if the task is still small:
    - If yes, continue Direct Mode.
@@ -39,6 +40,7 @@ Examples:
 - files changed
 - what changed
 - risk level
+- architecture impact
 - validation run
 - risks or follow-ups
 
@@ -84,6 +86,25 @@ Risk handling:
 - Low risk: proceed after exploration and any required approval
 - Medium risk: require an explicit scoped plan, approval before editing, and targeted validation plus any relevant type/lint checks
 - High risk: recommend Spec Kit or a structured workflow unless the user explicitly confirms the constrained scope
+
+## Architecture Decision Checkpoint
+
+Before implementation, classify architecture impact:
+
+- None: follows existing patterns and does not change boundaries, ownership, contracts, dependencies, or data flow
+- Low: small extension of an existing pattern with no new architectural direction
+- Significant: introduces or changes abstractions, module boundaries, state ownership, data flow, public APIs/contracts, schemas, dependencies, tooling, migrations, or cross-cutting behavior
+
+Check:
+
+- Does this introduce a new abstraction, layer, service, helper pattern, or framework usage?
+- Does this change state ownership, data flow, persistence, or responsibility boundaries?
+- Does this change public APIs, schemas, contracts, data models, or migrations?
+- Does this add dependencies, tooling, generated files, CI/CD, or configuration changes?
+- Does this mix feature work with refactoring or architectural cleanup?
+- Does this diverge from existing project conventions?
+
+If architecture impact is significant, stop and ask for approval or recommend Spec Kit before implementation.
 
 ## Approval Before Editing
 

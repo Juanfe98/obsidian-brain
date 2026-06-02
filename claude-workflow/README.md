@@ -12,6 +12,7 @@ commands/          Slash command workflows
 skills/            Reusable Claude skills
 scripts/           Sync/install helper scripts
 templates/         Templates for repo-specific Claude and product artifacts
+docs/              Workflow maps and reference docs
 *.md               Workflow documentation and diagrams
 ```
 
@@ -98,7 +99,10 @@ Product Mode uses:
 /product-requirements
 ```
 
-See `claude-code-product-mode-workflow.md` for the full product workflow.
+See:
+
+- `docs/workflow-flows.md` for the concise workflow maps and Mermaid diagrams
+- `claude-code-product-mode-workflow.md` for the full product workflow
 
 ## Project-specific setup
 

@@ -46,6 +46,36 @@ Classify the plan risk:
 
 Use the risk level to decide whether the plan is safe to turn into tasks, needs refinement, or should be split into smaller specs.
 
+## Architecture Decision Checkpoint
+
+Classify architecture impact:
+
+- None: follows existing patterns and does not change boundaries, ownership, contracts, dependencies, or data flow
+- Low: small extension of an existing pattern with no new architectural direction
+- Significant: introduces or changes abstractions, module boundaries, state ownership, data flow, public APIs/contracts, schemas, dependencies, tooling, migrations, or cross-cutting behavior
+
+Check whether the plan:
+
+- introduces new abstractions, layers, services, helper patterns, or framework usage
+- changes state ownership, data flow, persistence, or responsibility boundaries
+- changes public APIs, schemas, contracts, data models, or migrations
+- adds dependencies, tooling, generated files, CI/CD, or configuration changes
+- mixes feature work with refactoring or architectural cleanup
+- diverges from existing project conventions
+
+If architecture impact is significant, verify that the decision is explicit, justified, aligned with the spec/constitution, and approved before proceeding to tasks.
+
+## Quality Score
+
+Assign one quality score:
+
+- Ready: safe to proceed to task generation; the plan is aligned, scoped, realistic, and has sufficient validation strategy.
+- Minor gaps: mostly safe to proceed, but small non-blocking refinements are recommended.
+- Major gaps: do not proceed yet; important technical, validation, risk, architecture, or scope issues need refinement.
+- Blocked: cannot proceed until a missing artifact, conflicting plan/spec detail, constitution issue, or human decision is resolved.
+
+Use the quality score to make the proceed/refine/split decision explicit.
+
 ## Red Flags
 
 Call out:
@@ -65,9 +95,11 @@ Call out:
 Return:
 
 1. Plan readiness verdict: Ready / Needs refinement
-2. Risk level: Low / Medium / High
-3. Main risks
-4. Suggested plan improvements
-5. Over-engineered or unnecessary parts
-6. Missing validation/testing details
-7. Whether it is safe to proceed to `/speckit.tasks`
+2. Quality score: Ready / Minor gaps / Major gaps / Blocked
+3. Risk level: Low / Medium / High
+4. Architecture impact: None / Low / Significant
+5. Main risks
+6. Suggested plan improvements
+7. Over-engineered or unnecessary parts
+8. Missing validation/testing details
+9. Whether it is safe to proceed to `/speckit.tasks`
