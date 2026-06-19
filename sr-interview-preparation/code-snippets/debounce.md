@@ -71,3 +71,69 @@ export default function UsersSearch() {
 ```
 
 ## Debounce as a custom hook
+
+```ts
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [value]);
+
+  return debouncedValue;
+}
+
+export default function DebounceChallenge() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedValue = useDebounce(searchQuery, 2000);
+  console.log("debouncedValue -> ", debouncedValue);
+  console.log("Search-> ", searchQuery);
+
+  useEffect(() => {
+    const ac = new AbortController();
+    const signal = ac.signal;
+    if (!debouncedValue) {
+      return;
+    }
+    const fetchInfo = async () => await searchUsers(debouncedValue);
+    fetchInfo();
+
+    return () => {
+      ac.abort("Clean up side effects");
+    };
+  }, [debouncedValue]);
+
+  const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(ev.target.value);
+  };
+
+  return (
+    <div className="autocomplete-wrapper">
+      <label htmlFor="user-search">User Search</label>
+      {/* TODO: build the component */}
+
+      <input
+        className="autocomplete-input"
+        list="users"
+        id="user-search"
+        name="user-search"
+        placeholder="Search User"
+        onChange={handleInputChange}
+        type="text"
+      />
+
+      <datalist className="autocomplete-dropdown" id="users">
+        <option value="Bogotá"></option>
+        <option value="Medellín"></option>
+        <option value="Cali"></option>
+        <option value="Barranquilla"></option>
+      </datalist>
+    </div>
+  );
+}
+
+```
