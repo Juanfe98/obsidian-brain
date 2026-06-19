@@ -22,6 +22,8 @@ Examples:
    - likely root cause, if applicable
    - smallest safe plan
    - files likely affected
+   - risk level: Low / Medium / High
+   - architecture impact: None / Low / Significant
    - validation needed
 6. Decide if the task is still small:
    - If yes, continue Direct Mode.
@@ -37,8 +39,73 @@ Examples:
 
 - files changed
 - what changed
+- risk level
+- architecture impact
+- high-control diff check
 - validation run
 - risks or follow-ups
+
+## Definition of Ready
+
+Direct Mode is ready for implementation only when:
+
+- expected behavior is clear
+- current behavior or root cause is understood enough to make a safe change
+- scope is localized, low risk, and still fits Direct Mode
+- files likely affected are identified
+- validation approach is known
+- approval has been obtained when required
+
+If any readiness condition is missing, stop and ask for clarification, continue investigation, or recommend a more structured workflow.
+
+## Escalate Out of Direct Mode
+
+Stop and recommend Spec Kit or a structured workflow when:
+
+- acceptance criteria are needed
+- requirements or expected behavior are unclear
+- the change is likely to touch multiple modules or broad user flows
+- public APIs, types, schemas, contracts, or data models may change
+- architecture, state ownership, data flow, or UX behavior needs a decision
+- new loading, error, empty, permission, or accessibility states need definition
+- the fix becomes larger than the original focused task
+- validation requires broad integration testing rather than a targeted check
+- the implementation cannot be described as one small safe plan
+
+When escalation is needed, summarize what was learned, why Direct Mode is no longer appropriate, and the recommended next workflow.
+
+## Risk Classification
+
+Classify the task before implementation:
+
+- Low: localized, reversible, clear behavior, no public contract changes, targeted validation available
+- Medium: multiple files, user-facing behavior, moderate integration risk, non-trivial tests, or meaningful state/data-flow changes
+- High: public APIs/contracts, schemas, data models, migrations, security/privacy, permissions, dependencies, CI/CD, architecture, broad refactors, or unclear requirements
+
+Risk handling:
+
+- Low risk: proceed after exploration and any required approval
+- Medium risk: require an explicit scoped plan, approval before editing, and targeted validation plus any relevant type/lint checks
+- High risk: recommend Spec Kit or a structured workflow unless the user explicitly confirms the constrained scope
+
+## Architecture Decision Checkpoint
+
+Before implementation, classify architecture impact:
+
+- None: follows existing patterns and does not change boundaries, ownership, contracts, dependencies, or data flow
+- Low: small extension of an existing pattern with no new architectural direction
+- Significant: introduces or changes abstractions, module boundaries, state ownership, data flow, public APIs/contracts, schemas, dependencies, tooling, migrations, or cross-cutting behavior
+
+Check:
+
+- Does this introduce a new abstraction, layer, service, helper pattern, or framework usage?
+- Does this change state ownership, data flow, persistence, or responsibility boundaries?
+- Does this change public APIs, schemas, contracts, data models, or migrations?
+- Does this add dependencies, tooling, generated files, CI/CD, or configuration changes?
+- Does this mix feature work with refactoring or architectural cleanup?
+- Does this diverge from existing project conventions?
+
+If architecture impact is significant, stop and ask for approval or recommend Spec Kit before implementation.
 
 ## Approval Before Editing
 
@@ -53,6 +120,33 @@ Approval is required before editing when:
 - The change may affect user-facing behavior beyond the requested scope.
 
 For obvious, low-risk single-file fixes, proceed after explaining the plan unless the user requested approval first.
+
+## Validation Plan
+
+Before implementation, identify the smallest relevant validation plan:
+
+- Targeted test:
+- Typecheck:
+- Lint:
+- Build:
+- Manual QA:
+- Skipped validation and why:
+
+Only include checks that are relevant to the scoped change. If validation cannot be run, explain why and suggest what the human should run.
+
+## Final Diff Change-Control Check
+
+Before final summary, check whether the diff changed:
+
+- dependencies or lockfiles
+- generated files
+- CI/CD or deployment configuration
+- environment, secret, or private configuration files
+- public APIs, contracts, schemas, or data models
+- migrations or persistence behavior
+- broad formatting, unrelated refactors, or cross-cutting architecture
+
+If any high-control area changed, call it out explicitly with approval status, reason, and validation.
 
 ## Definition of Done
 

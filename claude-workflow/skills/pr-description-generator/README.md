@@ -8,6 +8,7 @@ Analyzes the diff between your current branch and main/master, then generates a 
 - **Description** - Why this change matters and the approach taken
 - **Changes** - Behavior changes (not file lists)
 - **Breaking Changes** - Explicit section, always present
+- **Risk / Readiness** - Risk level, high-control changes, validation evidence, and reviewer focus
 - **Steps to QA** - Structured setup, test steps, and edge cases
 
 ## Installation
@@ -50,6 +51,13 @@ Closes #342
 
 None.
 
+### Risk / Readiness
+
+- **Risk level**: Medium
+- **High-control changes**: None
+- **Validation**: Not provided in diff/context; recommended: checkout flow tests and payment integration smoke test
+- **Reviewer focus**: Idempotency behavior and duplicate-submit edge cases
+
 ## Steps to QA
 
 ### Setup
@@ -73,6 +81,7 @@ None.
 |---------|-------------|
 | **Issue detection** | Finds `#123`, `JIRA-456`, `fixes #789` in commits and links them |
 | **Breaking change detection** | Flags API changes, schema changes, config changes |
+| **Risk/readiness check** | Adds risk level, high-control changes, validation evidence, and reviewer focus |
 | **Behavior-focused changes** | Lists what changed, not which files |
 | **Structured QA** | Setup → Test Steps → Edge Cases format |
 | **Large diff handling** | Warns and summarizes when diff exceeds 2000 lines |
