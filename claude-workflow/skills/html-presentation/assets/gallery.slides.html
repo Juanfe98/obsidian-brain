@@ -1,0 +1,222 @@
+<!-- deck
+title: Layout gallery
+theme: midnight
+logo: pricesmart
+lang: en
+duration: 15
+-->
+
+<!-- ===================================================================
+     LAYOUT: title — the cover. .hero-logo stays empty; the engine fills it with the deck logo.
+     =================================================================== -->
+<section class="slide" data-layout="title">
+  <div class="hero-logo"></div>
+  <p class="kicker">Engineering sync · Sales Hub</p>
+  <h1>From merge to <span class="gradient-text">running in Azure</span></h1>
+  <p class="lead">How our apps are built, checked and shipped today, and what still needs a human.</p>
+  <div class="byline"><span><b>Presenter Name</b> · Platform team</span><span>Oct 30, 2026</span></div>
+  <aside class="notes">
+    <p>Open with the one-line promise: by the end, everyone knows what happens after they click merge.</p>
+  </aside>
+</section>
+
+<!-- LAYOUT: agenda — mark the current part with .is-current when you reuse it between sections. -->
+<section class="slide" data-layout="agenda">
+  <header class="slide-head"><p class="kicker">Agenda</p><h2>Twenty minutes, four parts</h2></header>
+  <div class="slide-body center-y">
+    <ol class="agenda">
+      <li>Where we are today <span class="time">3 min</span></li>
+      <li>The pipeline, step by step <span class="time">7 min</span></li>
+      <li>What still blocks automatic deploys <span class="time">5 min</span></li>
+      <li>Decisions we need from you <span class="time">5 min</span></li>
+    </ol>
+  </div>
+  <aside class="notes"><p>Say how long each part takes so people know when questions fit.</p></aside>
+</section>
+
+<!-- LAYOUT: section — a divider between parts. -->
+<section class="slide" data-layout="section">
+  <p class="section-num gradient-text">01</p>
+  <h2>Where we are today</h2>
+  <p class="lead">Two apps ship automatically. Two still need a person with Azure access.</p>
+  <aside class="notes"><p>Pause here. Give people a beat before the detail starts.</p></aside>
+</section>
+
+<!-- LAYOUT: statement — one sentence the audience should remember. -->
+<section class="slide" data-layout="statement">
+  <h2>A green build on <em>main</em> does not mean the change is deployed.</h2>
+  <p class="lead">For the catalog API, CI runs on every push, but the deploy job is skipped until one variable is set.</p>
+  <aside class="notes"><p>This is the key message. Say it, then stay quiet for two seconds.</p></aside>
+</section>
+
+<!-- LAYOUT: bullets — 3 to 5 points, each with an optional .sub line. .step reveals them one by one. -->
+<section class="slide" data-layout="bullets">
+  <header class="slide-head"><p class="kicker">Why it matters</p><h2>Manual deploys cost us more than time</h2></header>
+  <div class="slide-body">
+    <ul class="points">
+      <li class="step">Only two people can ship <span class="sub">Everyone else waits for them, even for one-line fixes.</span></li>
+      <li class="step">What runs in DEV is hard to trace <span class="sub">Images built by hand are not tied to a commit we can check.</span></li>
+      <li class="step">Steps get skipped under pressure <span class="sub">Smoke checks like /ready only happen when someone remembers.</span></li>
+    </ul>
+  </div>
+  <aside class="notes"><p>One point per click. Give an example from last sprint for the first one.</p></aside>
+</section>
+
+<!-- LAYOUT: split — text on one side, a visual (code, diagram, image, metric) on the other.
+     Use .wide-left / .wide-right on .split to change the ratio. -->
+<section class="slide" data-layout="split">
+  <header class="slide-head"><p class="kicker">The gate</p><h2>One condition decides whether we deploy</h2></header>
+  <div class="slide-body">
+    <div class="split wide-right">
+      <div class="stack">
+        <p>The deploy job runs on pushes to <code>main</code>, but only when the Azure client ID variable is set.</p>
+        <div class="callout warn">The variable is empty today, so the job is skipped on every run.</div>
+      </div>
+      <figure class="code" data-lines="3">
+        <figcaption>.github/workflows/ci.yml</figcaption>
+        <pre><code class="language-yaml">deploy:
+  needs: build
+  if: vars.AZURE_CLIENT_ID != ''
+  runs-on: ubuntu-latest
+  permissions:
+    id-token: write   # OIDC, no stored secrets</code></pre>
+      </figure>
+    </div>
+  </div>
+  <aside class="notes"><p>Point at the highlighted line. That empty variable is the whole story.</p></aside>
+</section>
+
+<!-- LAYOUT: cards — 2 to 4 parallel ideas. Use .grid-2/.grid-3/.grid-4. -->
+<section class="slide" data-layout="cards">
+  <header class="slide-head"><p class="kicker">The pipeline</p><h2>Three stages, each with one job</h2></header>
+  <div class="slide-body">
+    <div class="grid-3">
+      <div class="card accent-top step"><div class="icon">🧪</div><h3>Verify</h3><p>Typecheck, lint, unit tests and the OpenAPI contract check on every pull request.</p></div>
+      <div class="card accent-top step"><div class="icon">📦</div><h3>Package</h3><p>Build one image per commit, tagged with the short SHA, pushed to the registry.</p></div>
+      <div class="card accent-top step"><div class="icon">🚀</div><h3>Release</h3><p>Point the App Service at that exact tag, restart, then smoke-check /ready.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Stress that the image tag is the commit SHA, never latest.</p></aside>
+</section>
+
+<!-- LAYOUT: diagram (Mermaid) — keep it to about 8 nodes; plain labels, no parentheses. -->
+<section class="slide" data-layout="diagram">
+  <header class="slide-head"><p class="kicker">Flow</p><h2>What happens after you click merge</h2></header>
+  <div class="slide-body">
+    <div class="diagram">
+      <div class="mermaid">
+flowchart LR
+  PR[Pull request] --> CI[CI checks]
+  CI -->|green| M[Merge to main]
+  M --> B[Build image]
+  B --> R[Push to registry]
+  R --> D{Deploy gate}
+  D -->|variable set| A[App Service DEV]
+  D -->|not set| S[Skipped]
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><p>Walk left to right. End on the Skipped branch.</p></aside>
+</section>
+
+<!-- LAYOUT: diagram (Archify) — an interactive diagram embedded at build time.
+     <div class="archify" data-archify-file="diagrams/ci-flow.html" data-title="CI flow"></div>
+     See references/archify.md. Not shown in this gallery because it needs a generated file. -->
+
+<!-- LAYOUT: metrics — 2 to 4 big numbers. Set --cols to the count. -->
+<section class="slide" data-layout="metrics">
+  <header class="slide-head"><p class="kicker">This month</p><h2>CI is doing its job</h2></header>
+  <div class="slide-body center-y">
+    <div class="metrics" style="--cols:3">
+      <div class="metric step"><div class="value">142</div><div class="label">Pipeline runs</div><div class="delta up">38 vs last month</div></div>
+      <div class="metric step"><div class="value">96<small>%</small></div><div class="label">Green on first try</div><div class="delta up">4 pts</div></div>
+      <div class="metric step"><div class="value">6<small>min</small></div><div class="label">Median run time</div><div class="delta down">1 min slower</div></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Numbers are illustrative in the gallery. Use real ones.</p></aside>
+</section>
+
+<!-- LAYOUT: chart — horizontal bars, --v is the bar length as a percentage of the track. -->
+<section class="slide" data-layout="chart">
+  <header class="slide-head"><p class="kicker">Where the time goes</p><h2>Tests dominate the CI run</h2></header>
+  <div class="slide-body center-y">
+    <div class="bars">
+      <div class="bar" style="--v:100"><span>Unit tests</span><div class="track"></div><span class="num">3m 10s</span></div>
+      <div class="bar" style="--v:46"><span>Install</span><div class="track"></div><span class="num">1m 28s</span></div>
+      <div class="bar" style="--v:31"><span>Build</span><div class="track"></div><span class="num">58s</span></div>
+      <div class="bar muted" style="--v:12"><span>Lint + format</span><div class="track"></div><span class="num">22s</span></div>
+    </div>
+    <p class="chart-note">Sample data for the gallery. Real decks compute this from real history.</p>
+  </div>
+</section>
+
+<!-- LAYOUT: timeline — 3 to 6 milestones, status .done / .now / (none = next). -->
+<section class="slide" data-layout="timeline">
+  <header class="slide-head"><p class="kicker">Roadmap</p><h2>From manual to fully automatic</h2></header>
+  <div class="slide-body center-y">
+    <ol class="timeline">
+      <li class="done"><span class="when">Sep</span><h4>CI on every PR</h4><p>Tests and contract check gate every merge.</p></li>
+      <li class="done"><span class="when">Oct</span><h4>OIDC deploy job</h4><p>Written and merged, gated off.</p></li>
+      <li class="now"><span class="when">Nov</span><h4>Deploy identity</h4><p>One admin action to set the variable.</p></li>
+      <li><span class="when">Dec</span><h4>STAGE promotion</h4><p>Same image, promoted by PR.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- LAYOUT: compare — before/after or option A vs B. .after gets the accent border. -->
+<section class="slide" data-layout="compare">
+  <header class="slide-head"><p class="kicker">Before and after</p><h2>What changes for you</h2></header>
+  <div class="slide-body">
+    <div class="compare">
+      <div class="side"><span class="tag">Today</span><ul class="points compact cross"><li>Ask someone with Azure access</li><li>Build and push by hand</li><li>Hope the smoke check ran</li></ul></div>
+      <div class="side after"><span class="tag">After</span><ul class="points compact check"><li>Merge your PR</li><li>Pipeline builds and deploys the commit</li><li>/ready checked on every release</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT: terminal — commands people will copy. Use .prompt for "$", .out for output. -->
+<section class="slide" data-layout="terminal">
+  <header class="slide-head"><p class="kicker">Until then</p><h2>The manual path, in three commands</h2></header>
+  <div class="slide-body center-y">
+    <figure class="terminal">
+      <div class="term-bar">zsh — catalog-api</div>
+      <pre><span class="prompt">$</span> az acr build --registry acrb2bcatalogdev --image b2b-catalog-api:$TAG .
+<span class="out">Run ID: cb7 was successful after 1m42s</span>
+<span class="prompt">$</span> az webapp config container set -n app-b2b-catalog-api-dev --container-image-name …:$TAG
+<span class="prompt">$</span> curl -s https://app-b2b-catalog-api-dev.azurewebsites.net/ready
+<span class="ok">{"status":"ok","db":"ok"}</span></pre>
+    </figure>
+  </div>
+</section>
+
+<!-- LAYOUT: table — up to about 6 rows. tr.hl highlights a row. -->
+<section class="slide" data-layout="table">
+  <header class="slide-head"><p class="kicker">Status by app</p><h2>Only one app deploys itself today</h2></header>
+  <div class="slide-body">
+    <table class="data">
+      <thead><tr><th>App</th><th>CI</th><th>CD</th><th>Environments</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Visit API</td><td><span class="pill ok">Live</span></td><td><span class="pill ok">Live</span></td><td>DEV, STAGE</td></tr>
+        <tr><td>Catalog API</td><td><span class="pill ok">Live</span></td><td><span class="pill warn">Gated</span></td><td>DEV</td></tr>
+        <tr><td>Catalog web</td><td><span class="pill bad">None</span></td><td><span class="pill bad">None</span></td><td>DEV</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- LAYOUT: quote — a breather between sections. Only a real quote, checked word for word at a primary source. -->
+<section class="slide" data-layout="quote">
+  <blockquote>If it hurts, do it more often.</blockquote>
+  <cite>Martin Fowler, “Frequency Reduces Difficulty”, 2011</cite>
+</section>
+
+<!-- LAYOUT: closing — the ask and next steps, then questions. -->
+<section class="slide" data-layout="closing">
+  <p class="kicker">What we need</p>
+  <h2>One decision, one owner.</h2>
+  <ul class="points next-steps">
+    <li>Approve creating the deploy identity for the catalog API</li>
+    <li>Name an owner for the frontend pipeline</li>
+  </ul>
+  <aside class="notes"><p>End on the ask, then open for questions.</p></aside>
+</section>

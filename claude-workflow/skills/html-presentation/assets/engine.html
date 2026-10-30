@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="<!--@LANG@-->" data-theme="<!--@THEME@-->">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="html-presentation skill">
+<title><!--@TITLE@--></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* ============================================================================
+   THEMES — every color and font a slide uses comes from these variables.
+   Hero variables style the title / section / closing slides.
+   ========================================================================== */
+:root, [data-theme="midnight"] {
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --display-weight: 800;
+  --display-tracking: -0.03em;
+  --bg-outer: #05070f;
+  --bg: #0b1020;
+  --bg-art: radial-gradient(900px 600px at 88% -10%, rgba(129,140,248,.20), transparent 60%),
+            radial-gradient(800px 500px at -10% 110%, rgba(45,212,191,.14), transparent 60%);
+  --surface: #121a33;
+  --surface-2: #1a2445;
+  --border: rgba(148,163,209,.20);
+  --text: #e8ecf8;
+  --text-muted: #9aa6c8;
+  --accent: #2dd4bf;
+  --accent-2: #818cf8;
+  --accent-ink: #04201c;
+  --gradient: linear-gradient(100deg, #2dd4bf, #818cf8 60%, #c084fc);
+  --good: #34d399; --warn: #fbbf24; --bad: #f87171; --info: #60a5fa;
+  --code-bg: #0a0f1e;
+  --tok-keyword: #c4b5fd; --tok-string: #86efac; --tok-number: #fdba74; --tok-comment: #64748b;
+  --tok-title: #7dd3fc; --tok-attr: #5eead4; --tok-type: #f9a8d4; --tok-meta: #94a3b8;
+  --hero-bg: #0b1020;
+  --hero-text: #f8faff;
+  --hero-muted: #a5b0d3;
+  --hero-art: radial-gradient(1100px 700px at 85% 0%, rgba(129,140,248,.35), transparent 60%),
+              radial-gradient(900px 600px at 0% 100%, rgba(45,212,191,.25), transparent 60%);
+  --logo-light: none; --logo-dark: block;
+  --hero-logo-light: none; --hero-logo-dark: block;
+  --radius: 20px;
+  --shadow: 0 20px 60px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+[data-theme="paper"] {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --bg-outer: #e9e6df;
+  --bg: #fbfaf7;
+  --bg-art: none;
+  --surface: #ffffff;
+  --surface-2: #f2efe8;
+  --border: #e3ded3;
+  --text: #1c1f26;
+  --text-muted: #5f6573;
+  --accent: #2563eb;
+  --accent-2: #ea580c;
+  --accent-ink: #ffffff;
+  --gradient: linear-gradient(100deg, #2563eb, #7c3aed);
+  --good: #15803d; --warn: #b45309; --bad: #b91c1c; --info: #1d4ed8;
+  --code-bg: #1e2230;
+  --tok-keyword: #c792ea; --tok-string: #c3e88d; --tok-number: #f78c6c; --tok-comment: #7f8aa3;
+  --tok-title: #82aaff; --tok-attr: #89ddff; --tok-type: #ffcb6b; --tok-meta: #a6accd;
+  --hero-bg: #fbfaf7;
+  --hero-text: #1c1f26;
+  --hero-muted: #5f6573;
+  --hero-art: radial-gradient(900px 700px at 100% 0%, rgba(37,99,235,.10), transparent 60%);
+  --logo-light: block; --logo-dark: none;
+  --hero-logo-light: block; --hero-logo-dark: none;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(28,31,38,.08);
+  color-scheme: light;
+}
+[data-theme="pricesmart"] {
+  --font-display: "Fira Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -0.015em;
+  --bg-outer: #0c152c;
+  --bg: #fff9f5;
+  --bg-art: none;
+  --surface: #ffffff;
+  --surface-2: #f0f5fe;
+  --border: #e5e7eb;
+  --text: #23376d;
+  --text-muted: #55607a;
+  --accent: #dc3d22;
+  --accent-2: #2950ba;
+  --accent-ink: #ffffff;
+  --gradient: linear-gradient(100deg, #dc3d22, #ff692e);
+  --good: #067647; --warn: #b54708; --bad: #b93815; --info: #2950ba;
+  --code-bg: #0c152c;
+  --tok-keyword: #9fc9ff; --tok-string: #a6e3a1; --tok-number: #ff9c66; --tok-comment: #7d8bb0;
+  --tok-title: #cfe4ff; --tok-attr: #ffd6ae; --tok-type: #ff9c66; --tok-meta: #9fa9c4;
+  --hero-bg: #23376d;
+  --hero-text: #ffffff;
+  --hero-muted: #cfe4ff;
+  --hero-art: radial-gradient(1000px 700px at 100% 0%, rgba(63,146,255,.30), transparent 60%),
+              radial-gradient(700px 500px at 0% 100%, rgba(220,61,34,.22), transparent 60%);
+  --logo-light: block; --logo-dark: none;
+  --hero-logo-light: none; --hero-logo-dark: block;
+  --radius: 12px;
+  --shadow: 0 12px 32px rgba(35,55,109,.10);
+  color-scheme: light;
+}
+[data-theme="keynote"] {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -0.035em;
+  --bg-outer: #000;
+  --bg: #050505;
+  --bg-art: radial-gradient(1200px 700px at 100% 0%, rgba(255,92,57,.12), transparent 60%);
+  --surface: #121212;
+  --surface-2: #1c1c1c;
+  --border: rgba(255,255,255,.12);
+  --text: #fafafa;
+  --text-muted: #a3a3a3;
+  --accent: #ff5c39;
+  --accent-2: #ffd166;
+  --accent-ink: #1a0600;
+  --gradient: linear-gradient(100deg, #ff5c39, #ffd166);
+  --good: #4ade80; --warn: #facc15; --bad: #fb7185; --info: #38bdf8;
+  --code-bg: #0d0d0d;
+  --tok-keyword: #ff8a65; --tok-string: #ffd166; --tok-number: #f472b6; --tok-comment: #737373;
+  --tok-title: #fafafa; --tok-attr: #fdba74; --tok-type: #fde68a; --tok-meta: #a3a3a3;
+  --hero-bg: #000;
+  --hero-text: #ffffff;
+  --hero-muted: #b5b5b5;
+  --hero-art: radial-gradient(1200px 800px at 80% 10%, rgba(255,92,57,.35), transparent 60%),
+              radial-gradient(900px 600px at 0% 100%, rgba(255,209,102,.18), transparent 60%);
+  --logo-light: none; --logo-dark: block;
+  --hero-logo-light: none; --hero-logo-dark: block;
+  --radius: 24px;
+  --shadow: 0 30px 80px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+/* ============================================================================
+   STAGE — a fixed 1920×1080 canvas scaled to fit whatever screen it is on.
+   ========================================================================== */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg-outer); overflow: hidden; }
+body { font-family: var(--font-body); color: var(--text); -webkit-font-smoothing: antialiased; }
+.viewport { position: fixed; inset: 0; overflow: hidden; }
+.deck { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.slide {
+  position: absolute; inset: 0; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 88px 120px 120px;
+  background: var(--bg-art), var(--bg); color: var(--text);
+  font-size: 32px; line-height: 1.4;
+  opacity: 0; visibility: hidden; transform: translateX(24px);
+  transition: opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
+}
+.slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .45s ease, transform .45s ease; }
+.slide.is-past { transform: translateX(-24px); }
+.no-anim .slide, .no-anim .step { transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .slide, .step { transition: opacity .2s !important; transform: none !important; } }
+
+/* Full-bleed slides (e.g. an interactive diagram): thin padding, no footer by default */
+.slide.bleed { padding: 40px 48px; }
+.slide.bleed .slide-head { margin-bottom: 24px; }
+.slide.bleed .slide-head h2 { font-size: 52px; }
+
+/* Hero surfaces: title, section and closing slides, or any slide with .hero */
+.slide[data-layout="title"], .slide[data-layout="section"], .slide[data-layout="closing"], .slide.hero {
+  --bg: var(--hero-bg); --text: var(--hero-text); --text-muted: var(--hero-muted); --bg-art: var(--hero-art);
+  --logo-light: var(--hero-logo-light); --logo-dark: var(--hero-logo-dark);
+  --border: color-mix(in srgb, var(--hero-text) 18%, transparent);
+  --surface: color-mix(in srgb, var(--hero-text) 7%, transparent);
+  --surface-2: color-mix(in srgb, var(--hero-text) 12%, transparent);
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); margin: 0; line-height: 1.08; text-wrap: balance; }
+h1 { font-size: 112px; }
+h2 { font-size: 64px; }
+h3 { font-size: 40px; line-height: 1.15; }
+h4 { font-size: 30px; line-height: 1.2; }
+p { margin: 0; text-wrap: pretty; }
+strong, b { font-weight: 700; }
+em { font-style: normal; color: var(--accent); }
+code { font-variant-ligatures: none; font-family: var(--font-mono); font-size: .85em; background: var(--surface-2); padding: .08em .35em; border-radius: 6px; }
+a { color: var(--accent); }
+.kicker { font-family: var(--font-body); font-size: 24px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.lead { font-size: 36px; color: var(--text-muted); line-height: 1.35; }
+.muted { color: var(--text-muted); }
+.small { font-size: 24px; }
+.gradient-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.accent { color: var(--accent); }
+.center { text-align: center; }
+/* Facts the author could not verify: visible on purpose so they get fixed before presenting */
+.todo { outline: 3px dashed var(--warn); outline-offset: 4px; border-radius: 4px; }
+
+.slide-head { margin-bottom: 56px; max-width: 1560px; }
+.slide-head .lead { margin-top: 20px; }
+.slide-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.slide-body.center-y { justify-content: center; }
+
+/* ============================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+.grid-2, .grid-3, .grid-4 { display: grid; gap: 40px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; flex: 1; min-height: 0; }
+.split.wide-left { grid-template-columns: 1.4fr 1fr; }
+.split.wide-right { grid-template-columns: 1fr 1.4fr; }
+.stack { display: flex; flex-direction: column; gap: 28px; }
+.fill { flex: 1; min-height: 0; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 16px; }
+.card h3 { font-size: 36px; }
+.card p { color: var(--text-muted); font-size: 28px; }
+.card .icon { font-size: 56px; line-height: 1; }
+.card.accent-top { border-top: 6px solid var(--accent); }
+.callout { border-left: 8px solid var(--accent); background: var(--surface); padding: 28px 36px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 30px; }
+.callout.warn { border-color: var(--warn); } .callout.bad { border-color: var(--bad); } .callout.good { border-color: var(--good); }
+
+/* Pills / status tags */
+.pill { white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 700; letter-spacing: .04em; padding: 6px 18px; border-radius: 999px; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); vertical-align: middle; }
+.pill::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.pill.ok { color: var(--good); } .pill.warn { color: var(--warn); } .pill.bad { color: var(--bad); } .pill.info { color: var(--info); }
+.pill.plain::before { display: none; }
+
+/* ============================================================================
+   LISTS
+   ========================================================================== */
+.points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 32px; font-size: 38px; }
+.points > li { position: relative; padding-left: 56px; line-height: 1.3; }
+.points > li::before { content: ""; position: absolute; left: 0; top: .42em; width: 22px; height: 22px; border-radius: 6px; background: var(--gradient); }
+.points > li .sub { display: block; font-size: 28px; color: var(--text-muted); margin-top: 8px; }
+.points.check > li::before { content: "✓"; background: none; color: var(--good); width: auto; height: auto; top: 0; font-weight: 800; }
+.points.cross > li::before { content: "✕"; background: none; color: var(--bad); width: auto; height: auto; top: 0; font-weight: 800; }
+.points.compact { font-size: 32px; gap: 20px; }
+
+.agenda { list-style: none; margin: 0; padding: 0; counter-reset: ag; display: flex; flex-direction: column; gap: 22px; }
+.agenda > li { counter-increment: ag; display: grid; grid-template-columns: 120px 1fr auto; align-items: baseline; gap: 24px; font-size: 44px; font-family: var(--font-display); font-weight: 600; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+.agenda > li::before { content: counter(ag, decimal-leading-zero); font-family: var(--font-mono); font-size: 32px; color: var(--accent); font-weight: 500; }
+.agenda > li .time { font-family: var(--font-body); font-size: 26px; color: var(--text-muted); font-weight: 500; }
+.agenda > li.is-current { color: var(--accent); }
+
+/* ============================================================================
+   HERO LAYOUTS: title, section, statement, quote, closing
+   ========================================================================== */
+.slide[data-layout="title"] { justify-content: center; padding: 120px 160px; }
+.slide[data-layout="title"] h1 { max-width: 1500px; }
+.slide[data-layout="title"] .lead { margin-top: 36px; max-width: 1300px; font-size: 40px; }
+.slide[data-layout="title"] .byline { margin-top: 72px; display: flex; gap: 40px; align-items: center; font-size: 28px; color: var(--text-muted); }
+.slide[data-layout="title"] .byline b { color: var(--text); }
+.slide[data-layout="title"] .hero-logo { position: absolute; top: 88px; right: 120px; }
+.slide[data-layout="title"] .hero-logo img { height: 96px; }
+
+.slide[data-layout="section"] { justify-content: center; padding: 120px 160px; }
+.slide[data-layout="section"] .section-num { font-family: var(--font-mono); font-size: 200px; line-height: 1; font-weight: 700; margin-bottom: 24px; }
+.slide[data-layout="section"] h2 { font-size: 104px; }
+.slide[data-layout="section"] .lead { margin-top: 32px; max-width: 1300px; }
+
+.slide[data-layout="statement"] { justify-content: center; padding: 120px 200px; }
+.slide[data-layout="statement"] h2 { font-size: 92px; line-height: 1.1; }
+.slide[data-layout="statement"] .lead { margin-top: 40px; max-width: 1300px; }
+
+.slide[data-layout="quote"] { justify-content: center; padding: 120px 220px; }
+.slide[data-layout="quote"] blockquote { margin: 0; font-family: var(--font-display); font-size: 68px; line-height: 1.2; font-weight: 500; letter-spacing: var(--display-tracking); position: relative; }
+.slide[data-layout="quote"] blockquote::before { content: "“"; position: absolute; left: -100px; top: -50px; font-size: 220px; color: var(--accent); line-height: 1; }
+.slide[data-layout="quote"] cite { display: block; margin-top: 48px; font-style: normal; font-size: 30px; color: var(--text-muted); }
+
+.slide[data-layout="closing"] { justify-content: center; padding: 120px 160px; }
+.slide[data-layout="closing"] h2 { font-size: 112px; }
+.slide[data-layout="closing"] .next-steps { margin-top: 56px; }
+
+/* ============================================================================
+   METRICS & CHARTS
+   ========================================================================== */
+.metrics { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 40px; }
+.metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 44px 40px; box-shadow: var(--shadow); }
+.metric .value { font-family: var(--font-display); font-size: 120px; font-weight: var(--display-weight); line-height: 1; letter-spacing: var(--display-tracking); }
+.metric .value small { font-size: .45em; color: var(--text-muted); margin-left: 6px; }
+.metric .label { margin-top: 18px; font-size: 30px; font-weight: 600; }
+.metric .delta { margin-top: 12px; font-size: 24px; color: var(--text-muted); }
+.metric .delta.up { color: var(--good); } .metric .delta.down { color: var(--bad); }
+.metric .delta.up::before { content: "▲ "; } .metric .delta.down::before { content: "▼ "; }
+
+/* Horizontal bar chart: <div class="bars"><div class="bar" style="--v:72">… (--v is a 0–100 share of the track) */
+.bars { display: flex; flex-direction: column; gap: 26px; }
+.bar { display: grid; grid-template-columns: 340px 1fr 140px; align-items: center; gap: 28px; font-size: 30px; }
+.bar .track { height: 48px; background: var(--surface-2); border-radius: 12px; overflow: hidden; }
+.bar .track::after { content: ""; display: block; height: 100%; width: calc(var(--v) * 1%); background: var(--gradient); border-radius: 12px; transition: width .9s cubic-bezier(.2,.8,.2,1) .15s; }
+.slide:not(.is-active) .bar .track::after { width: 0; }
+.no-anim .bar .track::after, .print .bar .track::after { width: calc(var(--v) * 1%) !important; transition: none; }
+.bar .num { font-family: var(--font-mono); font-weight: 700; text-align: right; }
+.bar.muted .track::after { background: var(--text-muted); opacity: .5; }
+.chart-note { margin-top: 32px; font-size: 24px; color: var(--text-muted); }
+
+/* ============================================================================
+   TIMELINE / ROADMAP
+   ========================================================================== */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 32px; position: relative; padding-top: 80px; }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 26px; height: 4px; background: var(--border); border-radius: 2px; }
+.timeline > li { position: relative; }
+.timeline > li::before { content: ""; position: absolute; top: -66px; left: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--bg); border: 5px solid var(--text-muted); }
+.timeline > li.done::before { background: var(--good); border-color: var(--good); }
+.timeline > li.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 25%, transparent); }
+.timeline .when { font-family: var(--font-mono); font-size: 24px; color: var(--text-muted); font-weight: 500; }
+.timeline > li.now .when { color: var(--accent); font-weight: 700; }
+.timeline h4 { margin: 10px 0 12px; }
+.timeline p { font-size: 26px; color: var(--text-muted); line-height: 1.35; }
+
+/* ============================================================================
+   COMPARE (before/after, option A vs B)
+   ========================================================================== */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; min-height: 0; }
+.compare .side { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 44px; display: flex; flex-direction: column; gap: 24px; }
+.compare .side .tag { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.compare .side.after { border: 2px solid var(--accent); box-shadow: var(--shadow); }
+.compare .side.after .tag { color: var(--accent); }
+
+/* ============================================================================
+   TABLE
+   ========================================================================== */
+table.data { width: 100%; border-collapse: collapse; font-size: 28px; }
+table.data th { text-align: left; font-size: 22px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; padding: 0 24px 18px; border-bottom: 2px solid var(--border); }
+table.data td { padding: 22px 24px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.data tr.hl td { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+table.data td.num { font-family: var(--font-mono); text-align: right; }
+
+/* ============================================================================
+   CODE & TERMINAL
+   ========================================================================== */
+figure { margin: 0; }
+.code, .terminal { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; min-height: 0; }
+.code figcaption, .terminal .term-bar { display: flex; align-items: center; gap: 14px; padding: 18px 28px; font-family: var(--font-mono); font-size: 22px; color: #9aa3b8; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
+.terminal .term-bar::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: #ff5f57; box-shadow: 24px 0 #febc2e, 48px 0 #28c840; margin-right: 56px; }
+.code pre, .terminal pre { font-variant-ligatures: none; margin: 0; padding: 28px 32px; font-family: var(--font-mono); font-size: 26px; line-height: 1.6; color: #e6e9f2; overflow: hidden; position: relative; white-space: pre; tab-size: 2; }
+.code pre code, .terminal pre code { background: none; padding: 0; font-size: inherit; border-radius: 0; }
+.code.small pre { font-size: 22px; }
+.code .hl-band { position: absolute; left: 0; right: 0; background: rgba(255,255,255,.08); border-left: 6px solid var(--accent); pointer-events: none; }
+.code.has-hl pre code { opacity: 1; }
+.terminal .prompt { color: var(--accent); user-select: none; }
+.terminal .out { color: #9aa3b8; }
+.terminal .ok { color: #4ade80; } .terminal .err { color: #f87171; }
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-literal { color: var(--tok-keyword); }
+.hljs-string, .hljs-regexp, .hljs-addition { color: var(--tok-string); }
+.hljs-number, .hljs-symbol { color: var(--tok-number); }
+.hljs-comment, .hljs-quote { color: var(--tok-comment); font-style: italic; }
+.hljs-title, .hljs-title.function_, .hljs-section { color: var(--tok-title); }
+.hljs-attr, .hljs-attribute, .hljs-property, .hljs-variable, .hljs-template-variable, .hljs-name { color: var(--tok-attr); }
+.hljs-type, .hljs-title.class_, .hljs-params { color: var(--tok-type); }
+.hljs-meta, .hljs-bullet, .hljs-punctuation { color: var(--tok-meta); }
+.hljs-deletion { color: #f87171; }
+
+/* ============================================================================
+   DIAGRAMS: Mermaid and Archify
+   ========================================================================== */
+.diagram { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+.mermaid { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: transparent; }
+.mermaid.is-rendered { color: inherit; }
+.mermaid svg { max-width: 100%; max-height: 100%; height: auto; }
+.mermaid .node rect, .mermaid .node polygon, .mermaid .cluster rect { stroke-width: 2px; }
+.mermaid .node rect { rx: 12px; ry: 12px; }
+.mermaid .edgeLabel { font-size: 22px; }
+.mermaid-error { color: var(--bad); font-family: var(--font-mono); font-size: 22px; white-space: pre-wrap; }
+.archify { flex: 1; min-height: 0; width: 100%; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+.archify iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.archify .shield { position: absolute; inset: 0; cursor: pointer; z-index: 2; }
+.archify .shield span { position: absolute; left: 118px; bottom: 12px; font: 500 13px var(--font-body); background: var(--bg); color: var(--text-muted); padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); opacity: .7; }
+.archify.is-live .shield { display: none; }
+.archify .open-full { position: absolute; left: 12px; bottom: 12px; z-index: 3; font: 500 13px var(--font-body); background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; cursor: pointer; opacity: .7; transition: opacity .15s, color .15s; }
+.archify .open-full:hover { opacity: 1; color: var(--accent); }
+.archify .missing { position: absolute; inset: 0; display: grid; place-items: center; color: var(--text-muted); font-size: 26px; }
+.figure-img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius); }
+
+/* ============================================================================
+   PROGRESSIVE REVEAL — elements with .step appear one at a time
+   ========================================================================== */
+.step { opacity: 0; transform: translateY(16px); transition: opacity .35s ease, transform .35s ease; }
+.step.is-shown { opacity: 1; transform: none; }
+.step.dim-after.is-shown.is-past-step { opacity: .4; }
+
+/* ============================================================================
+   CHROME: footer, progress, help, overview, presenter
+   ========================================================================== */
+.slide-foot { position: absolute; left: 120px; right: 120px; bottom: 44px; display: flex; align-items: center; gap: 24px; font-size: 20px; color: var(--text-muted); }
+.slide-foot .foot-title { flex: 1; }
+.slide-foot .foot-num { font-family: var(--font-mono); }
+.brand-logo img { display: block; height: 40px; width: auto; }
+.brand-logo .logo-on-light { display: var(--logo-light); }
+.brand-logo .logo-on-dark { display: var(--logo-dark); }
+.hero-logo .logo-on-light { display: var(--logo-light); }
+.hero-logo .logo-on-dark { display: var(--logo-dark); }
+
+.progress { position: fixed; left: 0; bottom: 0; height: 5px; background: var(--accent); transition: width .3s ease; z-index: 20; }
+.toast { position: fixed; left: 50%; top: 28px; transform: translateX(-50%); background: rgba(0,0,0,.75); color: #fff; font: 600 16px Inter, system-ui, sans-serif; padding: 10px 18px; border-radius: 999px; z-index: 50; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.is-on { opacity: 1; }
+.blackout { position: fixed; inset: 0; background: #000; z-index: 40; display: none; }
+.blackout.is-on { display: block; }
+
+.overlay { position: fixed; inset: 0; z-index: 30; background: rgba(5,7,15,.92); backdrop-filter: blur(6px); overflow: auto; display: none; font-family: Inter, system-ui, sans-serif; color: #e8ecf8; }
+.overlay.is-on { display: block; }
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 32px; }
+.thumb { cursor: pointer; border-radius: 10px; overflow: hidden; outline: 3px solid transparent; position: relative; background: #000; }
+.thumb:hover { outline-color: rgba(255,255,255,.4); }
+.thumb.is-current { outline-color: #2dd4bf; }
+.thumb .thumb-num { position: absolute; left: 10px; bottom: 8px; font: 700 14px Inter, sans-serif; background: rgba(0,0,0,.7); color: #fff; padding: 2px 8px; border-radius: 6px; z-index: 2; }
+.mini { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; }
+.mini > .slide { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; opacity: 1; visibility: visible; transition: none; }
+.mini .step { opacity: 1; transform: none; }
+
+.help { max-width: 720px; margin: 10vh auto; background: #121a33; border-radius: 16px; padding: 32px 40px; font-size: 17px; }
+.help h3 { font-family: Inter, sans-serif; font-size: 22px; margin-bottom: 16px; letter-spacing: 0; }
+.help dl { display: grid; grid-template-columns: 200px 1fr; gap: 10px 20px; margin: 0; }
+.help dt { font-family: "JetBrains Mono", monospace; color: #2dd4bf; }
+.help dd { margin: 0; color: #c7cee3; }
+
+.notes { display: none; }
+
+/* Presenter view (opened with S) */
+body.presenter { background: #0b0d14; font-family: Inter, system-ui, sans-serif; color: #e8ecf8; }
+body.presenter .viewport { position: absolute; left: 24px; top: 24px; width: calc(62% - 36px); height: calc(100% - 140px); border-radius: 10px; }
+body.presenter .progress { display: none; }
+.p-side { position: absolute; right: 24px; top: 24px; width: calc(38% - 12px); bottom: 116px; display: flex; flex-direction: column; gap: 16px; }
+.p-label { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #8790a8; margin-bottom: 6px; }
+.p-next .mini { border-radius: 8px; background: #000; }
+.p-notes { flex: 1; overflow: auto; background: #151927; border-radius: 10px; padding: 20px 24px; font-size: var(--notes-size, 20px); line-height: 1.5; }
+.p-notes:empty::before { content: "No notes for this slide."; color: #5d6681; }
+.p-notes p + p { margin-top: 12px; }
+.p-bar { position: absolute; left: 24px; right: 24px; bottom: 24px; height: 72px; display: flex; align-items: center; gap: 32px; background: #151927; border-radius: 10px; padding: 0 28px; font-size: 22px; }
+.p-bar .p-timer { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 700; }
+.p-bar .p-pace { flex: 1; height: 8px; background: #262c40; border-radius: 4px; overflow: hidden; }
+.p-bar .p-pace i { display: block; height: 100%; width: 0; background: #2dd4bf; }
+.p-bar .p-pace.over i { background: #f87171; }
+.p-bar button { font: 600 16px Inter, sans-serif; background: #262c40; color: #e8ecf8; border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+
+/* ============================================================================
+   PRINT / PDF — one slide per page, every reveal step shown
+   ========================================================================== */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  html, body { overflow: visible; height: auto; background: none; }
+  .viewport { position: static; }
+  .deck { position: static; transform: none !important; width: auto; height: auto; }
+  .slide { position: relative; width: 1920px; height: 1080px; opacity: 1 !important; visibility: visible !important; transform: none !important; break-after: page; page-break-after: always; transition: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .step { opacity: 1 !important; transform: none !important; }
+  .bar .track::after { width: calc(var(--v) * 1%) !important; transition: none !important; }
+  .progress, .toast, .overlay, .blackout, .archify .shield, .archify .open-full { display: none !important; }
+}
+</style>
+</head>
+<body>
+<template id="brand-logo"><!--@BRAND_LOGO@--></template>
+<div class="viewport">
+<main class="deck" data-title="<!--@TITLE@-->" data-duration="<!--@DURATION@-->">
+<!--@SLIDES@-->
+</main>
+</div>
+<div class="progress"></div>
+<div class="toast"></div>
+<div class="blackout"></div>
+<div class="overlay" id="overview"><div class="overview-grid"></div></div>
+<div class="overlay" id="help"><div class="help">
+  <h3>Presenting</h3>
+  <dl>
+    <dt>→ ↓ Space PgDn</dt><dd>Next step / slide</dd>
+    <dt>← ↑ PgUp</dt><dd>Previous</dd>
+    <dt>Home / End</dt><dd>First / last slide</dd>
+    <dt>12 + Enter</dt><dd>Jump to slide 12</dd>
+    <dt>O</dt><dd>Overview of all slides (click to jump)</dd>
+    <dt>S</dt><dd>Presenter view: notes, next slide, timer</dd>
+    <dt>F</dt><dd>Full screen</dd>
+    <dt>B or .</dt><dd>Black screen</dd>
+    <dt>T</dt><dd>Try the next theme (preview only)</dd>
+    <dt>P</dt><dd>Print / save as PDF</dd>
+    <dt>+ / −</dt><dd>Bigger / smaller notes (presenter view)</dd>
+    <dt>Esc</dt><dd>Close overlays</dd>
+  </dl>
+</div></div>
+<script>
+(() => {
+  'use strict';
+  const THEMES = ['midnight', 'paper', 'pricesmart', 'keynote'];
+  const params = new URLSearchParams(location.search);
+  const MODE = params.has('presenter') ? 'presenter' : params.has('check') ? 'check' : 'show';
+  const root = document.documentElement;
+  const viewport = document.querySelector('.viewport');
+  const deck = document.querySelector('.deck');
+  const slides = [...deck.querySelectorAll(':scope > .slide')];
+  const total = slides.length;
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const state = { slide: 0, step: 0 };
+  let peer = null;          // the other window (presenter <-> audience)
+  let jumpBuffer = '';
+
+  if (MODE === 'check') root.classList.add('no-anim');
+
+  /* ---------- chrome per slide: footer, brand logo, step lists ---------- */
+  const brandTpl = $('#brand-logo');
+  const hasBrand = brandTpl && brandTpl.content.querySelector('img');
+  const deckTitle = deck.dataset.title || document.title;
+  slides.forEach((s, i) => {
+    s.dataset.index = i;
+    const heroLike = ['title', 'section', 'statement', 'quote', 'closing'].includes(s.dataset.layout);
+    const footOff = s.dataset.foot === 'off' || ((heroLike || s.classList.contains('bleed')) && s.dataset.foot !== 'on');
+    if (!footOff && !s.querySelector('.slide-foot')) {
+      const f = document.createElement('footer');
+      f.className = 'slide-foot';
+      if (hasBrand) { const b = document.createElement('span'); b.className = 'brand-logo'; b.append(brandTpl.content.cloneNode(true)); f.append(b); }
+      const t = document.createElement('span'); t.className = 'foot-title'; t.textContent = deckTitle; f.append(t);
+      const n = document.createElement('span'); n.className = 'foot-num'; n.textContent = `${i + 1} / ${total}`; f.append(n);
+      s.append(f);
+    }
+    s.querySelectorAll('.hero-logo:empty').forEach(h => { if (hasBrand) h.append(brandTpl.content.cloneNode(true)); });
+  });
+  const stepsOf = s => [...s.querySelectorAll('.step')];
+
+  /* ---------- fit the 1920x1080 stage into its container ---------- */
+  function fit(stage, box, w = 1920, h = 1080) {
+    const r = box.getBoundingClientRect();
+    const k = Math.min(r.width / w, r.height / h);
+    const x = (r.width - w * k) / 2, y = (r.height - h * k) / 2;
+    stage.style.transform = `translate(${x}px, ${y}px) scale(${k})`;
+  }
+  const fitDeck = () => fit(deck, viewport);
+  window.addEventListener('resize', () => { fitDeck(); if (MODE === 'presenter') renderNext(); });
+
+  /* ---------- navigation ---------- */
+  function apply(fromPeer = false) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('is-active', i === state.slide);
+      s.classList.toggle('is-past', i < state.slide);
+      s.setAttribute('aria-hidden', i === state.slide ? 'false' : 'true');
+    });
+    const cur = slides[state.slide];
+    const steps = stepsOf(cur);
+    steps.forEach((el, i) => {
+      el.classList.toggle('is-shown', MODE === 'check' || i < state.step);
+      el.classList.toggle('is-past-step', i < state.step - 1);
+    });
+    $('.progress').style.width = `${((state.slide + 1) / total) * 100}%`;
+    const hash = `#/${state.slide + 1}`;
+    if (location.hash !== hash) history.replaceState(null, '', hash);
+    hydrateArchify(cur);
+    slides.forEach(s => { if (s !== cur) s.querySelectorAll('.archify.is-live').forEach(a => a.classList.remove('is-live')); });
+    if (MODE === 'presenter') renderPresenter();
+    if (!fromPeer && peer && !peer.closed) peer.postMessage({ deck: 'nav', slide: state.slide, step: state.step }, '*');
+  }
+  function go(slide, step = 0, fromPeer = false) {
+    state.slide = Math.max(0, Math.min(total - 1, slide));
+    state.step = step === 'end' ? stepsOf(slides[state.slide]).length : step;
+    apply(fromPeer);
+  }
+  function next() {
+    const n = stepsOf(slides[state.slide]).length;
+    if (state.step < n) { state.step++; apply(); }
+    else if (state.slide < total - 1) go(state.slide + 1, 0);
+  }
+  function prev() {
+    if (state.step > 0) { state.step--; apply(); }
+    else if (state.slide > 0) go(state.slide - 1, 'end');
+  }
+  function fromHash() {
+    const m = location.hash.match(/^#\/(\d+)/);
+    return m ? Math.max(0, Math.min(total - 1, parseInt(m[1], 10) - 1)) : 0;
+  }
+
+  /* ---------- toast, overlays ---------- */
+  let toastTimer;
+  function toast(msg) {
+    const t = $('.toast'); t.textContent = msg; t.classList.add('is-on');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('is-on'), 1400);
+  }
+  const overlayOpen = () => document.querySelector('.overlay.is-on');
+  function closeOverlays() { document.querySelectorAll('.overlay.is-on').forEach(o => o.classList.remove('is-on')); }
+
+  function miniClone(slide, allSteps = true) {
+    const wrap = document.createElement('div'); wrap.className = 'mini';
+    const c = slide.cloneNode(true);
+    c.classList.add('is-active'); c.classList.remove('is-past'); c.removeAttribute('id');
+    c.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+    c.querySelectorAll('iframe').forEach(f => f.remove());
+    c.querySelectorAll('.archify-payload').forEach(p => p.remove());
+    if (allSteps) c.querySelectorAll('.step').forEach(e => e.classList.add('is-shown'));
+    wrap.append(c);
+    requestAnimationFrame(() => { const k = wrap.clientWidth / 1920; c.style.transform = `scale(${k})`; });
+    return wrap;
+  }
+  function toggleOverview() {
+    const ov = $('#overview');
+    if (ov.classList.contains('is-on')) { ov.classList.remove('is-on'); return; }
+    closeOverlays();
+    const grid = $('.overview-grid', ov); grid.innerHTML = '';
+    slides.forEach((s, i) => {
+      const t = document.createElement('div'); t.className = 'thumb' + (i === state.slide ? ' is-current' : '');
+      t.append(miniClone(s));
+      const n = document.createElement('span'); n.className = 'thumb-num'; n.textContent = i + 1; t.append(n);
+      t.addEventListener('click', () => { ov.classList.remove('is-on'); go(i); });
+      grid.append(t);
+    });
+    ov.classList.add('is-on');
+    $('.thumb.is-current', ov)?.scrollIntoView({ block: 'center' });
+  }
+
+  /* ---------- presenter view ---------- */
+  function openPresenter() {
+    const url = location.href.split('#')[0].split('?')[0] + '?presenter' + `#/${state.slide + 1}`;
+    peer = window.open(url, 'deck-presenter', 'width=1400,height=860');
+    if (!peer) toast('Allow pop-ups to open the presenter view');
+  }
+  let timerStart = null, timerHandle = null;
+  function buildPresenter() {
+    document.body.classList.add('presenter');
+    const side = document.createElement('div'); side.className = 'p-side';
+    side.innerHTML = '<div class="p-next"><div class="p-label">Next</div><div class="p-next-box"></div></div><div class="p-label">Notes</div><div class="p-notes"></div>';
+    const bar = document.createElement('div'); bar.className = 'p-bar';
+    bar.innerHTML = '<span class="p-timer">00:00</span><span class="p-clock"></span><div class="p-pace"><i></i></div><span class="p-count"></span><button type="button" class="p-reset">Reset timer</button>';
+    document.body.append(side, bar);
+    $('.p-reset').addEventListener('click', () => { timerStart = Date.now(); tick(); });
+    timerStart = Date.now();
+    timerHandle = setInterval(tick, 1000); tick();
+    peer = window.opener || null;
+    try { const saved = localStorage.getItem('deck-notes-size'); if (saved) root.style.setProperty('--notes-size', `${saved}px`); } catch { /* ignore */ }
+  }
+  function tick() {
+    const s = Math.floor((Date.now() - timerStart) / 1000);
+    $('.p-timer').textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    $('.p-clock').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const mins = parseFloat(deck.dataset.duration);
+    const pace = $('.p-pace');
+    if (mins > 0) {
+      const used = s / (mins * 60), done = (state.slide + 1) / total;
+      pace.firstElementChild.style.width = `${Math.min(100, used * 100)}%`;
+      pace.classList.toggle('over', used > done + 0.1);
+      pace.title = `Time used ${Math.round(used * 100)}% · slides done ${Math.round(done * 100)}%`;
+    } else pace.style.visibility = 'hidden';
+  }
+  function renderNext() {
+    const box = $('.p-next-box'); if (!box) return;
+    box.innerHTML = '';
+    const steps = stepsOf(slides[state.slide]).length;
+    if (state.step < steps) { const m = miniClone(slides[state.slide], false); m.querySelectorAll('.step').forEach((e, i) => e.classList.toggle('is-shown', i <= state.step)); box.append(m); }
+    else if (state.slide < total - 1) box.append(miniClone(slides[state.slide + 1], false));
+    else box.innerHTML = '<div class="p-label">End of deck</div>';
+  }
+  function renderPresenter() {
+    renderNext();
+    const notes = slides[state.slide].querySelector('.notes');
+    $('.p-notes').innerHTML = notes ? notes.innerHTML : '';
+    $('.p-count').textContent = `Slide ${state.slide + 1} / ${total}` + (stepsOf(slides[state.slide]).length ? ` · step ${state.step}/${stepsOf(slides[state.slide]).length}` : '');
+    tick();
+  }
+  window.addEventListener('message', e => {
+    const d = e.data;
+    if (!d || typeof d !== 'object') return;
+    if (d.deck === 'nav') { if (!peer && e.source) peer = e.source; go(d.slide, d.step, true); }
+    if (d.deck === 'hello' && e.source) { peer = e.source; peer.postMessage({ deck: 'nav', slide: state.slide, step: state.step }, '*'); }
+  });
+
+  /* ---------- theme preview ---------- */
+  function cycleTheme() {
+    const cur = root.dataset.theme || 'midnight';
+    const nextTheme = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+    root.dataset.theme = nextTheme;
+    toast(`Theme: ${nextTheme} (preview)`);
+    renderMermaid();
+  }
+
+  /* ---------- keyboard, touch, wheel ---------- */
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key;
+    if (k === 'Escape') { closeOverlays(); $('.blackout').classList.remove('is-on'); jumpBuffer = ''; return; }
+    if (/^\d$/.test(k)) { jumpBuffer += k; toast(`Go to ${jumpBuffer}`); return; }
+    if (k === 'Enter' && jumpBuffer) { go(parseInt(jumpBuffer, 10) - 1); jumpBuffer = ''; return; }
+    jumpBuffer = '';
+    if (overlayOpen() && !['o', 'O', '?'].includes(k)) return;
+    switch (k) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter': case 'n': case 'N':
+        e.preventDefault(); e.shiftKey && k === ' ' ? prev() : next(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace': case 'p':
+        e.preventDefault(); prev(); break;
+      case 'Home': go(0); break;
+      case 'End': go(total - 1, 'end'); break;
+      case 'o': case 'O': toggleOverview(); break;
+      case 's': case 'S': if (MODE !== 'presenter') openPresenter(); break;
+      case 'f': case 'F': (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.()); break;
+      case 'b': case 'B': case '.': $('.blackout').classList.toggle('is-on'); break;
+      case 't': case 'T': cycleTheme(); break;
+      case 'P': printDeck(); break;
+      case '?': $('#help').classList.toggle('is-on'); break;
+      case '+': case '=': case '-': case '_': {
+        if (MODE !== 'presenter') break;
+        const cur = parseFloat(getComputedStyle(root).getPropertyValue('--notes-size')) || 20;
+        const size = Math.max(14, Math.min(36, cur + (k === '+' || k === '=' ? 2 : -2)));
+        root.style.setProperty('--notes-size', `${size}px`);
+        try { localStorage.setItem('deck-notes-size', size); } catch { /* file:// may block storage */ }
+        toast(`Notes ${size}px`); break;
+      }
+    }
+  });
+  let touchX = null;
+  viewport.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+  });
+  window.addEventListener('hashchange', () => { const i = fromHash(); if (i !== state.slide) go(i); });
+
+  /* ---------- Mermaid (loaded only when a deck uses it) ---------- */
+  let mermaidLib = null;
+  const mermaidEls = [...document.querySelectorAll('.mermaid')];
+  mermaidEls.forEach(el => { el.dataset.src = el.textContent.trim(); });
+  const cssVar = name => getComputedStyle(root).getPropertyValue(name).trim();
+  async function renderMermaid() {
+    if (!mermaidEls.length) return;
+    try {
+      if (!mermaidLib) mermaidLib = (await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')).default;
+    } catch (err) { mermaidEls.forEach(el => { el.innerHTML = '<div class="mermaid-error">Mermaid could not load (offline?)</div>'; }); return; }
+    const isDark = getComputedStyle(root).colorScheme.includes('dark');
+    mermaidLib.initialize({
+      startOnLoad: false, securityLevel: 'loose', theme: 'base',
+      flowchart: { htmlLabels: true, curve: 'basis', padding: 20 },
+      themeVariables: {
+        darkMode: isDark, fontFamily: cssVar('--font-body') || 'Inter, sans-serif', fontSize: '24px',
+        background: 'transparent', primaryColor: cssVar('--surface-2'), primaryTextColor: cssVar('--text'),
+        primaryBorderColor: cssVar('--accent'), secondaryColor: cssVar('--surface'), tertiaryColor: cssVar('--surface'),
+        lineColor: cssVar('--text-muted'), textColor: cssVar('--text'), mainBkg: cssVar('--surface-2'),
+        nodeBorder: cssVar('--accent'), clusterBkg: cssVar('--surface'), clusterBorder: cssVar('--border'),
+        edgeLabelBackground: cssVar('--bg'), actorBkg: cssVar('--surface-2'), actorBorder: cssVar('--accent'),
+        actorTextColor: cssVar('--text'), signalColor: cssVar('--text'), signalTextColor: cssVar('--text'),
+        noteBkgColor: cssVar('--surface'), noteTextColor: cssVar('--text'), noteBorderColor: cssVar('--accent-2'),
+      },
+    });
+    let n = 0;
+    for (const el of mermaidEls) {
+      try {
+        const { svg } = await mermaidLib.render(`mmd-${Date.now()}-${n++}`, el.dataset.src);
+        el.innerHTML = svg; el.classList.add('is-rendered');
+        const svgEl = el.querySelector('svg'); svgEl.removeAttribute('height'); svgEl.style.maxWidth = '100%';
+      } catch (err) {
+        el.innerHTML = `<div class="mermaid-error">Mermaid error: ${String(err.message || err).replace(/</g, '&lt;')}</div>`;
+        el.classList.add('is-rendered');
+      }
+    }
+  }
+
+  /* ---------- code: syntax highlight (CDN) + highlighted line bands ---------- */
+  function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.append(s); }); }
+  async function renderCode() {
+    const blocks = [...document.querySelectorAll('pre code[class*="language-"]')];
+    if (blocks.length) {
+      try {
+        await loadScript('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/highlight.min.js');
+        blocks.forEach(b => window.hljs.highlightElement(b));
+      } catch { /* plain monospace is fine offline */ }
+    }
+    document.querySelectorAll('.code[data-lines]').forEach(fig => {
+      const pre = fig.querySelector('pre'); if (!pre) return;
+      const cs = getComputedStyle(pre);
+      const lh = parseFloat(cs.lineHeight), top = parseFloat(cs.paddingTop);
+      fig.dataset.lines.split(',').forEach(part => {
+        const [a, b] = part.split('-').map(Number);
+        const band = document.createElement('div'); band.className = 'hl-band';
+        band.style.top = `${top + (a - 1) * lh}px`; band.style.height = `${((b || a) - a + 1) * lh}px`;
+        pre.prepend(band);
+      });
+      fig.classList.add('has-hl');
+    });
+  }
+
+  /* ---------- Archify diagrams embedded by build_deck.py ---------- */
+  function decodePayload(el) {
+    const bin = atob(el.textContent.trim());
+    return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
+  }
+  function hydrateArchify(scope) {
+    scope.querySelectorAll('.archify').forEach(box => {
+      if (box.querySelector('iframe') || box.querySelector('.missing')) return;
+      const payload = box.querySelector('.archify-payload');
+      if (!payload) { const m = document.createElement('div'); m.className = 'missing'; m.textContent = 'Diagram not embedded yet — run build_deck.py'; box.append(m); return; }
+      const html = decodePayload(payload);
+      const frame = document.createElement('iframe');
+      frame.setAttribute('title', box.dataset.title || 'Diagram');
+      frame.srcdoc = html;
+      const shield = document.createElement('div'); shield.className = 'shield';
+      shield.innerHTML = '<span>Click to interact · Esc to return</span>';
+      shield.addEventListener('click', () => { box.classList.add('is-live'); frame.focus(); });
+      const open = document.createElement('button'); open.className = 'open-full'; open.type = 'button'; open.textContent = 'Full screen ↗';
+      open.addEventListener('click', ev => { ev.stopPropagation(); window.open(URL.createObjectURL(new Blob([html], { type: 'text/html' })), '_blank'); });
+      box.append(frame, shield, open);
+      frame.addEventListener('load', () => {
+        try { frame.contentWindow.addEventListener('keydown', e => { if (e.key === 'Escape') { box.classList.remove('is-live'); window.focus(); } }); } catch { /* cross-origin */ }
+      });
+    });
+  }
+
+  /* ---------- print ---------- */
+  function printDeck() { slides.forEach(hydrateArchify); setTimeout(() => window.print(), 300); }
+  window.addEventListener('beforeprint', () => slides.forEach(hydrateArchify));
+
+  /* ---------- check mode: machine-readable layout report for check_deck.py ---------- */
+  function report() {
+    const out = [];
+    slides.forEach((s, i) => {
+      const issues = [];
+      const sr = s.getBoundingClientRect();
+      const k = sr.width / 1920 || 1;
+      const body = s.querySelector('.slide-body');
+      if (body && body.scrollHeight > body.clientHeight + 2) issues.push(`content overflows the slide body by ${body.scrollHeight - body.clientHeight}px`);
+      if (s.scrollHeight > s.clientHeight + 2) issues.push(`slide content taller than the slide by ${s.scrollHeight - s.clientHeight}px`);
+      const foot = s.querySelector('.slide-foot');
+      const footTop = foot ? foot.getBoundingClientRect().top : sr.bottom;
+      s.querySelectorAll('h1,h2,h3,h4,p,li,td,pre,.card,.metric,.bar,figure,table,.callout,img,.mermaid,blockquote').forEach(el => {
+        if (el.closest('.notes') || el.closest('.slide-foot')) return;
+        const r = el.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        const tag = el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : '');
+        if (r.right > sr.right + 1 || r.left < sr.left - 1) issues.push(`${tag} runs off the side`);
+        else if (r.bottom > sr.bottom + 1) issues.push(`${tag} runs off the bottom`);
+        else if (foot && r.bottom > footTop + 2 && !el.closest('[data-layout="title"],[data-layout="section"]')) issues.push(`${tag} collides with the footer`);
+      });
+      s.querySelectorAll('pre').forEach(p => { if (p.scrollWidth > p.clientWidth + 2) issues.push('a code line is cut off on the right (shorten lines or use .code.small)'); });
+      s.querySelectorAll('img').forEach(img => { if (img.complete && img.naturalWidth === 0) issues.push(`broken image ${img.getAttribute('src')?.slice(0, 60)}`); });
+      s.querySelectorAll('.mermaid-error').forEach(m => issues.push(m.textContent.slice(0, 200)));
+      s.querySelectorAll('.archify .missing').forEach(() => issues.push('archify diagram not embedded'));
+      s.querySelectorAll('.todo').forEach(t => issues.push(`TODO to confirm: ${t.textContent.trim().slice(0, 80)}`));
+      const clone = s.cloneNode(true); clone.querySelectorAll('.notes,.slide-foot,pre,.mermaid,script,style').forEach(n => n.remove());
+      const words = clone.textContent.split(/\s+/).filter(Boolean).length;
+      if (words > 90) issues.push(`dense: ${words} words on the slide (aim for under 60)`);
+      const notes = s.querySelector('.notes');
+      out.push({ slide: i + 1, layout: s.dataset.layout || '', title: (s.querySelector('h1,h2')?.textContent || '').trim().slice(0, 80), words, hasNotes: !!(notes && notes.textContent.trim()), issues: [...new Set(issues)] });
+    });
+    const el = document.createElement('script'); el.type = 'application/json'; el.id = 'deck-report';
+    el.textContent = JSON.stringify({ total, theme: root.dataset.theme, slides: out });
+    document.body.append(el);
+    document.body.dataset.checked = 'true';
+  }
+
+  /* ---------- boot ---------- */
+  if (MODE === 'presenter') buildPresenter();
+  fitDeck();
+  go(fromHash(), MODE === 'check' ? 'end' : 0, true);
+  if (MODE === 'presenter' && window.opener) window.opener.postMessage({ deck: 'hello' }, '*');
+  if (MODE === 'check') slides.forEach(hydrateArchify);
+  Promise.all([renderMermaid(), renderCode(), document.fonts ? document.fonts.ready : null])
+    .finally(() => { if (MODE === 'check') setTimeout(report, 150); });
+})();
+</script>
+</body>
+</html>
