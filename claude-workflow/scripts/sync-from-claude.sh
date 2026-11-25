@@ -16,7 +16,7 @@ fi
 
 echo "About to sync from $CLAUDE_DIR to $ROOT_DIR"
 echo
-printf "This will overwrite this repo's CLAUDE.md, commands/, and skills/. Continue? [y/N] "
+printf "This will overwrite this repo's CLAUDE.md, commands/, skills/, and profiles/. Continue? [y/N] "
 read -r answer
 case "$answer" in
   y|Y|yes|YES) ;;
@@ -24,9 +24,12 @@ case "$answer" in
 esac
 
 cp "$CLAUDE_DIR/CLAUDE.md" "$ROOT_DIR/CLAUDE.md"
-mkdir -p "$ROOT_DIR/commands" "$ROOT_DIR/skills"
+mkdir -p "$ROOT_DIR/commands" "$ROOT_DIR/skills" "$ROOT_DIR/profiles"
 rsync -a --delete "$CLAUDE_DIR/commands/" "$ROOT_DIR/commands/"
 rsync -a --delete "$CLAUDE_DIR/skills/" "$ROOT_DIR/skills/"
+if [[ -d "$CLAUDE_DIR/profiles" ]]; then
+  rsync -a --delete "$CLAUDE_DIR/profiles/" "$ROOT_DIR/profiles/"
+fi
 
 echo "Done. Review changes before committing:"
 echo "  git -C \"$ROOT_DIR\" status --short"

@@ -19,11 +19,16 @@ if [[ ! -d "$ROOT_DIR/skills" ]]; then
   exit 1
 fi
 
-mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills"
+if [[ ! -d "$ROOT_DIR/profiles" ]]; then
+  echo "Error: missing $ROOT_DIR/profiles" >&2
+  exit 1
+fi
+
+mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills" "$CLAUDE_DIR/profiles"
 
 echo "About to install this repo's Claude setup to: $CLAUDE_DIR"
 echo
-printf "This will overwrite CLAUDE.md, commands/, and skills/ in %s. Continue? [y/N] " "$CLAUDE_DIR"
+printf "This will overwrite CLAUDE.md, commands/, skills/, and profiles/ in %s. Continue? [y/N] " "$CLAUDE_DIR"
 read -r answer
 case "$answer" in
   y|Y|yes|YES) ;;
@@ -33,5 +38,6 @@ esac
 cp "$ROOT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
 rsync -a --delete "$ROOT_DIR/commands/" "$CLAUDE_DIR/commands/"
 rsync -a --delete "$ROOT_DIR/skills/" "$CLAUDE_DIR/skills/"
+rsync -a --delete "$ROOT_DIR/profiles/" "$CLAUDE_DIR/profiles/"
 
 echo "Installed Claude setup to $CLAUDE_DIR"

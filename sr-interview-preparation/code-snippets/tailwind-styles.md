@@ -1,15 +1,16 @@
-| Pattern   | Classes                                                             |
-| --------- | ------------------------------------------------------------------- |
-| Container | mx-auto max-w-6xl p-6                                               |
-| Card      | rounded-lg border bg-white p-4 shadow-sm                            |
-| Row       | flex items-center gap-3                                             |
-| Between   | flex items-center justify-between                                   |
-| Grid      | grid gap-4 sm:grid-cols-2 lg:grid-cols-3                            |
-| Button    | rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700       |
-| Input     | w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500 |
-| Table     | w-full border-collapse text-sm                                      |
-| Cell      | border-b px-4 py-3                                                  |
-| Badge     | rounded-full px-2 py-1 text-xs                                      |
+| Pattern | Classes |
+|---|---|
+| Container | `mx-auto max-w-6xl p-6` |
+| Card | `rounded-lg border bg-white p-4 shadow-sm` |
+| Row | `flex items-center gap-3` |
+| Between | `flex items-center justify-between` |
+| Grid | `grid gap-4 sm:grid-cols-2 lg:grid-cols-3` |
+| Button | `rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700` |
+| Input | `w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500` |
+| Table | `w-full border-collapse text-sm` |
+| Cell | `border-b px-4 py-3` |
+| Badge | `rounded-full px-2 py-1 text-xs` |
+
 
 | Use case         | Tailwind classes                                                                       | What it does                                |
 | ---------------- | -------------------------------------------------------------------------------------- | ------------------------------------------- |
