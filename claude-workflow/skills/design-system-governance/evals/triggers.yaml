@@ -1,0 +1,25 @@
+schema_version: 1
+skill: design-system-governance
+reviewed: false
+should_trigger:
+  - Audit our component library governance right now and post the findings as a report to Confluence.
+  - Can you check whether every component in our published Figma library is tracked in the Airtable inventory, and call out anything missing?
+  - Find any components marked deprecated in Airtable that are still being published in the Figma library and list them out.
+  - Generate a governance report showing which published library components don't have an owner listed in Airtable.
+  - Is our Airtable component inventory actually in sync with what's live in the published Figma library?
+  - Pull the list of components and styles from our Figma library and reconcile it against the Airtable component inventory for ownership status.
+  - 'Quick check: do we have full coverage between the components in our Figma library and the ones tracked in our inventory sheet?'
+  - Some deprecated components are still showing up in the published library even though they're marked deprecated in our tracker. Find them and report on it.
+  - We need a design-system health report — compare the Figma library against our component tracker and flag any coverage gaps.
+  - We're doing a design system cleanup — enumerate the library variables and styles, cross-reference with our Airtable tracker, then write up a report.
+should_not_trigger:
+  - Audit the accessibility contrast of our design tokens for this flow and post the results to Confluence.
+  - Before this goes to dev, verify the text/background pairings meet accessibility contrast requirements.
+  - Check the contrast ratios for the text on this frame before we hand it off to engineering.
+  - Create a Confluence page summarizing this sprint's design retro notes for the team.
+  - How many designers have actually adopted the new button component according to Figma Analytics?
+  - Review our color tokens against WCAG AA standards for this new screen design in Figma.
+  - Set up a new Airtable base schema so we can start tracking our design tokens from scratch.
+  - Show me detached-instance counts for our card component across all the files that use it.
+  - Take a screenshot of this frame and confirm the color contrast passes WCAG guidelines.
+  - Update the owner field on the Button component record in Airtable to reflect ticket ABC-123.

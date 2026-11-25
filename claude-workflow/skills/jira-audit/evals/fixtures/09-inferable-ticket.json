@@ -1,0 +1,23 @@
+{
+  "eval_id": 9,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-2900",
+      "summary": "Allow users to export their data as CSV",
+      "type": "Story",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "R. Patel",
+      "story_points": 5,
+      "components": ["web-frontend", "core-api"],
+      "labels": ["feature", "privacy"],
+      "epic": "FD-220 Privacy & Compliance",
+      "description": "Users on the Settings > Privacy page should be able to click an \"Export My Data\" button that generates a CSV containing all their profile information, activity history, and preferences. The CSV should be emailed to their registered email address since generation may take several minutes for users with large histories. We already have a background job framework (Sidekiq) and the email service is SendGrid. The export should include: profile fields, login history (last 90 days), notification preferences, and saved searches. File should be password-protected with a randomly generated password shown once in the UI.",
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "scope_boundaries": null,
+      "updated": "2026-04-25"
+    }
+  ]
+}

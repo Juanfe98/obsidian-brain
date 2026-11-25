@@ -1,0 +1,47 @@
+# .jira-audit.yaml
+# Place this file in your project root to customize audit behavior.
+# All settings are optional — omitted values use defaults.
+
+# Check configuration
+checks:
+  # Disable specific checks by slug (see references/audit-checks.md for slugs)
+  disabled:
+    # - epic-link
+    # - components-labels
+    # - sub-tasks
+
+  # Override the default severity of any check
+  severity_overrides:
+    # stale-ticket: high        # promote from medium to high
+    # sub-tasks: medium         # promote from low to medium
+    # no-estimate: critical     # promote from high to critical
+
+  # Override numeric thresholds used in check logic
+  thresholds:
+    stale_days: 5               # days without update before flagging in sprint mode (default: 5)
+    stale_months_backlog: 6     # months without update before flagging in project mode (default: 6)
+    large_story_points: 5       # points threshold for "needs sub-tasks" (default: 5)
+    vague_title_min_words: 4    # minimum words for a non-vague title (default: 4)
+    duplicate_similarity: 80    # percent word overlap for duplicate detection (default: 80)
+
+# Readiness score configuration
+readiness:
+  enabled: true                 # include readiness score in reports (default: true)
+  weights:                      # points deducted per failing check at each severity
+    critical: 30
+    high: 15
+    medium: 5
+    low: 1
+
+# Trend tracking — save audit results for comparison over time
+trends:
+  enabled: false                # append results to .jira-audit-history.json (default: false)
+
+# Ticket type overrides — control which checks apply to custom types
+# Spike is built-in (see audit-checks.md). Use this for any other custom
+# issue types your team uses beyond Story/Task/Bug/Spike/Sub-task/Epic.
+# custom_types:
+#   research:
+#     applies: [vague-title, missing-description, missing-ac, no-estimate]
+#   tech-debt:
+#     applies: [vague-title, missing-description, no-estimate, no-scope-boundaries, missing-affected-files]

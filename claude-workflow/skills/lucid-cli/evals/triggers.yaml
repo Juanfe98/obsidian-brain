@@ -1,0 +1,25 @@
+schema_version: 1
+skill: lucid-cli
+reviewed: false
+should_trigger:
+  - Add a swimlane for the QA team to the deployment process flowchart we built.
+  - Add an entity called Orders with fields id, user_id, and total to our ERD diagram.
+  - Create a new flowchart in Lucidchart for our customer onboarding process.
+  - Export our Lucidchart flowchart as a PNG so I can embed it in the README.
+  - I need to design an ERD for the new orders database - can you build it out in Lucidchart?
+  - List the documents in my Lucidscale account that were edited this week.
+  - Rename the 'API Gateway' shape to 'Gateway Service' on page 2 of our architecture diagram.
+  - Set up a whiteboard with sticky notes for tomorrow's retro session.
+  - Spin up a Lucidspark whiteboard so the team can brainstorm ideas for the Q4 roadmap.
+  - Update the 'System Architecture' diagram in Lucidchart to add a new microservice box.
+should_not_trigger:
+  - Add a new record to the Airtable base that tracks our marketing campaigns.
+  - Create a new spreadsheet with quarterly sales numbers for the team to review.
+  - Explain the difference between a flowchart and a swimlane diagram for a presentation I'm writing.
+  - Find the quarterly report doc in my Google Drive and share it with the team.
+  - Look up which service owns the payments API in our service catalog.
+  - Move ticket ABC-123 to the 'In Progress' column on our sprint board.
+  - Pull up the latest test automation launch results from ReportPortal.
+  - Show me the infrastructure event graph for the deployment that happened last night.
+  - Sketch out an ERD as plain text describing the entities and relationships, no diagramming tool needed.
+  - What skills do you have available for discovering tools I can use right now?

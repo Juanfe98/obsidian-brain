@@ -1,0 +1,150 @@
+{
+  "inspected": "2026-09-08",
+  "source": "https://dee.technology/brand-assets",
+  "assets": [
+    {
+      "text": "Download for Microsoft PowerPoint (Light)",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_Presentation_Light_2025.pptx",
+      "bytes": 11641672,
+      "sha256": "bbb8e9f83ed19bbdbe0b8d3eb6d2e66876a8491d08c4999118c2d093d68fa0d9"
+    },
+    {
+      "text": "Download for Keynote (Light)",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_Presentation_Light_2025.key",
+      "bytes": 14006964,
+      "sha256": "bfc3df976a2d6b2c095d9a95608a3febee368e2cad4729a7aa716c5a0775b535"
+    },
+    {
+      "text": "Download for Keynote (Dark Aurora)",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_Presentation_Dark_2025.key",
+      "bytes": 14081604,
+      "sha256": "4fa9adf8ad36c51bdf3914920cc82586545a0c777870048999d75f6cba9deba0"
+    },
+    {
+      "text": "Download for Microsoft Word",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_LongDocument_2025.docx",
+      "bytes": 480753,
+      "sha256": "2f4d85682fd43b139c4d4caf7d004cb7b55c16bb886ac227cb15f1d4f0327719"
+    },
+    {
+      "text": "Download for Pages",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_LongDocument_2025.pages",
+      "bytes": 1038933,
+      "sha256": "7b7e63acf439c55d20708c96b98e8d2b0fc6d81b3dc23cd25be197070a18b919"
+    },
+    {
+      "text": "Download for Microsoft PowerPoint (Dark)",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_Presentation_Dark_2025.pptx",
+      "bytes": 19800643,
+      "sha256": "e353099fdad9bb98b5c9a58f9b4ac56b1c8079d514dff5a8fe294458f14e7014"
+    },
+    {
+      "text": "Download for Microsoft Word",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_ShortDocument_2025.docx",
+      "bytes": 150657,
+      "sha256": "dd69ac4f2458eccc99ff9d89098a5a999fec7841beacfd7aab96ed2027a27441"
+    },
+    {
+      "text": "Download for Pages",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_EmailSignature_2025.pages",
+      "bytes": 896113,
+      "sha256": "a9a1540746236597d0fc5640f63d7d3dbbf076a203aa6b6850907f5e22119ae7"
+    },
+    {
+      "text": "Download for Pages",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_ShortDocument_2025.pages",
+      "bytes": 931549,
+      "sha256": "1c9f19088d7ddf44efbecf9eb92cbc1787f9feb3f1e114f74655fdf2521262ad"
+    },
+    {
+      "text": "Download for Microsoft Word",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_Template_EmailSignature_2025.docx",
+      "bytes": 45079,
+      "sha256": "d06bcb106d603a5069871437e6847dc5813b9fdc6e2c9654a61050b0b7856393"
+    },
+    {
+      "text": "Download Alliance Logo Library",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/DEPT_AllianceLogos_2025.zip",
+      "bytes": 1497709,
+      "sha256": "7c0a690fee8d58b92403a5e44bed906ca90c6d968f073b6195c5793325dd759a"
+    },
+    {
+      "text": "Download Logo Library",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/ProductAndTechnology-LogoPack-2025.zip",
+      "bytes": 12708485,
+      "sha256": "5caea7941bf05994c9d34cc950fd22c2b03fae172bcf94396825d6073ebc80b1"
+    },
+    {
+      "text": "Download Icons (light)",
+      "url": "https://dee.technology/assets/files/brand-assets/DE&ET_Icons_Light.zip",
+      "bytes": 1997426,
+      "sha256": "cd9b07dd1580e59b76d1c6bdabf87411df1b378f59efd450fdcccda8414df463"
+    },
+    {
+      "text": "Download Organizational Logo Library",
+      "url": "https://dee.technology/assets/files/brand-assets/202509/Org_Icons_2025.zip",
+      "bytes": 2094746,
+      "sha256": "8887bd5ba20b2b1d09da59b88c2f349302c1802e1f64d2d55afa7ebaa76c5aee"
+    },
+    {
+      "text": "Download Icons (dark)",
+      "url": "https://dee.technology/assets/files/brand-assets/DE&ET_Icons_Dark.zip",
+      "bytes": 2106307,
+      "sha256": "3a2c2a05b34fb77a18d13525dd437cf2bcb8dd64f5692a880fd7606f2ce4e90c"
+    },
+    {
+      "text": "Download Icons (white)",
+      "url": "https://dee.technology/assets/files/brand-assets/DE&ET_Icons_White.zip",
+      "bytes": 1894627,
+      "sha256": "4c80a99eb9b23b180e6c7c136161a2b091957cebeeadc6f251d635f6e0515163"
+    },
+    {
+      "text": "Use in apps.disney.com Google Slides (light)",
+      "url": "https://docs.google.com/presentation/d/1jXztPYGilO7LwW2eUY2oUDdYM6Y3LSBNdXJpLrZuHEM/template/preview",
+      "bytes": 3510353,
+      "sha256": "8f6dafc9485e1bc2871e1d9ac383d9b7936a652c91c565b5061e5f6e26a311fe"
+    },
+    {
+      "text": "Use in apps.disney.com Google Slides (dark)",
+      "url": "https://docs.google.com/presentation/d/1OUL4iIS-IPM5dzGmPNp9bLVYXsk4HOvlE0PdEtUnMxY/template/preview",
+      "bytes": 3157994,
+      "sha256": "7836260684fed7a73b5352ff27cf64072e82c98de970c8a3d2e1b0cf33aaf7ac"
+    },
+    {
+      "text": "Use in disneystreaming.com Google Slides (light)",
+      "url": "https://docs.google.com/presentation/d/1eUNIvt58Wkkt6_vd5fm48wA3d3t4nUSXiLtLPMI9MNk/template/preview",
+      "bytes": 3593344,
+      "sha256": "794767b4ee61d8707bb845b27ef27373ae551fb3dcbf4964adec075bfcb81c59"
+    },
+    {
+      "text": "Use in disneystreaming.com Google Slides (dark)",
+      "url": "https://docs.google.com/presentation/d/1qjWHuUFQ1OMRITeXBXKOx0PBoGnkBfoLIjMkOWtwbeg/template/preview",
+      "bytes": 3160256,
+      "sha256": "7c0d129bc6daa3e5542ca4b6f7675208cd1ed02eeeeb5001ebf1444a1731aabb"
+    },
+    {
+      "text": "Use in apps.disney.com Google Docs",
+      "url": "https://docs.google.com/document/d/1oMmfwFUQOZwz3v-y0Yr8SfmieXoOF0G_Dnlsvi0-kVQ/template/preview",
+      "bytes": 386562,
+      "sha256": "046b0bd6139545bed4ae55eba5dbdaf686baf3cd2cfa40b3e3cf77b0e0449744"
+    },
+    {
+      "text": "Use in disneystreaming.com Google Docs",
+      "url": "https://docs.google.com/document/d/1hE_VnRoY93keSuhVYsc1OAznKrg8c1ViYGiJxkr2QCw/template/preview",
+      "bytes": 386561,
+      "sha256": "4b30d51ed1418af542f74af1424153b68baf7a1d824bd9a9f77922ed51b00835"
+    },
+    {
+      "text": "Use in apps.disney.com Google Docs",
+      "url": "https://docs.google.com/document/d/1CDLf75UBlgHND2gF2tMNPz5gvoo2WlQbCABa-EhmvLA/template/preview",
+      "bytes": 76978,
+      "sha256": "4e2924d361b9a5d698aa0de8a6a255baf0f6394ce39b25374aa2c9acd8b64e5e"
+    },
+    {
+      "text": "Use in disneystreaming.com Google Docs",
+      "url": "https://docs.google.com/document/d/1iiy_23GB9nlGOU3onMvfZuxHqwM01kiKtSYCM_XoRuY/template/preview",
+      "bytes": 76978,
+      "sha256": "007b8662efe2ad517205cbfdd4e5fde891d176c0a4983f0d4fcfc8317b37a4e2"
+    }
+  ]
+}

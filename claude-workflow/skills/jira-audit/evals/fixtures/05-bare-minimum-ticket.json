@@ -1,0 +1,23 @@
+{
+  "eval_id": 5,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-3001",
+      "summary": "Refactoring",
+      "type": "Task",
+      "status": "Backlog",
+      "priority": null,
+      "assignee": null,
+      "story_points": null,
+      "components": [],
+      "labels": [],
+      "epic": null,
+      "description": null,
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "scope_boundaries": null,
+      "updated": "2026-03-15"
+    }
+  ]
+}

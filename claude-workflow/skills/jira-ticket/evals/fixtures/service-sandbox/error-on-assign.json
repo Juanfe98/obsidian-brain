@@ -1,0 +1,4 @@
+{
+  "jira_error": "Error: User 'bob.smith@company.com' does not exist.",
+  "jira_error_contains": "issue assign"
+}

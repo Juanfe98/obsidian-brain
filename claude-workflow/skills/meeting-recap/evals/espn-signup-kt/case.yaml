@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: espn-signup-kt
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  A single HTML recap that teaches the ESPN signup flow (contextualization screen as traffic cop, plan picker, login, add-ons, ledger, success, partner activation/TVE, ownership) and attributes the Datadog-from-contextualization commitment to Juan.

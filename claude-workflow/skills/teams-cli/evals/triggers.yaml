@@ -1,0 +1,25 @@
+schema_version: 1
+skill: teams-cli
+reviewed: false
+should_trigger:
+  - Can you pull up the transcript from yesterday's standup recording?
+  - Check whether my manager is currently online before I ping them.
+  - Grab the recording link for last week's sprint review meeting.
+  - List every channel in our engineering team so I can find the right one to post in.
+  - 'Post a quick update in the #general channel letting the team know the build passed.'
+  - Reply to the latest message in the incident-response chat thread.
+  - Schedule a message in the design team chat for 3pm tomorrow reminding everyone about the review.
+  - Search the channel history for any message mentioning the outage.
+  - Send a direct message to the on-call engineer about the outage.
+  - What's the presence status of everyone on the support team right now?
+should_not_trigger:
+  - Add a comment to ticket ABC-123 summarizing what we decided in the meeting.
+  - Add a new record to the meetings base tracking attendee names.
+  - Check if the deployment service is present and healthy in the cluster.
+  - Let's just chat for a minute about how to refactor this function.
+  - List all the discovery tools available through the universal dispatcher.
+  - Look up the service catalog entry for our internal messaging service.
+  - Pull up the test report transcript for last night's automation launch.
+  - Send a calendar invite for tomorrow's project sync meeting to the whole team by email.
+  - Show me the event graph for the latest infrastructure deployment change.
+  - Upload the meeting notes document to our shared Google Drive folder.

@@ -1,0 +1,25 @@
+schema_version: 1
+skill: jira-audit
+reviewed: false
+should_trigger:
+  - Before we hand these off to engineering, can you clean up the ticket hygiene for the ABC backlog?
+  - Can you check if the tickets in the ABC sprint are actually ready for an AI agent to pick up?
+  - Do a definition-of-ready check across the whole ABC project backlog and tell me what's failing.
+  - Give me a readiness score for all the tickets in the QA project's backlog.
+  - Go through the backlog for project ABC and flag any tickets that are missing clear acceptance criteria.
+  - Is ABC-123 clear enough that an agent could implement it without needing to ask clarifying questions?
+  - Pick up where we left off on that ticket audit from yesterday and finish going through the rest.
+  - Run a quality check on every ticket in the current sprint and give me a severity-rated report.
+  - Some of our tickets keep bouncing back for clarification — can you audit the backlog and explain what's wrong with them?
+  - We're about to start grooming — can you audit the current sprint for ticket quality before we start?
+should_not_trigger:
+  - Check our Airtable L4 tracker for epics marked complete that still have open child tickets in Jira.
+  - Compare what's on our Confluence sprint page against what's actually in the Jira sprint for the squad.
+  - Does this screenshot actually match what ABC-789 asked for?
+  - Grab the spec from this Figma frame and create the matching Jira story for the dev team.
+  - Help me plan out the new checkout redesign and sketch the ticket structure before we build anything.
+  - How many story points should ABC-456 get, based on how we've pointed similar tickets before?
+  - Just create a new ticket in the ABC project for the login bug and set it to high priority.
+  - Take ABC-123 all the way from ticket to a merged pull request in one shot.
+  - Triage our GitHub issues and surface any that are now obsolete because the underlying PR already merged.
+  - Which tickets in the ABC project have been stuck in Blocked status for weeks?

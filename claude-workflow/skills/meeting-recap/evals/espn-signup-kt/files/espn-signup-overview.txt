@@ -1,0 +1,142 @@
+Is this for the A-B test that's currently in flight
+or is this just generally?
+This is like a template we will be using in the future
+for it get easier the data and the information we need
+from Datadoc, but it's not targeting specifically,
+yeah, an experiment or something like that.
+It's like a template we will be reusing.
+Okay.
+Yeah.
+Yeah, because it changes sometimes.
+Like if someone's already logged in,
+then we don't do login, right?
+Like that's before and et cetera, et cetera.
+So we do include the add-on steps as part of the flow
+to answer your first question and partner activations.
+We do wanna include as part of the scope,
+but they follow a different flow
+that starts on the plan picker screen.
+So right before the plan picker screen
+is actually a screen that we should be tracking
+as part of this.
+We do have the contextualization screen.
+So really the way that our flow works is contextualization.
+I'm gonna write this down.
+Then plan picker, then login.
+Here I'll put for, I'll browse plans.
+Login and we'll put if not logged in
+and then add-ons, ledger, success.
+Okay, I'm gonna write down all the options
+and then here, let me start with that one.
+Then we've got the activation, partner activation
+is contextualization.
+So that's why we need that contextualization screen.
+Let me grab a,
+I think I might have a good way of viewing this
+that I can send as well.
+Okay, I think you mentioned some words
+that I don't have mapped right now,
+but I can also send you like a diagram.
+Yeah, that'd be great.
+I think most of the words you mentioned
+are here are very present.
+Okay, great, yeah, that'd be great.
+So it'll be something like this.
+It just send you the diagram in the chat.
+I think there's, so the thing is
+there's one step above that that I want people to see.
+So here, let me show you what activation looks like.
+I'm gonna drop it in the chat.
+Okay, so this is partner activation.
+I'm gonna write out the steps as well.
+Fighter picker, and I'm gonna do mobile web
+just because it's easier to see.
+Mobile web is the same as desktop web.
+Okay.
+Sorry, it's just taking me a sec to the, so.
+Okay, so do you see what I just sent?
+So this is the activation step.
+So that contextualization screen
+really is the most important screen
+because that's the screen that determines
+where the user goes next.
+And so through that screen,
+we're able to really determine
+more than any other screen.
+Because it's kind of like, I call it the traffic cop
+because from that screen, people have a lot of choices
+and their choices are shown on the next screen.
+Like they won't even get to the plan card page.
+I'll send you a screen that shows that.
+Okay, but like the only way
+from the contextualization screen
+for an user to enter the sign up flow
+is to click browse plans, right?
+Because other pros are different, like the sign in.
+Well, browse plans work, they hit login.
+There is also a login option.
+If they hit login, it sort of does the same thing.
+Okay.
+But yeah, those are the two ways
+to enter the purchase flow, exactly right.
+And then the other option,
+so like signing with TV provider
+can actually do two things.
+It can either log them in through partner activation
+or it can log them in through TVE
+which are different processes.
+Okay, and then, yeah, I'm seeing the other image.
+And then again, the user can land in the sign up flow
+by using browse my plans
+and trying to log in with an account
+that is not right now in the system, right?
+Like what do you mean by what's not in the system, sorry.
+So for example, for Disney Plus,
+if a user goes to the browse plans
+and he tries to sign in or something like that,
+we're displaying the sign in flow
+but internally we're validating that
+if the email is already in the system,
+then the user is signing in.
+And if not, we're basically sending that user to sign up.
+Does that work like the same?
+Okay.
+Yeah, that's correct.
+Yeah, thank you, clarifying.
+Okay, and I don't know if you have
+like the context of this question
+but because I'm thinking,
+I know some of these pages for ESPN currently
+does not live in the CAP application.
+Do you know if this contextualization screen
+lives like inside CGI, inside the CAP?
+It does not, it lives in ESPN.
+Well, so it's part of the unified platform
+but ESPN is the one that updates it and owns it.
+Okay.
+And same with the plan card page.
+It's owned the same way the plan card,
+the plan picker as you're calling it,
+those are both the same.
+The ledger is managed by Disney.
+They're all part of the unified platform though.
+The entire flow is part of the unified platform.
+Oh, okay, okay, got it, yeah.
+Okay, so I think I have what I need.
+Not sure if you want to share something else with me
+but I think I have the response for the questions I did.
+And also I will try and make sure to start
+the data dog from the contextualization screen.
+Okay, yeah, that's great.
+That'd be a big help right from there
+because that's typically the screen
+where we start all of our flows.
+That's what we consider.
+Okay, okay, perfect.
+Sweet.
+Yeah, if you need any help, just let me know.
+Okay, yeah, I will thank you if I need your help.
+Thank you, thank you so much.
+All right, thank you, have a good day.
+Thank you, bye.
+Bye.

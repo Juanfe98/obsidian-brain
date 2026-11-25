@@ -1,0 +1,25 @@
+schema_version: 1
+skill: teams
+reviewed: false
+should_trigger:
+  - Can you pull up my recent Teams chats with the design team so I can catch up on what I missed?
+  - Check if I'm showing as available or busy in Teams right now.
+  - From my terminal, can you show me the available commands for working with Teams meetings?
+  - Grab the transcript from yesterday's Teams meeting about the ABC-123 rollout.
+  - I need to @mention the on-call engineer in our Teams incident thread about the outage.
+  - List the unread messages sitting in my Teams DMs from this morning.
+  - My Teams tool keeps saying it's read-only when I try to send a reply — what do I need to change to fix that?
+  - Post a message in the engineering Teams channel announcing the deploy for ABC-123 is done.
+  - React with a thumbs up to the message my manager just sent in our Teams channel.
+  - 'Reply to the last message in the #general Teams channel saying I''ll be five minutes late.'
+should_not_trigger:
+  - Can you check my calendar and see who's free for a meeting tomorrow?
+  - Can you check my Outlook calendar for meetings scheduled this afternoon?
+  - Find the shared doc in Google Drive with the Q3 roadmap slides.
+  - How do I get the AIX developer CLIs installed and added to my PATH on a new machine?
+  - Look up the wiki page in Confluence that documents our on-call rotation.
+  - Pull the latest Figma file for the new onboarding flow design.
+  - Query Snowflake for the total orders processed for the ABC-123 pipeline.
+  - Run a SQL query in Databricks to pull last month's active user counts.
+  - Send an email in Outlook to the marketing team about the launch delay.
+  - Set my Slack status to busy for the next hour so people know I'm heads down.

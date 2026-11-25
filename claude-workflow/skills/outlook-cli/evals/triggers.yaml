@@ -1,0 +1,25 @@
+schema_version: 1
+skill: outlook-cli
+reviewed: false
+should_trigger:
+  - Can you check my inbox for any unread messages from this morning?
+  - Can you list everything on my calendar for tomorrow?
+  - Create a new mail folder called Vendor Invoices under my inbox.
+  - Draft a reply to the email about the Q3 budget review but don't send it yet.
+  - I need to pull up a contact's phone number saved in my Outlook contacts list.
+  - Move all the emails from example.com into my Archive folder.
+  - Schedule a meeting invite for next Tuesday at 2pm with the design team.
+  - Search my mailbox for any messages mentioning the ABC-123 project update.
+  - Send a quick email to the team letting them know the deploy is delayed.
+  - Set up a calendar reminder for my dentist appointment this Friday afternoon.
+should_not_trigger:
+  - Add a new row to the Airtable base that tracks customer feedback.
+  - Create a Jira ticket ABC-123 for the login bug and assign it to backend.
+  - Give me some tips for writing a clear meeting agenda before I send the invite.
+  - Kick off a Teams call recording so we can review the transcript afterward.
+  - Look up which team owns the billing service in our service catalog.
+  - 'Post an update in the #general Teams channel about tonight''s outage.'
+  - Pull the latest test automation results from our last launch report.
+  - Show me the recent deployment events for the payments service in the event graph.
+  - Upload this spreadsheet to my Google Drive folder named Reports.
+  - What's the polite way to word an out-of-office auto-reply message?

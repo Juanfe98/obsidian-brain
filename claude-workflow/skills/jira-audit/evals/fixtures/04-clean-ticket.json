@@ -1,0 +1,23 @@
+{
+  "eval_id": 4,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "PLAT-500",
+      "summary": "Add pagination to search results API",
+      "type": "Story",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "J. Martinez",
+      "story_points": 3,
+      "components": ["search-service"],
+      "labels": ["backend", "api"],
+      "epic": "PLAT-280 Search Performance",
+      "description": "The search results API currently returns all matching results in a single response. For queries with many results (>100), this causes high memory usage and slow response times. Implement offset/limit pagination with a maximum page size of 50. The response should include total_count, page, page_size, and has_next fields in a pagination metadata object.",
+      "acceptance_criteria": "* GET /api/v1/search accepts `page` (default 1) and `page_size` (default 20, max 50) query params\n* Response includes pagination metadata: { total_count, page, page_size, has_next }\n* Requests with page_size > 50 return 400 with descriptive error\n* Empty result set returns 200 with empty items array and total_count: 0\n* Pagination works correctly with all existing filter combinations\n* Performance: 95th percentile response time < 200ms for page 1 of a 10k result set",
+      "test_plan": "Unit: pagination offset calculation, boundary validation. Integration: Elasticsearch query with pagination params, verify correct subset returned. E2E: paginate through a 500-item result set, verify no duplicates or gaps. Load test: concurrent paginated queries.",
+      "scope_boundaries": "In scope: offset/limit pagination for search API. Out of scope: cursor-based pagination (future iteration), search result caching (separate ticket PLAT-444), UI pagination controls.",
+      "updated": "2026-04-28"
+    }
+  ]
+}

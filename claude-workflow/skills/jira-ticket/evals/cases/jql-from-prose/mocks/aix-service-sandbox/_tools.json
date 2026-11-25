@@ -1,0 +1,21 @@
+{
+  "tools": [
+    {
+      "name": "service-shell",
+      "description": "Hermetic service-command adapter for AIX live evals. Pass the exact jira, gh, glab, or git command in the command field. This tool never contacts a network service.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}

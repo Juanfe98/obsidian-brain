@@ -1,0 +1,23 @@
+# ~/.config/jira-ticket/jira-ticket.yaml
+# Configuration for the jira-ticket Claude Code skill.
+
+# Default values applied to commands. Shown in the create preview, overridden
+# by anything the user specifies in their prompt. Keys are lowercase.
+# Any field the CLI supports can go here (project, type, priority, labels, etc.).
+defaults:
+  project: SLQA
+  type: Story
+  server: https://jira.disney.com
+
+# Custom field aliases. Maps friendly names to Jira custom field keys.
+# These are per-Jira-instance, not per-project.
+# To find a custom field key, see the Adding Custom Fields section in README.md.
+custom_fields:
+  story-points: customfield_10047
+
+# Steps applied to a NEWLY CREATED issue once the create succeeds (`defaults` above
+# are create-time FIELD values). Shown in the create preview, so you can veto it.
+# transition_to must name a transition the project's workflow actually offers --
+# "In Progress" is not universal. README covers the not-available case.
+# after_create:
+#   transition_to: In Progress

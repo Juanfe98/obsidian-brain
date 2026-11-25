@@ -1,0 +1,25 @@
+schema_version: 1
+skill: unvrs-cli
+reviewed: false
+should_trigger:
+  - Can you discover all the agent-friendly tools configured here and tell me what each one does?
+  - Help me enumerate which CLIs are registered so I can pick the right one for this job.
+  - I want a universal way to route this request to whichever tool actually handles it - what options do I have?
+  - Is there a universal command that lists every skill and a short description of what it does?
+  - List every skill you have access to right now, please.
+  - Quick question - what tools or skills do you have plugged in that I could use for this project?
+  - Run unvrs and show me its available subcommands.
+  - Show me a directory of all the agent-friendly tools you can call on my behalf.
+  - What CLI tools or skills are currently installed and available for me to use in this project?
+  - What's the unified way to dispatch tasks to the right CLI in this environment?
+should_not_trigger:
+  - Can you check Yellowpages for which service instances are registered under the checkout service catalog?
+  - Check the infrastructure event graph in Constellation for any deployment changes today.
+  - Draw a flowchart of our deployment pipeline in Lucidchart.
+  - Find the budget spreadsheet in Google Drive and share the link with me.
+  - Get me the test automation results from ReportPortal for the nightly build run.
+  - Please create a new universal doc summarizing yesterday's meeting notes.
+  - Pull the latest records from the Airtable base called Customers.
+  - Show me the current sprint board in Jira for ticket ABC-123.
+  - We need to set up service discovery for our microservices using Consul - can you help configure it?
+  - What technical skills should I list on my resume for a backend engineering job?

@@ -1,0 +1,25 @@
+schema_version: 1
+skill: design-tokens
+reviewed: false
+should_trigger:
+  - Can you pull the current Figma Variables for our color palette and check if they match the published SDS tokens?
+  - Check whether the dark theme tokens in Figma still resolve correctly against the locale mode overrides.
+  - Grab the selected Figma variables from this file and generate a W3C-compliant token JSON for our platform.
+  - I want to see if any tokens are broken across locale modes before we ship — can you validate them against the source SDS release?
+  - Map our brand's spacing tokens to W3C Design Tokens format so we can hand them to the iOS team.
+  - Need to convert the latest TokenForge tokens into Style Dictionary format for the web build.
+  - Our design system has brand-specific token overrides — can you verify the alias references all resolve properly?
+  - Pull the published SDS token set for the streaming app and diff it against what's in our Figma file.
+  - 'Quick check: do the button radius tokens in Figma match what''s published in the design system release right now?'
+  - We think there's drift between our Figma variables and the SDS release — can you validate the references and flag mismatches?
+should_not_trigger:
+  - As a designer without terminal access, what's the easiest way to browse our design research docs and Lucid boards from Claude?
+  - Can you redesign this Figma frame to use a two-column layout for the pricing page?
+  - Create a new brand theme concept with mood boards and color inspiration for our next campaign.
+  - Give me a plain-English guide for reaching our internal design tools from the chat app, not the terminal.
+  - Help me write unit tests for the token refresh logic in our OAuth login flow.
+  - I'm using Claude desktop chat at work and can't seem to reach our internal design MCPs — how do I get to Figma from there?
+  - Please rotate our API access token for my service and update the secret in the CI pipeline.
+  - Set up a new component library in Figma with auto-layout for our mobile nav.
+  - Why does Backlot work fine in Claude Code but not when I open Claude on my desktop app?
+  - Write a Style Dictionary build script from scratch that outputs Sass variables, no existing token source involved.

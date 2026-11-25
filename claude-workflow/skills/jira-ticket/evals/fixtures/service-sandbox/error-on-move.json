@@ -1,0 +1,4 @@
+{
+  "jira_error": "Error: Transition 'Done' is not available for issue SLQA-100. Available transitions: In Review, Blocked.",
+  "jira_error_contains": "issue transition"
+}

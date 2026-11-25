@@ -1,0 +1,734 @@
+{
+  "$comment": "Reconstructed geometry uses the 1920x1080 canvas. Official-template output populates sourcePlaceholder indices on sourceLayout, preserving native styles and geometry; composed chart/image-caption slots use the explicit geometry below.",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "derivedSlots": {
+    "$comment": "Boxes NOT verbatim from the official template, with the reason. Every entry is a deliberate composition inside the official margins (x>=50, right edge <=1870); the test enforces that.",
+    "three-up.title": "Title row borrowed from Tri-Fact idx27 (50,75,1820,75); 'Title & 1/3 Containers' ships only a dek row, no title.",
+    "quad.title": "Same borrowed title row; '2x2 blocks' ships only a dek row.",
+    "timeline.title": "Same borrowed title row; 'Timeline x4' ships only a dek row.",
+    "chart-takeaway.chart": "Left column widened from the 2-Column body (885.3 -> 1180) so a chart has usable area; right column becomes the insights rail.",
+    "chart-takeaway.insights": "Right rail narrowed to 590 to pair with the widened chart box; both keep the official y=275/h=690 band.",
+    "full-bleed-image.image": "The official 'Photo' pic box is (0,-453.8,1920,1987.5) - deliberately oversized for pan/crop in PowerPoint. An HTML deck crops with object-fit instead, so the box is the exact canvas.",
+    "full-bleed-image.caption": "No caption slot exists on 'Photo'. Placed on the brand 50px margin above the bottom safe line. Marked onImage:true so it renders on a scrim with light ink: contrast over arbitrary photo pixels cannot be computed from CSS backgrounds, and muted ink over a mid-tone image measured 1.653:1.",
+    "tri-fact.value1..3": "Official Tri-Fact is asymmetric on purpose (idx1=180pt hero, idx23/idx25=72pt) and idx25 sits 12.5px lower than its peers. For three PEER metrics that asymmetry reads as a layout bug, so all three values use the 72pt tier on one baseline. Use big-fact when one number should dominate.",
+    "pageNumber": "Per-layout slide-number position from the official sldNum placeholders: Agenda x=1223, Title & Bullets x=1223 (both LEFT of the full-height side image), Photo centred at x=944.4. A single hardcoded right:44px corner put the number ON the side image, where contrast is not computable. Photo's official y=1029.6 is kept at x but moved to y=988: the template's own value puts the box bottom at 1059.5, 23.5px past the 1036 safe line, and copying that would force us to suppress our own margin rule."
+  },
+  "layouts": {
+    "title": {
+      "sourceLayout": "Title - Fantasy Blue One-Line Center",
+      "purpose": "Opening slide. Exactly one per deck, at position 0.",
+      "background": "accent",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 469,
+          "w": 1820,
+          "h": 164,
+          "sizePx": 116,
+          "maxLength": 60,
+          "align": "center",
+          "sourcePlaceholder": 0
+        },
+        "subtitle": {
+          "kind": "text",
+          "x": 50,
+          "y": 624,
+          "w": 1820,
+          "h": 331,
+          "sizePx": 48,
+          "maxLength": 90,
+          "align": "center",
+          "optional": true,
+          "sourcePlaceholder": 1
+        }
+      }
+    },
+    "section-divider": {
+      "sourceLayout": "Section Title Fantasy Blue",
+      "purpose": "Marks a new act. 2-5 per deck.",
+      "background": "accent",
+      "slots": {
+        "label": {
+          "kind": "text",
+          "x": 50,
+          "y": 365,
+          "w": 1820,
+          "h": 350,
+          "sizePx": 116,
+          "maxLength": 40,
+          "align": "center",
+          "sourcePlaceholder": 0
+        }
+      }
+    },
+    "agenda": {
+      "sourceLayout": "Agenda",
+      "purpose": "Roadmap of the deck. Each item should map to a later section-divider.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 74.6,
+          "w": 1200,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1200,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 22
+        },
+        "items": {
+          "kind": "text-list",
+          "x": 50,
+          "y": 275,
+          "w": 1200,
+          "h": 690.1,
+          "sizePx": 48,
+          "minItems": 3,
+          "maxItems": 6,
+          "maxLength": 48,
+          "sourcePlaceholder": 1
+        },
+        "image": {
+          "kind": "image",
+          "x": 1289.7,
+          "y": -0.4,
+          "w": 630.3,
+          "h": 1080.8,
+          "optional": true,
+          "bleed": true
+        }
+      },
+      "pageNumber": {
+        "x": 1223,
+        "y": 989.4
+      }
+    },
+    "bullets": {
+      "sourceLayout": "Title & Bullets",
+      "purpose": "The workhorse. One idea per bullet.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1200,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1200,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 21
+        },
+        "items": {
+          "kind": "text-list",
+          "x": 50,
+          "y": 274.5,
+          "w": 1152,
+          "h": 714.7,
+          "sizePx": 40,
+          "minItems": 2,
+          "maxItems": 5,
+          "maxLength": 120,
+          "sourcePlaceholder": 1
+        },
+        "image": {
+          "kind": "image",
+          "x": 1289.7,
+          "y": -0.4,
+          "w": 630.3,
+          "h": 1080.8,
+          "optional": true,
+          "bleed": true
+        }
+      },
+      "pageNumber": {
+        "x": 1223,
+        "y": 988.8
+      }
+    },
+    "two-column": {
+      "sourceLayout": "Title & Bullets - 2 Column",
+      "purpose": "Compare or contrast two sets. Never prose on both sides.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1790,
+          "h": 74.6,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1790,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 21
+        },
+        "left": {
+          "kind": "text-list",
+          "x": 50,
+          "y": 275,
+          "w": 885.3,
+          "h": 690,
+          "sizePx": 40,
+          "minItems": 1,
+          "maxItems": 5,
+          "maxLength": 110,
+          "sourcePlaceholder": 1
+        },
+        "right": {
+          "kind": "text-list",
+          "x": 985.1,
+          "y": 275,
+          "w": 885,
+          "h": 690,
+          "sizePx": 40,
+          "minItems": 1,
+          "maxItems": 5,
+          "maxLength": 110,
+          "sourcePlaceholder": 22
+        }
+      }
+    },
+    "statement": {
+      "sourceLayout": "Statement",
+      "purpose": "The one slide people remember. A single full sentence.",
+      "slots": {
+        "claim": {
+          "kind": "text",
+          "x": 95,
+          "y": 118.5,
+          "w": 1730,
+          "h": 843,
+          "sizePx": 80,
+          "maxLength": 140,
+          "sourcePlaceholder": 1
+        }
+      }
+    },
+    "big-fact": {
+      "sourceLayout": "Big Fact",
+      "purpose": "One number that carries the argument.",
+      "slots": {
+        "value": {
+          "kind": "text",
+          "x": 110,
+          "y": 75,
+          "w": 1700,
+          "h": 550,
+          "sizePx": 180,
+          "maxLength": 12,
+          "sourcePlaceholder": 1
+        },
+        "caption": {
+          "kind": "text",
+          "x": 110,
+          "y": 649.6,
+          "w": 1700,
+          "h": 150,
+          "sizePx": 48,
+          "maxLength": 120,
+          "sourcePlaceholder": 21
+        }
+      }
+    },
+    "tri-fact": {
+      "sourceLayout": "Tri-Fact",
+      "purpose": "Exactly three metrics. Use big-fact when one number dominates.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 27
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 26
+        },
+        "value1": {
+          "kind": "text",
+          "x": 61.5,
+          "y": 274.8,
+          "w": 550,
+          "h": 275.1,
+          "sizePx": 72,
+          "maxLength": 10,
+          "sourcePlaceholder": {
+            "light": 1,
+            "dark": 28
+          }
+        },
+        "caption1": {
+          "kind": "text",
+          "x": 61.5,
+          "y": 574.6,
+          "w": 550,
+          "h": 350.1,
+          "sizePx": 48,
+          "maxLength": 90,
+          "sourcePlaceholder": 21
+        },
+        "value2": {
+          "kind": "text",
+          "x": 685,
+          "y": 274.8,
+          "w": 550,
+          "h": 275.1,
+          "sizePx": 72,
+          "maxLength": 10,
+          "sourcePlaceholder": 23
+        },
+        "caption2": {
+          "kind": "text",
+          "x": 685,
+          "y": 574.6,
+          "w": 550,
+          "h": 350.1,
+          "sizePx": 48,
+          "maxLength": 90,
+          "sourcePlaceholder": 22
+        },
+        "value3": {
+          "kind": "text",
+          "x": 1308.5,
+          "y": 274.8,
+          "w": 550,
+          "h": 275.1,
+          "sizePx": 72,
+          "maxLength": 10,
+          "sourcePlaceholder": 25
+        },
+        "caption3": {
+          "kind": "text",
+          "x": 1310.7,
+          "y": 574.6,
+          "w": 550,
+          "h": 350.1,
+          "sizePx": 48,
+          "maxLength": 90,
+          "sourcePlaceholder": 24
+        }
+      }
+    },
+    "quote": {
+      "sourceLayout": "Quote",
+      "purpose": "A verbatim customer or exec quote. Never paraphrase in this layout.",
+      "slots": {
+        "quote": {
+          "kind": "text",
+          "x": 110,
+          "y": 275,
+          "w": 1700,
+          "h": 524.7,
+          "sizePx": 80,
+          "maxLength": 220,
+          "sourcePlaceholder": 1
+        },
+        "attribution": {
+          "kind": "text",
+          "x": 210,
+          "y": 839.6,
+          "w": 1500,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "sourcePlaceholder": 21
+        }
+      }
+    },
+    "three-up": {
+      "sourceLayout": "Title & 1/3 Containers",
+      "purpose": "Three parallel ideas of equal weight.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1820,
+          "h": 74.6,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 21
+        },
+        "card1": {
+          "kind": "card",
+          "x": 50,
+          "y": 274.7,
+          "w": 575.3,
+          "h": 675.2,
+          "headingPx": 48,
+          "bodyPx": 36,
+          "headingMax": 28,
+          "bodyMax": 150,
+          "sourcePlaceholder": 22
+        },
+        "card2": {
+          "kind": "card",
+          "x": 672.4,
+          "y": 274.7,
+          "w": 575.3,
+          "h": 675.2,
+          "headingPx": 48,
+          "bodyPx": 36,
+          "headingMax": 28,
+          "bodyMax": 150,
+          "sourcePlaceholder": 23
+        },
+        "card3": {
+          "kind": "card",
+          "x": 1294.7,
+          "y": 274.7,
+          "w": 575.3,
+          "h": 675.2,
+          "headingPx": 48,
+          "bodyPx": 36,
+          "headingMax": 28,
+          "bodyMax": 150,
+          "sourcePlaceholder": 24
+        }
+      }
+    },
+    "quad": {
+      "sourceLayout": "2x2 blocks",
+      "purpose": "Four items, or a 2x2 matrix.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1820,
+          "h": 74.6,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 21
+        },
+        "card1": {
+          "kind": "card",
+          "x": 50,
+          "y": 275,
+          "w": 885.3,
+          "h": 324.7,
+          "headingPx": 40,
+          "bodyPx": 36,
+          "headingMax": 32,
+          "bodyMax": 120,
+          "sourcePlaceholder": 22
+        },
+        "card2": {
+          "kind": "card",
+          "x": 985.2,
+          "y": 275,
+          "w": 885.3,
+          "h": 324.7,
+          "headingPx": 40,
+          "bodyPx": 36,
+          "headingMax": 32,
+          "bodyMax": 120,
+          "sourcePlaceholder": 24
+        },
+        "card3": {
+          "kind": "card",
+          "x": 50,
+          "y": 639.5,
+          "w": 885.3,
+          "h": 324.7,
+          "headingPx": 40,
+          "bodyPx": 36,
+          "headingMax": 32,
+          "bodyMax": 120,
+          "sourcePlaceholder": 23
+        },
+        "card4": {
+          "kind": "card",
+          "x": 985.2,
+          "y": 639.5,
+          "w": 885.3,
+          "h": 324.7,
+          "headingPx": 40,
+          "bodyPx": 36,
+          "headingMax": 32,
+          "bodyMax": 120,
+          "sourcePlaceholder": 25
+        }
+      }
+    },
+    "chart-takeaway": {
+      "sourceLayout": "Title & Bullets - 2 Column",
+      "purpose": "One chart, one message. The takeaway is the headline, not the chart type.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1790,
+          "h": 74.6,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "takeaway": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1790,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 110,
+          "sourcePlaceholder": 21
+        },
+        "chart": {
+          "kind": "chart",
+          "x": 50,
+          "y": 275,
+          "w": 1180,
+          "h": 690
+        },
+        "insights": {
+          "kind": "text-list",
+          "x": 1280,
+          "y": 275,
+          "w": 590,
+          "h": 690,
+          "sizePx": 32,
+          "minItems": 0,
+          "maxItems": 4,
+          "maxLength": 100,
+          "optional": true,
+          "secondary": true
+        }
+      }
+    },
+    "timeline": {
+      "sourceLayout": "Timeline x4",
+      "purpose": "Three to six sequential milestones; official output selects the matching native timeline.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "dek": {
+          "kind": "text",
+          "x": 50,
+          "y": 150,
+          "w": 1820,
+          "h": 75,
+          "sizePx": 36,
+          "maxLength": 80,
+          "optional": true,
+          "sourcePlaceholder": 21
+        },
+        "milestones": {
+          "kind": "milestone-list",
+          "minItems": 3,
+          "maxItems": 6,
+          "labelMax": 28,
+          "bodyMax": 60,
+          "positions": [
+            {
+              "x": 64.5,
+              "y": 408.2,
+              "w": 258.2
+            },
+            {
+              "x": 547.3,
+              "y": 408.2,
+              "w": 258.2
+            },
+            {
+              "x": 1026.5,
+              "y": 408.2,
+              "w": 258.2
+            },
+            {
+              "x": 1497.5,
+              "y": 408.2,
+              "w": 258.2
+            }
+          ],
+          "labelPx": 24,
+          "bodyPx": 20
+        }
+      }
+    },
+    "image-text": {
+      "sourceLayout": "Title & Photo Right Alt",
+      "purpose": "One image carrying meaning, with supporting copy.",
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 74.6,
+          "w": 885,
+          "h": 459.6,
+          "sizePx": 72,
+          "maxLength": 70,
+          "sourcePlaceholder": 0
+        },
+        "body": {
+          "kind": "text",
+          "x": 50,
+          "y": 540,
+          "w": 885,
+          "h": 459.6,
+          "sizePx": 40,
+          "maxLength": 320,
+          "sourcePlaceholder": 1
+        },
+        "image": {
+          "kind": "image",
+          "x": 985.5,
+          "y": 74.9,
+          "w": 885.3,
+          "h": 890.6
+        }
+      }
+    },
+    "full-bleed-image": {
+      "sourceLayout": "Photo",
+      "purpose": "A single full-bleed image with an optional short scrimmed caption.",
+      "slots": {
+        "image": {
+          "kind": "image",
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080,
+          "bleed": true
+        },
+        "caption": {
+          "kind": "text",
+          "x": 50,
+          "y": 884,
+          "w": 1820,
+          "h": 76,
+          "sizePx": 28,
+          "maxLength": 100,
+          "optional": true,
+          "onImage": true
+        }
+      },
+      "pageNumber": {
+        "x": 944.4,
+        "y": 988,
+        "onImage": true
+      }
+    },
+    "large-copy": {
+      "sourceLayout": "Title and Large Copy",
+      "purpose": "A paragraph that must be read verbatim. Pre-read mode only.",
+      "modes": [
+        "preread"
+      ],
+      "slots": {
+        "title": {
+          "kind": "text",
+          "x": 50,
+          "y": 75,
+          "w": 1200,
+          "h": 75,
+          "sizePx": 54,
+          "maxLength": 60,
+          "sourcePlaceholder": 0
+        },
+        "body": {
+          "kind": "text",
+          "x": 50,
+          "y": 175,
+          "w": 1100,
+          "h": 775,
+          "sizePx": 36,
+          "maxLength": 900,
+          "sourcePlaceholder": 21
+        }
+      }
+    },
+    "closing-cta": {
+      "sourceLayout": "Ending Slide One-line",
+      "purpose": "The ask. Final slide, exactly one per deck.",
+      "background": "accent",
+      "slots": {
+        "ask": {
+          "kind": "text",
+          "x": 50,
+          "y": 478.3,
+          "w": 1820,
+          "h": 164.3,
+          "sizePx": 116,
+          "maxLength": 60,
+          "align": "center",
+          "sourcePlaceholder": 0
+        }
+      }
+    }
+  }
+}

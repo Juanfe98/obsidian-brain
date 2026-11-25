@@ -1,0 +1,31 @@
+name: jira-audit-aix-evals
+description: AIX WAZA suite for jira-audit; 16 typed tasks migrated from the legacy eval contract plus
+  one deterministic CI contract task.
+skill: jira-audit
+schemaVersion: '1.1'
+version: 1.0.0
+config:
+  trials_per_task: 1
+  timeout_seconds: 300
+  parallel: false
+  executor: mock
+  model: mock
+  skill_directories:
+  - ../..
+metrics:
+- name: task_completion
+  weight: 0.7
+  threshold: 0.8
+  description: Fraction of task-level grader contracts that pass.
+- name: trigger_accuracy
+  weight: 0.3
+  threshold: 0.8
+  description: Positive and negative skill-routing quality.
+graders:
+- type: code
+  name: has-output
+  config:
+    assertions:
+    - len(output.strip()) > 0
+tasks:
+- tasks/*.yaml

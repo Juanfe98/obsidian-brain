@@ -1,0 +1,25 @@
+schema_version: 1
+skill: gdrive-cli
+reviewed: false
+should_trigger:
+  - Can you check who has edit access to our shared drive folder for the finance team?
+  - Can you list all the files in my Google Drive folder named "Q3 Reports"?
+  - Create a new folder in Google Drive called "Client Onboarding" and move the relevant docs into it.
+  - Download the sheet titled "Inventory Tracker" from Drive so I can check the current stock numbers.
+  - Find the most recently modified doc in my drive about the onboarding checklist.
+  - Grab the latest version of the budget spreadsheet from Drive and summarize the totals.
+  - I need to share a doc in Google Drive with view-only access to the whole team.
+  - Rename the file "Draft Proposal" in my Google Drive to "Final Proposal v2".
+  - Search my drive for anything related to the marketing plan and pull up the file names.
+  - Upload this exported CSV into the appropriate Google Drive folder.
+should_not_trigger:
+  - Add a new record to our Airtable base tracking customer feedback.
+  - Build a flowchart diagram in Lucidchart showing the deployment pipeline.
+  - Can you print out the sheet music for tonight's rehearsal from my folder?
+  - Convert this presentation into a universal doc format for sharing with the team.
+  - Create a new Jira ticket ABC-123 for this bug in the backlog.
+  - Look up the service catalog entry for our billing service.
+  - Pull the latest test automation results from ReportPortal for the nightly suite.
+  - Set up a local backup script that copies my project files to an external hard drive.
+  - Show me the infrastructure event graph for last night's deployment.
+  - What tools are available through the universal skill dispatcher?

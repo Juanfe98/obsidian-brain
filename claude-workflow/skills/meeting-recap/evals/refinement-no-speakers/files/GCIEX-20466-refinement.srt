@@ -1,0 +1,379 @@
+1
+00:00:00,000 --> 00:00:03,240
+of the flow because of this L4L pricing is,
+
+2
+00:00:03,240 --> 00:00:05,360
+there'll be like the cadence select screen,
+
+3
+00:00:05,360 --> 00:00:07,740
+or as right now, like in the control,
+
+4
+00:00:08,800 --> 00:00:12,280
+resubscribing takes the user to the billing ledger.
+
+5
+00:00:12,280 --> 00:00:13,680
+So it'll be a slightly different flow.
+
+6
+00:00:13,680 --> 00:00:14,800
+So for treatment one,
+
+7
+00:00:14,800 --> 00:00:16,480
+it'll be the cadence selector step
+
+8
+00:00:16,480 --> 00:00:19,720
+where they can select L4L or retail monthly
+
+9
+00:00:19,720 --> 00:00:20,760
+before the ledger.
+
+10
+00:00:22,200 --> 00:00:27,200
+So that's essentially what the experiment is gonna be.
+
+11
+00:00:28,200 --> 00:00:35,260
+And yeah.
+
+12
+00:00:35,260 --> 00:00:38,060
+What's the UI gonna look like for the treatment?
+
+13
+00:00:38,060 --> 00:00:41,580
+Is it gonna look like the one-click reconnect experience
+
+14
+00:00:41,580 --> 00:00:43,140
+or is it gonna look like,
+
+15
+00:00:43,140 --> 00:00:48,800
+cause I know we put L4L on welcome back before.
+
+16
+00:00:48,800 --> 00:00:52,920
+It'll look exactly like the one-click reconnect experience
+
+17
+00:00:52,920 --> 00:00:56,520
+but the pricing will just be like starting at,
+
+18
+00:00:56,520 --> 00:00:58,080
+which will be the L4L pricing
+
+19
+00:00:58,080 --> 00:01:00,040
+instead of retail monthly.
+
+20
+00:01:00,080 --> 00:01:02,880
+Nice. And then they go to cadence.
+
+21
+00:01:02,880 --> 00:01:09,620
+Okay. Yeah.
+
+22
+00:01:09,620 --> 00:01:10,820
+Nice. That makes sense.
+
+23
+00:01:10,820 --> 00:01:17,800
+Does anyone else have any questions?
+
+24
+00:01:17,800 --> 00:01:19,920
+They should be there.
+
+25
+00:01:19,920 --> 00:01:22,520
+So there should be flex work only.
+
+26
+00:01:24,320 --> 00:01:26,760
+Yeah. Just a reminder for engineering
+
+27
+00:01:26,760 --> 00:01:30,320
+that we will need to update analytics for this
+
+28
+00:01:31,760 --> 00:01:41,040
+to go to the cadence now.
+
+29
+00:01:41,040 --> 00:01:42,600
+Wait, do you mean the action
+
+30
+00:01:42,600 --> 00:01:44,920
+or what do you mean by analytics?
+
+31
+00:01:44,920 --> 00:01:46,640
+Yes. Glimpse action.
+
+32
+00:01:46,640 --> 00:01:49,160
+So let's say currently, for example,
+
+33
+00:01:49,160 --> 00:01:50,880
+if it goes currently to,
+
+34
+00:01:52,000 --> 00:01:54,040
+like if it doesn't go on cadence
+
+35
+00:01:54,040 --> 00:01:55,960
+but now we'll start going to cadence
+
+36
+00:01:55,960 --> 00:01:58,640
+then this needs to be updated.
+
+37
+00:01:58,640 --> 00:02:01,120
+Yeah. Just making sure all the glimpse data matches
+
+38
+00:02:01,120 --> 00:02:03,200
+like what the correct action is doing.
+
+39
+00:02:04,840 --> 00:02:15,980
+Yep.
+
+40
+00:02:15,980 --> 00:02:16,820
+Okay. Cool.
+
+41
+00:02:16,820 --> 00:02:19,060
+If no other questions, the estimations link
+
+42
+00:02:19,060 --> 00:02:41,180
+is in the chat.
+
+43
+00:02:41,180 --> 00:02:43,060
+Nice. Beautiful.
+
+44
+00:02:43,060 --> 00:02:47,300
+I am really curious to see how, like, you know,
+
+45
+00:02:47,300 --> 00:02:48,940
+if you're last, we show you the L4L,
+
+46
+00:02:48,940 --> 00:02:50,460
+you go directly to billing page,
+
+47
+00:02:50,460 --> 00:02:54,020
+but for treatment one, we're going to show L4L
+
+48
+00:02:54,940 --> 00:02:57,540
+and even if your previous one was L4L,
+
+49
+00:02:57,540 --> 00:02:59,260
+they're going to go to the cadence page.
+
+50
+00:02:59,260 --> 00:03:02,860
+So it'll be interesting.
+
+51
+00:03:02,860 --> 00:03:05,820
+Okay. We'll do the automation for tickets later.
+
+52
+00:03:11,150 --> 00:03:16,820
+That's it for me.
+
+53
+00:03:16,820 --> 00:03:19,020
+Nice. I think that's all we have then.
+
+54
+00:03:19,020 --> 00:03:23,900
+Anything from any of the other engineers or Sean?
+
+55
+00:03:23,900 --> 00:03:24,740
+Nope.
+
+56
+00:03:24,740 --> 00:03:27,580
+But, oh, that's all right, go ahead.
+
+57
+00:03:27,580 --> 00:03:28,420
+Yeah.
+
+58
+00:03:28,420 --> 00:03:29,260
+All right.
+
+59
+00:03:29,260 --> 00:03:34,260
+So the update is that we are not taking experiments
+
+60
+00:03:34,260 --> 00:03:36,860
+anymore from the shoot fleet.
+
+61
+00:03:36,860 --> 00:03:39,300
+And currently we are prioritizing
+
+62
+00:03:39,300 --> 00:03:41,540
+and taking NB experiments.
+
+63
+00:03:41,540 --> 00:03:45,020
+So if product comes and tells that they consulted
+
+64
+00:03:45,020 --> 00:03:48,540
+with NB, we will take and implement it immediately.
+
+65
+00:03:48,540 --> 00:03:50,860
+Otherwise we will focus on other projects
+
+66
+00:03:52,460 --> 00:03:54,540
+and supporting other things.
+
+67
+00:03:54,540 --> 00:03:57,620
+Like we will support lower for longer.
+
+68
+00:03:57,620 --> 00:04:01,580
+We will support, probably continue supporting Corocell,
+
+69
+00:04:02,620 --> 00:04:07,620
+but we are not actively taking on experiments
+
+70
+00:04:07,820 --> 00:04:08,660
+from Shop and Take.
+
+71
+00:04:08,660 --> 00:04:13,780
+They are coming to the Lawrence team mostly.
+
+72
+00:04:13,780 --> 00:04:15,740
+Yes. And on that topic,
+
+73
+00:04:15,780 --> 00:04:17,900
+I'm going to rename this refinement
+
+74
+00:04:17,900 --> 00:04:19,060
+and just remove the word great
+
+75
+00:04:19,060 --> 00:04:21,380
+because I do also want us to start pointing.
+
+76
+00:04:21,380 --> 00:04:23,620
+And Agnes, they don't need me for those ones.
+
+77
+00:04:23,620 --> 00:04:25,340
+You can buy your stuff first.
+
+78
+00:04:25,340 --> 00:04:27,300
+But after Agnes is like done, for example,
+
+79
+00:04:27,300 --> 00:04:29,140
+let's go over some like the growth automation tickets
+
+80
+00:04:29,140 --> 00:04:31,380
+coming in and then some of the hot work coming in.
+
+81
+00:04:31,380 --> 00:04:32,940
+I want to make sure that the whole team is aware
+
+82
+00:04:32,940 --> 00:04:34,620
+and that we're relying on beat pointing
+
+83
+00:04:34,620 --> 00:04:39,210
+and not like the velocity that leads to.
+
+84
+00:04:39,210 --> 00:04:44,210
+Yes. And we will invite people like project managers
+
+85
+00:04:44,650 --> 00:04:47,570
+who are bringing in NB driven experiments
+
+86
+00:04:47,610 --> 00:04:51,210
+to join and present experiments for intake.
+
+87
+00:04:53,330 --> 00:04:54,170
+Yeah, that sounds good.
+
+88
+00:04:54,170 --> 00:04:55,690
+I'll put that as a talking point
+
+89
+00:04:55,690 --> 00:04:58,050
+for the next pop refinement this Thursday
+
+90
+00:04:58,050 --> 00:05:06,420
+of like including them as well.
+
+91
+00:05:06,420 --> 00:05:07,620
+Yes. Sounds good.
+
+92
+00:05:09,500 --> 00:05:10,340
+Thank you.
+
+93
+00:05:10,340 --> 00:05:12,660
+Great. Thanks everybody.
+
+94
+00:05:12,660 --> 00:05:13,980
+Thanks guys.
+
+95
+00:05:13,980 --> 00:05:14,820
+Bye.

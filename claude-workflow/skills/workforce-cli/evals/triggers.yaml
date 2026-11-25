@@ -1,0 +1,25 @@
+schema_version: 1
+skill: workforce-cli
+reviewed: false
+should_trigger:
+  - Can you list all the fleets and their squads under our alliance?
+  - Download the org report as an Excel file so I can check everyone's squad assignments.
+  - Get me a headcount breakdown by squad for this quarter.
+  - I need everyone's role in the org chart before the reorg meeting tomorrow.
+  - List all members of the Alliance in our workforce system.
+  - Pull up the full org structure for the whole company.
+  - Show me the current org chart for the engineering department.
+  - What squads exist under the Falcon Fleet right now?
+  - Who are the members of Squad 7 in our org structure?
+  - Who reports to the lead of the Vanguard Fleet?
+should_not_trigger:
+  - Create a new epic ABC-123 for the alliance integration project in the backlog.
+  - Draw a flowchart diagram of our team structure using Lucidchart.
+  - Explain the difference between a matrix org structure and a flat org structure in general terms.
+  - Find the org chart PDF stored in our shared Google Drive folder.
+  - List all the skills available through the universal dispatcher.
+  - Look up which service owns the checkout API in our service catalog.
+  - Show me recent deployment events in the infrastructure event graph.
+  - Show me the latest test automation launch results in ReportPortal.
+  - Update the records in our Airtable base for Q3 planning.
+  - Write a script to generate random fake employee data for a load test.

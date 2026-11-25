@@ -1,0 +1,25 @@
+schema_version: 1
+skill: github-gitlab
+reviewed: false
+should_trigger:
+  - Can you fetch the commit history for the last week on our internal GitLab project?
+  - Can you list the open pull requests on the Hulu GitHub Enterprise repo for the payments-service project?
+  - Check why the CI pipeline is failing for merge request 42 in our GitLab instance.
+  - Grab the diff for pull request 128 in the streaming-platform repo on GitHub Enterprise.
+  - I need to see the Actions workflow runs for the frontend repo on the Disney GitHub Enterprise host.
+  - List the open issues assigned to me on the BAMTech GitHub org.
+  - Pull the latest release notes from the ESPN GitHub Enterprise repo called stream-api.
+  - Search for any repo containing 'auth-service' across our GitHub Enterprise hosts.
+  - Show me all merge requests waiting on my review across our GitLab groups.
+  - The gh gateway just told me it's not authenticated when I tried to list repos - what's going on?
+should_not_trigger:
+  - Can you clone the public github.com repo for react and show me its README?
+  - Can you grab me a personal access token for Jira using pat-manager?
+  - Check my Outlook calendar for meetings tomorrow afternoon.
+  - Explain the difference between rebase and merge in git.
+  - Find the design doc in Google Drive about the new onboarding flow.
+  - How do I get started using the AIX CLI tools on my laptop?
+  - I need to log into pat-manager and store a new GitHub token locally.
+  - Post a message in the engineering Teams channel about today's release.
+  - Search Confluence for the architecture page on the payments service.
+  - What's a good git branching strategy for a small team?

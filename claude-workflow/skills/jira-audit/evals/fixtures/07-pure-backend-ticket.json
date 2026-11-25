@@ -1,0 +1,23 @@
+{
+  "eval_id": 7,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "PLAT-612",
+      "summary": "Add database index on users.email for login query performance",
+      "type": "Task",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "D. Nakamura",
+      "story_points": 2,
+      "components": ["core-api"],
+      "labels": ["performance", "database"],
+      "epic": "PLAT-310 Stability",
+      "description": "The login query (SELECT * FROM users WHERE email = ? AND deleted_at IS NULL) is performing a sequential scan on the users table (1.2M rows). Current p95 latency is 800ms. Adding a composite index on (email, deleted_at) should bring this down to <50ms. The query is in src/repositories/user-repository.ts line 47.",
+      "acceptance_criteria": "* Composite index created on users(email, deleted_at)\n* Login query uses index scan (verified via EXPLAIN ANALYZE)\n* p95 latency for login query drops from 800ms to <50ms\n* Index creation does not lock the table (use CREATE INDEX CONCURRENTLY)\n* Existing queries not negatively impacted (check slow query log for 24h after deploy)",
+      "test_plan": "Verify via EXPLAIN ANALYZE in staging. Monitor slow query log post-deploy. Benchmark login endpoint before/after with 1000 concurrent requests.",
+      "scope_boundaries": "In scope: single index on users table. Out of scope: query rewriting, ORM changes, table partitioning.",
+      "updated": "2026-04-30"
+    }
+  ]
+}

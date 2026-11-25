@@ -1,0 +1,25 @@
+schema_version: 1
+skill: design-tools-in-cowork
+reviewed: false
+should_trigger:
+  - Can Cowork show me the design system tokens for Streaming Design Systems or is that Claude Code only?
+  - Can I look up design research findings for our streaming app through Cowork, or do I need something else?
+  - How do I check if Lucid is hooked up in my Claude Cowork so I can view a diagram?
+  - I'm in Claude desktop chat and want to pull the latest Figma file comments for a project - is that possible?
+  - New to using Claude Cowork for design work - what can I actually ask for around Figma and Lucid boards right now?
+  - Someone asked me to get SDS tokens for a component but Cowork keeps failing - what's going on?
+  - Trying to grab data from Backlot through Claude chat and it's not working, is that expected?
+  - What do I need an org owner to switch on before I can use Figma from Cowork?
+  - Where in the AIX Manager app do I go if it says Figma is not connected?
+  - Why does Cowork say TokenForge isn't connected when I ask about our design tokens?
+should_not_trigger:
+  - How can I read my Teams messages from Claude desktop chat?
+  - How do I connect to Conviva Pulse to check streaming experience metrics?
+  - How do I get started with Claude Cowork for basic tasks like drafting emails and summarizing docs?
+  - I'm a developer setting up TokenForge as a local CLI in Claude Code - how do I configure the MCP wrapper?
+  - I'm using Claude Code in the terminal and need help wiring up the Backlot CLI with the --agent flag for structured JSON output.
+  - Pull the latest files from our shared Google Drive folder into this chat.
+  - Run a SQL query against Databricks to get last week's viewer counts.
+  - Search Confluence for the latest release notes on our streaming platform.
+  - Show me my unread Outlook emails from this morning through Cowork.
+  - What's the best way to organize frames and auto-layout in Figma for a new mobile screen?

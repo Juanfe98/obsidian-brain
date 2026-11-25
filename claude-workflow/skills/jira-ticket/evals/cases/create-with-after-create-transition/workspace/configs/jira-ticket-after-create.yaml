@@ -1,0 +1,14 @@
+# Test config for the jira-ticket post-create directive.
+# Same shape as jira-ticket.yaml (no defaults.project on purpose) plus the
+# after_create section, so a task can exercise the post-create step while the
+# project still comes from the prompt.
+
+defaults:
+  type: Story
+  server: https://jira.example.com
+
+custom_fields:
+  story-points: customfield_10047
+
+after_create:
+  transition_to: In Progress

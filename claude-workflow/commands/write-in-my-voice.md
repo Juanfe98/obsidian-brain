@@ -6,9 +6,8 @@ Use this command when the user wants to draft, rewrite, polish, or edit content 
 
 Before drafting or rewriting, read and follow:
 
-```txt
+txt
 ~/.claude/profiles/juan-voice-profile.md
-```
 
 If the profile is not available, ask the user whether to continue with the known style preferences from the conversation.
 
@@ -67,25 +66,21 @@ If the user asks to edit a file:
 
 Examples:
 
-```txt
+txt
 /write-in-my-voice
 Rewrite this Slack message so it sounds like me:
 ...
-```
 
-```txt
+txt
 /write-in-my-voice
 Rewrite docs/setup.md in my voice. Preserve commands, paths, links, code blocks, and headings.
-```
 
-```txt
+txt
 /write-in-my-voice
 Turn these rough notes into a clear PR description:
 ...
-```
 
-```txt
+txt
 /write-in-my-voice
 Make this less AI-generated, but do not make it too casual:
 ...
-```

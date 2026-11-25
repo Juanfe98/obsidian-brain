@@ -1,0 +1,25 @@
+schema_version: 1
+skill: jira-ticket
+reviewed: false
+should_trigger:
+  - Add ABC-231 to the current sprint, we decided to pull it in.
+  - Assign ABC-310 to me, I'm picking it up today.
+  - Can you pull up the details on ABC-123 for me?
+  - Create a new bug ticket for the checkout page crashing on mobile Safari.
+  - Hey, can you close out ABC-452 and add a comment saying it shipped?
+  - Link ABC-123 as blocking ABC-124 since the API needs to land first.
+  - Move ABC-587 to In Review, the PR just merged.
+  - Show me all the open tickets assigned to me in the ABC project.
+  - Update the description on ABC-618 to mention the new API endpoint we added.
+  - What's the current status on that checkout timeout ticket, ABC-742?
+should_not_trigger:
+  - Build a regression test plan from our release filter and match the tickets to existing Xray test cases.
+  - Compare this screenshot against ABC-205's requirements and tell me if it passes.
+  - Estimate story points for ABC-389 based on similar completed tickets.
+  - Explain the difference between a Jira epic and a story in agile methodology.
+  - Find the stale tickets in the ABC project that have been stuck in In Review for weeks.
+  - I need temporary AWS credentials so I can run some CLI commands against our account.
+  - Pull the Figma spec for this frame and post the handoff summary to our Teams channel.
+  - Sync all the open issues from the ABC project into a Google Sheet for reporting.
+  - What's a good sprint cadence for a team of five engineers?
+  - Why did last night's Jenkins build for my service fail?

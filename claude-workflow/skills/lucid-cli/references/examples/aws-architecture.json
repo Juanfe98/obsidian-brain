@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "id": "page1",
+      "title": "Web app on AWS",
+      "settings": {
+        "size": { "type": "custom", "w": 1200, "h": 800 }
+      },
+      "shapes": [
+        {
+          "id": "route53",
+          "type": "namedShape",
+          "className": "ArchAmazonRoute53AWS2024",
+          "boundingBox": { "x": 200, "y": 80, "w": 80, "h": 80 }
+        },
+        {
+          "id": "cloudfront",
+          "type": "namedShape",
+          "className": "ArchAmazonCloudFrontAWS2024",
+          "boundingBox": { "x": 440, "y": 80, "w": 80, "h": 80 }
+        },
+        {
+          "id": "apigw",
+          "type": "namedShape",
+          "className": "ArchAmazonAPIGatewayAWS2024",
+          "boundingBox": { "x": 660, "y": 80, "w": 80, "h": 80 }
+        },
+        {
+          "id": "vpc",
+          "type": "namedContainer",
+          "className": "VirtualPrivateCloudVPCAWS2024",
+          "boundingBox": { "x": 80, "y": 240, "w": 1060, "h": 520 }
+        },
+        {
+          "id": "publicSubnet",
+          "type": "namedContainer",
+          "className": "PublicSubnetAWS2024",
+          "boundingBox": { "x": 140, "y": 320, "w": 520, "h": 400 }
+        },
+        {
+          "id": "privateSubnet",
+          "type": "namedContainer",
+          "className": "PrivateSubnetAWS2024",
+          "boundingBox": { "x": 700, "y": 320, "w": 420, "h": 400 }
+        },
+        {
+          "id": "alb",
+          "type": "namedShape",
+          "className": "ResElasticLoadBalancingApplicationLoadBalancerAWS2024",
+          "boundingBox": { "x": 360, "y": 440, "w": 80, "h": 80 }
+        },
+        {
+          "id": "ec2",
+          "type": "namedShape",
+          "className": "ArchAmazonEC2AWS2024",
+          "boundingBox": { "x": 520, "y": 440, "w": 80, "h": 80 }
+        },
+        {
+          "id": "rds",
+          "type": "namedShape",
+          "className": "ArchAmazonRDSAWS2024",
+          "boundingBox": { "x": 800, "y": 400, "w": 80, "h": 80 }
+        },
+        {
+          "id": "cache",
+          "type": "namedShape",
+          "className": "ArchAmazonElastiCacheAWS2024",
+          "boundingBox": { "x": 800, "y": 580, "w": 80, "h": 80 }
+        }
+      ],
+      "lines": [
+        {
+          "id": "e_r53_cf",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "route53" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "cloudfront" }
+        },
+        {
+          "id": "e_cf_apigw",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "cloudfront" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "apigw" }
+        },
+        {
+          "id": "e_apigw_alb",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "apigw", "position": { "x": 0.5, "y": 1 } },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "alb", "position": { "x": 0.5, "y": 0 } }
+        },
+        {
+          "id": "e_alb_ec2",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "alb" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "ec2" }
+        },
+        {
+          "id": "e_ec2_rds",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "ec2" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "rds" }
+        },
+        {
+          "id": "e_ec2_cache",
+          "lineType": "elbow",
+          "stroke": { "color": "#232f3e", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "ec2" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "cache" }
+        }
+      ]
+    }
+  ]
+}

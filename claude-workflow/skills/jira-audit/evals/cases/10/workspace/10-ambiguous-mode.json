@@ -1,0 +1,19 @@
+{
+  "eval_id": 10,
+  "mode": "ambiguous",
+  "context": "The user said: 'Can you check if the tickets related to FD-2847 are ready?' This could mean multiple things and the skill should ask for clarification.",
+  "possible_interpretations": [
+    "Audit FD-2847 itself (ticket mode)",
+    "Audit FD-2847 and its sub-tasks (FD-2850, FD-2851, FD-2852)",
+    "Audit all tickets linked to FD-2847 (dependencies, blocks, relates-to)",
+    "Audit the parent epic that FD-2847 belongs to"
+  ],
+  "known_ticket": {
+    "key": "FD-2847",
+    "summary": "Add notification preferences for users",
+    "type": "Story",
+    "status": "To Do",
+    "sub_tasks": ["FD-2850", "FD-2851", "FD-2852"],
+    "linked_tickets": ["FD-2800 (blocked by)", "FD-2860 (relates to)"]
+  }
+}

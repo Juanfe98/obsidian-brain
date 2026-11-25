@@ -1,0 +1,22 @@
+{
+  "name": "deck-authoring-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Render/verify/emit toolchain for the deck-authoring skill",
+  "dependencies": {
+    "fflate": "0.8.3",
+    "image-size": "file:vendor/image-size-disabled",
+    "pdfjs-dist": "6.4.299",
+    "playwright": "1.62.0",
+    "pptxgenjs": "4.0.1"
+  },
+  "overrides": {
+    "image-size": "$image-size"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "fast-check": "4.10.2"
+  }
+}

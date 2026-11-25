@@ -1,0 +1,25 @@
+schema_version: 1
+skill: jira-cli
+reviewed: false
+should_trigger:
+  - Can you bump the story points on ticket 12345 to 8 and reassign it to me?
+  - Can you create a new ticket in project ABC for the login bug and set priority to high?
+  - Create an epic called 'Payment Redesign' and add three stories under it.
+  - Give me a summary of everything still open in the ABC project's backlog.
+  - I need to link ABC-123 as blocking ABC-124, can you set that up?
+  - Move ABC-123 to In Progress and add a comment saying I'm starting work on it.
+  - Pull up all the issues assigned to me in the current sprint.
+  - Run a JQL query for all bugs closed in the last two weeks under project ABC.
+  - Show me the board for our current sprint so I can see what's left to do.
+  - What's on the backlog for the mobile team right now?
+should_not_trigger:
+  - Add a new record to our airtable base tracking vendor contacts.
+  - Can you look up which service owns the billing API in our service catalog?
+  - Can you sketch a flowchart of our deployment pipeline in Lucidchart?
+  - Can you write a Python script that plays a card game with a scoring board?
+  - Check the infrastructure event graph for any deployments that happened during the outage window.
+  - Create a new presentation summarizing this quarter's roadmap in slides.
+  - Find the project spec doc in Google Drive and share the link with the team.
+  - Pull the latest test automation launch results from ReportPortal for the nightly build.
+  - What tools do we have available for service discovery across the org?
+  - What's the best way to plan a two-week sprint for a small team, just general advice?

@@ -28,7 +28,7 @@ mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/skills" "$CLAUDE_DIR/profiles"
 
 echo "About to install this repo's Claude setup to: $CLAUDE_DIR"
 echo
-printf "This will overwrite CLAUDE.md, commands/, skills/, and profiles/ in %s. Continue? [y/N] " "$CLAUDE_DIR"
+printf "This will overwrite CLAUDE.md and add/update files in commands/, skills/, and profiles/ in %s (files only in %s are kept). Continue? [y/N] " "$CLAUDE_DIR" "$CLAUDE_DIR"
 read -r answer
 case "$answer" in
   y|Y|yes|YES) ;;
@@ -36,8 +36,8 @@ case "$answer" in
 esac
 
 cp "$ROOT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-rsync -a --delete "$ROOT_DIR/commands/" "$CLAUDE_DIR/commands/"
-rsync -a --delete "$ROOT_DIR/skills/" "$CLAUDE_DIR/skills/"
-rsync -a --delete "$ROOT_DIR/profiles/" "$CLAUDE_DIR/profiles/"
+rsync -a "$ROOT_DIR/commands/" "$CLAUDE_DIR/commands/"
+rsync -a "$ROOT_DIR/skills/" "$CLAUDE_DIR/skills/"
+rsync -a "$ROOT_DIR/profiles/" "$CLAUDE_DIR/profiles/"
 
 echo "Installed Claude setup to $CLAUDE_DIR"

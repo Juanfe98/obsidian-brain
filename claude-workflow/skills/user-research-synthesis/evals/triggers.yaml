@@ -1,0 +1,25 @@
+schema_version: 1
+skill: user-research-synthesis
+reviewed: false
+should_trigger:
+  - Can you go through our Lucid affinity map and summarize the clusters into a findings write-up with severity ratings?
+  - Can you pull together the themes from our last five customer interviews and tag which findings are critical vs minor?
+  - Help me consolidate the usability findings from our last three research sessions into one severity-ranked summary doc.
+  - I have a stack of interview notes from our beta testers - help me identify common themes and write up a read-out doc.
+  - Need an affinity map built from these interview transcripts sitting in Confluence, then group the recurring pain points into themes.
+  - Our participant tracker in Airtable is full of session notes - can you synthesize them into a short insights report for leadership?
+  - Pull the findings log and draft a stakeholder deck summarizing severity-tagged usability issues from this quarter's research.
+  - Turn the raw research notes in Universal Doc into a polished insights report we can share with the product team.
+  - We just wrapped a round of usability testing - can you turn the raw notes into a findings summary for the design team?
+  - We ran a dozen user interviews last sprint - synthesize the notes into themes and put together a summary for the exec review.
+should_not_trigger:
+  - Analyze our website heatmap and click-through data to find where users drop off in checkout.
+  - Build a Typeform survey to collect NPS scores from our customers and set up the response tracking.
+  - Can you draft a discussion guide and screener questions for next week's round of user interviews?
+  - Create a system architecture diagram in Lucid showing how our microservices talk to each other.
+  - Draft a general project status update for stakeholders covering engineering milestones this sprint.
+  - Help me recruit and schedule five participants for upcoming usability testing sessions.
+  - Put together a competitive analysis deck comparing our product features against three competitors.
+  - Set up an Airtable base to track support tickets coming in from customers this month.
+  - Transcribe this raw interview recording into a clean text document, no analysis needed.
+  - Write a blog post explaining best practices for conducting user research interviews.

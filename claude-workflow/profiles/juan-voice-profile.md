@@ -192,4 +192,4 @@ If the task is a rewrite, prefer preserving the original meaning and structure o
 
 If the input is rough notes, turn them into clear writing while keeping the natural tone.
 
-If the output starts sounding like marketing copy, make it simpler and more practical.
+I

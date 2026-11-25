@@ -1,0 +1,4 @@
+{
+  "jira_error": "Error: You do not have permission to create issues in project SLQA.",
+  "jira_error_contains": "issue create"
+}

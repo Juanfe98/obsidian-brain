@@ -1,0 +1,23 @@
+{
+  "eval_id": 11,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-3100",
+      "summary": "Implement webhook retry logic",
+      "type": "Story",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "M. Garcia",
+      "story_points": 3,
+      "components": ["webhook-service"],
+      "labels": ["backend", "reliability"],
+      "epic": "FD-250 Webhook Platform",
+      "description": "Webhooks need retry capability when delivery fails.",
+      "acceptance_criteria": "The webhook retry logic works as expected and handles all cases properly.",
+      "test_plan": null,
+      "scope_boundaries": null,
+      "updated": "2026-04-20"
+    }
+  ]
+}

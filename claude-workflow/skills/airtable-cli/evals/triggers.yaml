@@ -1,0 +1,25 @@
+schema_version: 1
+skill: airtable-cli
+reviewed: false
+should_trigger:
+  - Add a new record to the Inventory table with Item Name 'Widget' and Quantity 50.
+  - Can you pull all records from the Customers table in my Airtable base where Status equals Active?
+  - Delete the record for order 12345 from the Orders table in Airtable.
+  - Export all rows from the Leads table as CSV from our Airtable base.
+  - Help me set up a filter formula to find overdue tasks in my Tasks table.
+  - I need an Airtable formula that concatenates the First Name and Last Name fields into one.
+  - List every base I have access to in my Airtable workspace.
+  - Search the Contacts table for anyone whose Company field contains 'example.com'.
+  - Update the record with ID rec12345 in the Projects table to mark it as Completed.
+  - What fields does the Employees table have in my HR base on Airtable?
+should_not_trigger:
+  - Create a new wiki page documenting our onboarding process in Confluence.
+  - Draw a flowchart in Lucidchart showing our deployment pipeline.
+  - Help me derive a formula to calculate compound interest for this financial model.
+  - Look up the service catalog entry for our billing microservice.
+  - Move ticket ABC-123 to the sprint board and set it to In Progress.
+  - Pull the latest test automation results from our last launch in ReportPortal.
+  - Show me recent deployment events in the infrastructure event graph for the payments service.
+  - Upload this spreadsheet to Google Drive and share it with the team.
+  - What skills are available for discovery in this agent setup?
+  - Write a SQL query to join the orders table with the customers table in our Postgres database.

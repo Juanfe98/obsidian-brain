@@ -1,0 +1,28 @@
+{
+  "eval_id": 3,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-2847",
+      "summary": "Add notification preferences for users",
+      "type": "Story",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "S. Williams",
+      "story_points": 3,
+      "components": ["notifications"],
+      "labels": ["feature"],
+      "epic": null,
+      "description": "Users should be able to configure which notifications they receive.",
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "scope_boundaries": null,
+      "linked_tickets": ["FD-2850 (sub-task)", "FD-2851 (sub-task)", "FD-2852 (sub-task)"],
+      "comments": [
+        {"author": "PM - J. Lee", "date": "2026-04-10", "body": "Flagged in grooming — needs AC and scope definition before it can be pulled into sprint."},
+        {"author": "S. Williams", "date": "2026-04-11", "body": "Happy to pick this up once requirements are clearer. Are we doing email + push + in-app, or just push?"}
+      ],
+      "updated": "2026-04-11"
+    }
+  ]
+}

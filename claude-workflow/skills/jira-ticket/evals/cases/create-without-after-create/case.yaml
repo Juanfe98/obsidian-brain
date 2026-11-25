@@ -1,0 +1,4 @@
+schema_version: '1.1'
+name: create-without-after-create
+context:
+  scaffold_script: scaffold.sh

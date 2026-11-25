@@ -1,0 +1,25 @@
+schema_version: 1
+skill: design-handoff
+reviewed: false
+should_trigger:
+  - Can you link this Figma frame to ABC-123 and let the team know in Teams that the design's ready?
+  - Can you tie this Figma design to a ticket and let engineering know it's ready via Teams?
+  - Grab the metadata for this Figma frame and create a Jira story with the share link so devs can start building.
+  - 'Hand off this design to engineering: grab the frame details from Figma and post a summary in Teams.'
+  - I finished this component in Figma, set up the dev ticket with the spec details, and post it to Teams for visibility.
+  - Need to spec this out for engineering — pull the structure from Figma, create the Jira ticket, and drop a note in Teams.
+  - 'Please prep this screen for handoff: get the design context from Figma, update ABC-123, and notify Teams.'
+  - The checkout flow design is done — can you get it into Jira with the Figma link and ping the team on Teams?
+  - This design is ready for dev — can you pull the spec from Figma and get our Jira story updated with the link?
+  - Time to hand this off — fetch the Figma spec, attach it to a new Jira story, and summarize it in our Teams channel.
+should_not_trigger:
+  - Announce the plugin-only release to ncp-release-announcements on Teams and create the Confluence Plugin page.
+  - Can you check the Artifactory build for the eve plugin release and update the Confluence page accordingly?
+  - Can you export this Figma frame as a PNG for the presentation deck?
+  - Can you review the Figma file and give feedback on the color contrast for accessibility?
+  - Create a Jira ticket to track a backend performance issue with the search API.
+  - Create the MDX NVE plugin ticket for this eve release and post the summary to Teams.
+  - Please validate the Artifactory artifacts for the latest eve plugin build and update the CPNF Jira ticket.
+  - Post a summary of today's standup notes to our Teams channel.
+  - Update ABC-123 with a fix for the login bug we found in QA testing.
+  - We just tagged a new eve plugin release — can you kick off the announcement workflow with the Jira and Teams post?

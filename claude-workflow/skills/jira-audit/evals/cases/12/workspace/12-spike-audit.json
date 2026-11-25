@@ -1,0 +1,23 @@
+{
+  "eval_id": 12,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-3200",
+      "summary": "[Spike] Evaluate message queue options for async processing",
+      "type": "Spike",
+      "status": "To Do",
+      "priority": "P3",
+      "assignee": null,
+      "story_points": 2,
+      "components": [],
+      "labels": ["backend"],
+      "epic": "FD-270 Infrastructure",
+      "description": "We need to decide between RabbitMQ, SQS, and Kafka for our async job processing pipeline. Evaluate latency, throughput, operational cost, and team familiarity. Produce a recommendation document with pros/cons.",
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "scope_boundaries": null,
+      "updated": "2026-04-22"
+    }
+  ]
+}

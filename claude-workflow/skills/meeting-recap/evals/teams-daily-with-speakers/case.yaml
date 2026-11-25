@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: teams-daily-with-speakers
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  A single HTML recap of the daily using real speaker names, listing Juan's items (review Marcus's PR, update Glimpse cadence action with tests, blocked on template deploy) without claiming others' items, and noting the Wednesday merge deadline.

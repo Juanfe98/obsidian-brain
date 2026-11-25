@@ -1,0 +1,25 @@
+schema_version: 1
+skill: dd-cli
+reviewed: false
+should_trigger:
+  - Can you pull up the Datadog Kubernetes explorer view for our checkout-service pods?
+  - Check watchdog insights in Datadog for any unusual error rate changes in my service over the past day.
+  - Find the Datadog session replay recording tied to ticket ABC-123 so I can see what the user did before the error.
+  - Grab the continuous profiler results from Datadog for the checkout API — trying to find a CPU hotspot.
+  - I need to see how traffic is flowing between our payment and auth services in Datadog's service mesh view.
+  - List the pods Datadog is tracking in our production k8s cluster along with their resource usage.
+  - Pull the Datadog Database Monitoring query metrics for our Postgres instance from the last hour.
+  - Run Datadog's smart analysis on that latency spike we saw in checkout yesterday.
+  - Show me the CI pipeline visibility data in Datadog for the last deploy of my service.
+  - What did Datadog Watchdog flag as anomalous on our staging cluster today?
+should_not_trigger:
+  - Add a new record to the Airtable base tracking our launch tasks.
+  - Build me a Datadog dashboard showing request latency and error rate traces for checkout.
+  - Can you check what pods are currently running in our EKS cluster?
+  - Create an incident in Datadog for the outage we just had this morning.
+  - Get the logs for the checkout deployment using kubectl on our Mariner cluster.
+  - Search Datadog logs for errors related to order ID 12345 from the last hour.
+  - Set up a new Datadog synthetic test to monitor our homepage uptime.
+  - Show me the alert notifications and SLO burn rate for my service in Datadog.
+  - Show me the column lineage for the orders table in Snowflake.
+  - What's our Snowflake compute cost for the last billing cycle?

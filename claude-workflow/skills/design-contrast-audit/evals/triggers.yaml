@@ -1,0 +1,25 @@
+schema_version: 1
+skill: design-contrast-audit
+reviewed: false
+should_trigger:
+  - Before this goes to dev, I need a contrast ratio report for every text style used in the new pricing page mockups.
+  - Can you check if the text/background colors in our new login frame meet WCAG AA contrast before we hand this off to engineering?
+  - Can you screenshot the checkout frame and verify the placeholder text contrast against the background token?
+  - I just picked new brand colors for the dashboard — pull the tokens from Figma and tell me if any pairings fail contrast ratio.
+  - Our designer wants an accessible color audit on the onboarding screens before dev starts. Can you review the contrast and post results to Confluence?
+  - Please audit the color contrast across the new nav bar designs and drop a summary on our Confluence page.
+  - 'Quick check: does the gray button text on our marketing hero pass AAA contrast?'
+  - Review the color tokens on this Figma frame and flag anything below 4.5:1 contrast for body text.
+  - Someone flagged that our secondary text might be too light — can you pull the variable defs and check AA compliance?
+  - We're finalizing the settings page design — make sure all text/background combos meet accessible color standards and write up the findings.
+should_not_trigger:
+  - Can you bump up the color contrast in this photo export so it looks punchier on social?
+  - Can you cross-check our published Figma components against the Airtable inventory to see which ones are deprecated?
+  - Can you use Tenon to scan our built checkout flow for accessibility issues before release?
+  - Check our color palette for brand consistency — do the primary and secondary colors match the style guide?
+  - I want a report on which design tokens in the library aren't being used consistently across teams — check Figma against Airtable.
+  - Increase the contrast and saturation on this hero image so it pops more in the mockup.
+  - List all button component variants in our design system library and flag ones missing an owner in Airtable.
+  - Run an axe-core scan against the staging site and tell me which pages fail accessibility checks.
+  - The live production homepage has some contrast issues reported by a customer — can you scan the site and file bugs?
+  - Write a ticket ABC-123 to have engineering fix the low-contrast text once it's implemented in staging.

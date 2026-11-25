@@ -370,6 +370,18 @@ When reviewing code, focus on:
 
 Avoid subjective style nitpicks unless they affect clarity or consistency.
 
+## Agent Spawning
+
+Do NOT spawn subagents (Agent tool) for:
+- Single file reads or edits
+- grep/search tasks
+- Git status checks
+- Any task completable in 1-3 direct tool calls
+
+Spawn agents only when:
+- Task explicitly requires parallel independent workstreams
+- User explicitly says "use a subagent" or names an agent type
+
 ## Final Response Format
 
 When finishing a task, respond with:
@@ -378,3 +390,7 @@ When finishing a task, respond with:
 2. Files changed
 3. Validation run
 4. Risks or follow-ups
+
+## Archify Explainers
+
+All Archify / learning-page preferences live in `~/.claude/rules/learning-pages.md` (mirrored at `~/.claude-d/rules/learning-pages.md`), which is loaded automatically in both Claude instances. Edit the rules file, not this section, and keep both copies identical.

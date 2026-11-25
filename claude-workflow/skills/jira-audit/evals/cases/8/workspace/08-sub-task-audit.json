@@ -1,0 +1,24 @@
+{
+  "eval_id": 8,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-2850",
+      "summary": "Create database migration for notification_preferences table",
+      "type": "Sub-task",
+      "status": "To Do",
+      "priority": "P2",
+      "assignee": "K. Park",
+      "parent": "FD-2847",
+      "story_points": null,
+      "components": [],
+      "labels": [],
+      "epic": null,
+      "description": "Create the notification_preferences table with the following schema:\n\n| Column | Type | Constraints |\n|--------|------|-------------|\n| id | bigint | PK, auto-increment |\n| user_id | bigint | FK -> users.id, NOT NULL |\n| channel | varchar(20) | NOT NULL, enum: 'email', 'push', 'sms', 'in_app' |\n| category | varchar(50) | NOT NULL |\n| enabled | boolean | NOT NULL, default true |\n| created_at | timestamp | NOT NULL, default NOW() |\n| updated_at | timestamp | NOT NULL, default NOW() |\n\nIndexes:\n- idx_notification_prefs_user_id ON (user_id)\n- idx_notification_prefs_user_channel ON (user_id, channel) UNIQUE\n\nForeign key: user_id references users(id) ON DELETE CASCADE",
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "scope_boundaries": null,
+      "updated": "2026-04-12"
+    }
+  ]
+}

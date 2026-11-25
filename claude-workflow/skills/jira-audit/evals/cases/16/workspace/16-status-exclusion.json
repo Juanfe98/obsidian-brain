@@ -1,0 +1,37 @@
+{
+  "eval_id": 16,
+  "mode": "project",
+  "filter": "label = 'payments'",
+  "jql": "project = PLAT AND labels = 'payments' AND status NOT IN ('Done', 'Closed', 'Resolved') ORDER BY priority DESC, created ASC",
+  "all_tickets": {
+    "total": 18,
+    "by_status": {
+      "Open": 6,
+      "To Do": 6,
+      "In Progress": 4,
+      "Done": 2
+    }
+  },
+  "excluded_tickets": [
+    {"key": "PLAT-380", "summary": "Add Stripe webhook signature verification", "type": "Task", "status": "Done", "story_points": 2},
+    {"key": "PLAT-385", "summary": "Fix payment receipt email formatting", "type": "Bug", "status": "Done", "story_points": 1}
+  ],
+  "auditable_tickets": [
+    {"key": "PLAT-390", "summary": "Implement subscription pause/resume", "type": "Story", "status": "To Do", "priority": "P1", "assignee": "A. Chen", "story_points": 8, "has_ac": true, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-391", "summary": "Add invoice PDF generation", "type": "Story", "status": "To Do", "priority": "P1", "assignee": "R. Patel", "story_points": 5, "has_ac": true, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-392", "summary": "Fix proration calculation for mid-cycle upgrades", "type": "Bug", "status": "In Progress", "priority": "P1", "assignee": "M. Rivera", "story_points": 3, "has_ac": true, "has_description": true, "components": ["billing-engine"]},
+    {"key": "PLAT-393", "summary": "Add payment method management UI", "type": "Story", "status": "To Do", "priority": "P2", "assignee": null, "story_points": 5, "has_ac": false, "has_description": true, "components": ["web-frontend"]},
+    {"key": "PLAT-394", "summary": "Implement failed payment retry logic", "type": "Story", "status": "To Do", "priority": "P2", "assignee": null, "story_points": null, "has_ac": false, "has_description": true, "components": []},
+    {"key": "PLAT-395", "summary": "Add tax calculation service integration", "type": "Story", "status": "Open", "priority": "P2", "assignee": null, "story_points": null, "has_ac": false, "has_description": true, "components": []},
+    {"key": "PLAT-396", "summary": "Fix currency conversion rounding", "type": "Bug", "status": "In Progress", "priority": "P2", "assignee": "K. Park", "story_points": 2, "has_ac": true, "has_description": true, "components": ["billing-engine"]},
+    {"key": "PLAT-397", "summary": "Payment dashboard metrics", "type": "Task", "status": "Open", "priority": "P3", "assignee": null, "story_points": null, "has_ac": false, "has_description": true, "components": []},
+    {"key": "PLAT-398", "summary": "Add refund workflow", "type": "Story", "status": "To Do", "priority": "P2", "assignee": "D. Nakamura", "story_points": 5, "has_ac": true, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-399", "summary": "Implement dunning emails", "type": "Story", "status": "Open", "priority": "P3", "assignee": null, "story_points": 3, "has_ac": false, "has_description": true, "components": ["notification-service"]},
+    {"key": "PLAT-460", "summary": "Fix payment webhook timeout", "type": "Bug", "status": "In Progress", "priority": "P1", "assignee": "T. Nguyen", "story_points": 2, "has_ac": true, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-461", "summary": "Add payment audit trail", "type": "Task", "status": "Open", "priority": "P2", "assignee": null, "story_points": null, "has_ac": false, "has_description": true, "components": []},
+    {"key": "PLAT-462", "summary": "Stripe API version upgrade", "type": "Task", "status": "To Do", "priority": "P3", "assignee": null, "story_points": 2, "has_ac": false, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-463", "summary": "Add coupon/promo code support", "type": "Story", "status": "Open", "priority": "P3", "assignee": null, "story_points": null, "has_ac": false, "has_description": true, "components": []},
+    {"key": "PLAT-464", "summary": "Fix duplicate charge on retry", "type": "Bug", "status": "In Progress", "priority": "P1", "assignee": "A. Chen", "story_points": 3, "has_ac": true, "has_description": true, "components": ["payment-gateway"]},
+    {"key": "PLAT-465", "summary": "Payment reconciliation report", "type": "Task", "status": "Open", "priority": "P3", "assignee": null, "story_points": null, "has_ac": false, "has_description": false, "components": []}
+  ]
+}

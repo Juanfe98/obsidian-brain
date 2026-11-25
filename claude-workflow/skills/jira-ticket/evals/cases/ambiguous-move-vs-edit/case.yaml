@@ -1,0 +1,4 @@
+schema_version: '1.1'
+name: ambiguous-move-vs-edit
+context:
+  scaffold_script: scaffold.sh

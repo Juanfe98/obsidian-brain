@@ -1,0 +1,25 @@
+schema_version: 1
+skill: udoc
+reviewed: false
+should_trigger:
+  - Read my Google Doc 'Project Roadmap' and give me an outline of its sections
+  - Replace every mention of 'Q3' with 'Q4' in the planning document
+  - Fix the title on slide 2 of the launch deck and show me how it renders
+  - Write these monthly totals into the Budget Google Sheet starting at cell B2
+  - Summarize the content of this Google Doc for me
+  - Clear the range A1:D20 on the forecast sheet
+  - Add a new paragraph at the end of the onboarding doc
+  - Look at the Google Slides deck and tell me what is on each slide
+  - The udoc tool says it needs write mode, how do I turn it on?
+  - Restyle the headings in this Google Doc to bold
+should_not_trigger:
+  - Find the quarterly budget spreadsheet somewhere in my Google Drive
+  - Move the folder 'Designs' into the shared drive called Marketing Assets
+  - Star the onboarding file in Drive so I can find it later
+  - Share this file with the finance team as a viewer
+  - Check my Outlook calendar for any meetings scheduled tomorrow afternoon
+  - Find the meeting notes page in Confluence about the migration project
+  - Get the transcript from our last Teams meeting about the launch
+  - Query Snowflake for the top 10 customers by revenue this quarter
+  - Edit a Word document on my local disk
+  - Walk me through onboarding to AIX tools on the terminal for a new developer

@@ -1,0 +1,4 @@
+schema_version: '1.1'
+name: create-with-labels-and-components
+context:
+  scaffold_script: scaffold.sh

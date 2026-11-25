@@ -1,0 +1,95 @@
+of the flow because of this L4L pricing is,
+there'll be like the cadence select screen,
+or as right now, like in the control,
+resubscribing takes the user to the billing ledger.
+So it'll be a slightly different flow.
+So for treatment one,
+it'll be the cadence selector step
+where they can select L4L or retail monthly
+before the ledger.
+So that's essentially what the experiment is gonna be.
+And yeah.
+What's the UI gonna look like for the treatment?
+Is it gonna look like the one-click reconnect experience
+or is it gonna look like,
+cause I know we put L4L on welcome back before.
+It'll look exactly like the one-click reconnect experience
+but the pricing will just be like starting at,
+which will be the L4L pricing
+instead of retail monthly.
+Nice. And then they go to cadence.
+Okay. Yeah.
+Nice. That makes sense.
+Does anyone else have any questions?
+They should be there.
+So there should be flex work only.
+Yeah. Just a reminder for engineering
+that we will need to update analytics for this
+to go to the cadence now.
+Wait, do you mean the action
+or what do you mean by analytics?
+Yes. Glimpse action.
+So let's say currently, for example,
+if it goes currently to,
+like if it doesn't go on cadence
+but now we'll start going to cadence
+then this needs to be updated.
+Yeah. Just making sure all the glimpse data matches
+like what the correct action is doing.
+Yep.
+Okay. Cool.
+If no other questions, the estimations link
+is in the chat.
+Nice. Beautiful.
+I am really curious to see how, like, you know,
+if you're last, we show you the L4L,
+you go directly to billing page,
+but for treatment one, we're going to show L4L
+and even if your previous one was L4L,
+they're going to go to the cadence page.
+So it'll be interesting.
+Okay. We'll do the automation for tickets later.
+That's it for me.
+Nice. I think that's all we have then.
+Anything from any of the other engineers or Sean?
+Nope.
+But, oh, that's all right, go ahead.
+Yeah.
+All right.
+So the update is that we are not taking experiments
+anymore from the shoot fleet.
+And currently we are prioritizing
+and taking NB experiments.
+So if product comes and tells that they consulted
+with NB, we will take and implement it immediately.
+Otherwise we will focus on other projects
+and supporting other things.
+Like we will support lower for longer.
+We will support, probably continue supporting Corocell,
+but we are not actively taking on experiments
+from Shop and Take.
+They are coming to the Lawrence team mostly.
+Yes. And on that topic,
+I'm going to rename this refinement
+and just remove the word great
+because I do also want us to start pointing.
+And Agnes, they don't need me for those ones.
+You can buy your stuff first.
+But after Agnes is like done, for example,
+let's go over some like the growth automation tickets
+coming in and then some of the hot work coming in.
+I want to make sure that the whole team is aware
+and that we're relying on beat pointing
+and not like the velocity that leads to.
+Yes. And we will invite people like project managers
+who are bringing in NB driven experiments
+to join and present experiments for intake.
+Yeah, that sounds good.
+I'll put that as a talking point
+for the next pop refinement this Thursday
+of like including them as well.
+Yes. Sounds good.
+Thank you.
+Great. Thanks everybody.
+Thanks guys.
+Bye.

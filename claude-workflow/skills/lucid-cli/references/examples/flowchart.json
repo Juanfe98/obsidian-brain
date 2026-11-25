@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "id": "page1",
+      "title": "Request handling",
+      "settings": {
+        "size": { "type": "custom", "w": 740, "h": 720 }
+      },
+      "shapes": [
+        {
+          "id": "start",
+          "type": "terminator",
+          "boundingBox": { "x": 280, "y": 40, "w": 160, "h": 60 },
+          "style": {
+            "fill": { "type": "color", "color": "#d5e8d4" },
+            "stroke": { "color": "#82b366", "width": 2 }
+          },
+          "text": "<span style='font-size:14pt'>Start</span>"
+        },
+        {
+          "id": "receive",
+          "type": "process",
+          "boundingBox": { "x": 280, "y": 160, "w": 160, "h": 60 },
+          "style": {
+            "fill": { "type": "color", "color": "#dae8fc" },
+            "stroke": { "color": "#6c8ebf", "width": 2 }
+          },
+          "text": "<span style='font-size:12pt'>Receive request</span>"
+        },
+        {
+          "id": "check",
+          "type": "decision",
+          "boundingBox": { "x": 280, "y": 280, "w": 160, "h": 100 },
+          "style": {
+            "fill": { "type": "color", "color": "#fff2cc" },
+            "stroke": { "color": "#d6b656", "width": 2 }
+          },
+          "text": "<span style='font-size:12pt'>Authorized?</span>"
+        },
+        {
+          "id": "process",
+          "type": "process",
+          "boundingBox": { "x": 280, "y": 460, "w": 160, "h": 60 },
+          "style": {
+            "fill": { "type": "color", "color": "#dae8fc" },
+            "stroke": { "color": "#6c8ebf", "width": 2 }
+          },
+          "text": "<span style='font-size:12pt'>Process request</span>"
+        },
+        {
+          "id": "deny",
+          "type": "process",
+          "boundingBox": { "x": 520, "y": 300, "w": 160, "h": 60 },
+          "style": {
+            "fill": { "type": "color", "color": "#f8cecc" },
+            "stroke": { "color": "#b85450", "width": 2 }
+          },
+          "text": "<span style='font-size:12pt'>Return 403</span>"
+        },
+        {
+          "id": "end",
+          "type": "terminator",
+          "boundingBox": { "x": 280, "y": 600, "w": 160, "h": 60 },
+          "style": {
+            "fill": { "type": "color", "color": "#d5e8d4" },
+            "stroke": { "color": "#82b366", "width": 2 }
+          },
+          "text": "<span style='font-size:14pt'>End</span>"
+        }
+      ],
+      "lines": [
+        {
+          "id": "e_start_receive",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "start" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "receive" }
+        },
+        {
+          "id": "e_receive_check",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "receive" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "check" }
+        },
+        {
+          "id": "e_check_process",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "check" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "process" },
+          "text": [ { "text": "<span style='font-size:10pt'>yes</span>", "position": 0.5, "side": "top" } ]
+        },
+        {
+          "id": "e_check_deny",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "check" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "deny" },
+          "text": [ { "text": "<span style='font-size:10pt'>no</span>", "position": 0.5, "side": "top" } ]
+        },
+        {
+          "id": "e_process_end",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "process" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "end" }
+        },
+        {
+          "id": "e_deny_end",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "deny", "position": { "x": 0.5, "y": 1 } },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "end", "position": { "x": 1, "y": 0.5 } }
+        }
+      ]
+    }
+  ]
+}

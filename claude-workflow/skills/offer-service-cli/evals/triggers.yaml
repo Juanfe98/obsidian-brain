@@ -1,0 +1,25 @@
+schema_version: 1
+skill: offer-service-cli
+reviewed: false
+should_trigger:
+  - Can you check what offer is linked to campaign ABC-123 in the offer catalog?
+  - Can you look up the current SKU for the Hulu ad-supported offer?
+  - Find the campaign details behind this streaming offer code so I can confirm pricing.
+  - I need a list of Disney offer SKUs currently available for new subscribers.
+  - I need to find what streaming campaigns are active for ESPN right now.
+  - Look up whether there's a discounted ESPN offer running this quarter.
+  - Pull up the offer details for SKU 12345 so I can verify the price.
+  - Query the offer service to see which campaigns include the ESPN+ bundle.
+  - Show me all active Hulu offers tied to the fall promo campaign.
+  - What's the pricing on the Disney+ annual offer campaign?
+should_not_trigger:
+  - Can you check the service catalog to see if the pricing microservice is registered?
+  - Can you find the pricing spreadsheet for our streaming offers in Google Drive?
+  - Can you reset the test account profile for our Hulu QA subscription?
+  - Check the test automation launches for the offer service integration tests.
+  - I need to update the test account profile info for our Disney+ test user.
+  - Please create a new promotional offer campaign for the Hulu winter sale.
+  - Pull the records from our campaign tracking base in Airtable.
+  - Show me recent deployment changes in the infrastructure event graph for the offer service.
+  - Update the price on SKU 12345 to reflect the new annual plan.
+  - What skills are available for interacting with our internal tools right now?

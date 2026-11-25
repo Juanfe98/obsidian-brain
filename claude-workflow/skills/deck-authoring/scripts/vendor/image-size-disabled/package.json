@@ -1,0 +1,7 @@
+{
+  "name": "image-size",
+  "version": "99.0.0-aix-disabled",
+  "description": "Fail-closed compatibility stub for PptxGenJS 4.0.1's unused image-size dependency",
+  "license": "MIT",
+  "main": "index.cjs"
+}

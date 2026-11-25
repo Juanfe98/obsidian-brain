@@ -1,0 +1,111 @@
+{
+  "title": "Platform Reliability — Q3 Readout",
+  "mode": "live",
+  "theme": "dee",
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Platform Reliability",
+      "subtitle": "Q3 readout and the one decision we need"
+    },
+    {
+      "layout": "agenda",
+      "title": "What we will cover",
+      "dek": "Three sections, one ask at the end",
+      "items": [
+        "Where reliability stands today",
+        "What the incident data tells us",
+        "The investment we are asking for"
+      ]
+    },
+    {
+      "layout": "section-divider",
+      "label": "Where we stand"
+    },
+    {
+      "layout": "big-fact",
+      "value": "99.94%",
+      "caption": "Availability across all tier-1 services this quarter, against a 99.9% objective"
+    },
+    {
+      "layout": "chart-takeaway",
+      "title": "Availability held while traffic grew",
+      "takeaway": "Traffic rose 38% and availability still improved every month",
+      "chart": {
+        "type": "line",
+        "categories": ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+        "series": [
+          { "name": "Availability", "values": [99.82, 99.86, 99.88, 99.91, 99.93, 99.94] }
+        ]
+      },
+      "insights": [
+        "Objective is 99.9%",
+        "Measured at the edge, not per service",
+        "September included two planned migrations"
+      ]
+    },
+    {
+      "layout": "section-divider",
+      "label": "What the data says"
+    },
+    {
+      "layout": "tri-fact",
+      "title": "Incidents are fewer, shorter, and cheaper",
+      "value1": "31",
+      "caption1": "Fewer incidents than Q2, a 44% reduction",
+      "value2": "12m",
+      "caption2": "Median time to detect, down from 41 minutes",
+      "value3": "2",
+      "caption3": "Sev-1 incidents, both resolved inside an hour"
+    },
+    {
+      "layout": "bullets",
+      "title": "Three changes drove the improvement",
+      "items": [
+        "Automated rollback cut mean recovery time by more than half",
+        "Pre-merge load tests caught 14 regressions before release",
+        "On-call handoff checklists ended the Monday-morning incident cluster"
+      ]
+    },
+    {
+      "layout": "quote",
+      "quote": "For the first time this year, we did not spend a single weekend firefighting a release.",
+      "attribution": "Staff engineer, Content Platforms on-call rotation"
+    },
+    {
+      "layout": "section-divider",
+      "label": "The ask"
+    },
+    {
+      "layout": "statement",
+      "claim": "Capacity—not reliability—is the constraint."
+    },
+    {
+      "layout": "two-column",
+      "title": "What we fund, and what it buys",
+      "dek": "Both items are one quarter of work",
+      "left": [
+        "Two engineers on capacity automation",
+        "Regional failover for the ingest tier"
+      ],
+      "right": [
+        "Removes the 6-week provisioning wait",
+        "Cuts our worst-case outage from hours to minutes"
+      ]
+    },
+    {
+      "layout": "timeline",
+      "title": "How the quarter would run",
+      "milestones": [
+        { "label": "October", "body": "Hire and onboard" },
+        { "label": "November", "body": "Capacity automation ships" },
+        { "label": "December", "body": "Failover drill" },
+        { "label": "January", "body": "Regional failover live" }
+      ]
+    },
+    {
+      "layout": "closing-cta",
+      "ask": "Approve two engineers for Q4"
+    }
+  ]
+}

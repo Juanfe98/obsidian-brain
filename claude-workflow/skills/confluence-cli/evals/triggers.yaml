@@ -1,0 +1,25 @@
+schema_version: 1
+skill: confluence-cli
+reviewed: false
+should_trigger:
+  - Add a new child page under the Product space explaining the release checklist step by step.
+  - Attach this architecture diagram to the overview page on our internal wiki.
+  - Can you create a new Confluence page under the Engineering space summarizing our Q3 architecture decisions?
+  - Find the wiki page where we documented the database migration plan and append today's notes.
+  - Grab the content of the API documentation page and check if it still matches the current endpoints.
+  - I need to update the onboarding documentation page in Confluence with the new VPN setup steps.
+  - List every space in our Confluence instance so I can see which ones are stale and unused.
+  - Pull up the knowledge base article about our incident response process and show me the latest version.
+  - Run a CQL query to find all pages labeled 'postmortem' created in the last 30 days.
+  - Search our wiki for anything related to the deployment runbook and paste the page link.
+should_not_trigger:
+  - Add a new record to our Airtable base tracking customer feedback from this week.
+  - Check how much disk space is left on the production server before we run tonight's backup job.
+  - Create a new ticket ABC-123 for the login bug and assign it to the backend team.
+  - Draft a short blog post about our new documentation strategy for the engineering team's public blog.
+  - Find the quarterly budget spreadsheet in Google Drive and share the link with me.
+  - Look up which team owns the billing service in our internal service catalog.
+  - Page the on-call engineer about the outage happening in us-east-1 right now.
+  - Pull up the latest test automation report from our last regression run in the test dashboard.
+  - Show me the recent deployment events in the infrastructure event graph for the checkout service.
+  - What tools are available for service discovery in our internal registry?

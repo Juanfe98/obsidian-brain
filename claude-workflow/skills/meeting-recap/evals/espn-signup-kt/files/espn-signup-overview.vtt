@@ -1,0 +1,427 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.480
+Is this for the A-B test that's currently in flight
+
+00:00:02.480 --> 00:00:04.360
+or is this just generally?
+
+00:00:04.360 --> 00:00:07.960
+This is like a template we will be using in the future
+
+00:00:07.960 --> 00:00:12.960
+for it get easier the data and the information we need
+
+00:00:13.040 --> 00:00:17.480
+from Datadoc, but it's not targeting specifically,
+
+00:00:17.480 --> 00:00:19.920
+yeah, an experiment or something like that.
+
+00:00:19.920 --> 00:00:22.600
+It's like a template we will be reusing.
+
+00:00:22.600 --> 00:00:23.420
+Okay.
+
+00:00:23.420 --> 00:00:24.260
+Yeah.
+
+00:00:24.260 --> 00:00:26.240
+Yeah, because it changes sometimes.
+
+00:00:26.240 --> 00:00:27.500
+Like if someone's already logged in,
+
+00:00:27.500 --> 00:00:28.840
+then we don't do login, right?
+
+00:00:28.840 --> 00:00:31.000
+Like that's before and et cetera, et cetera.
+
+00:00:32.880 --> 00:00:37.280
+So we do include the add-on steps as part of the flow
+
+00:00:37.280 --> 00:00:41.340
+to answer your first question and partner activations.
+
+00:00:41.340 --> 00:00:43.760
+We do wanna include as part of the scope,
+
+00:00:43.760 --> 00:00:45.800
+but they follow a different flow
+
+00:00:46.760 --> 00:00:50.800
+that starts on the plan picker screen.
+
+00:00:50.800 --> 00:00:54.200
+So right before the plan picker screen
+
+00:00:55.080 --> 00:00:57.440
+is actually a screen that we should be tracking
+
+00:00:57.440 --> 00:00:58.280
+as part of this.
+
+00:00:58.280 --> 00:01:00.080
+We do have the contextualization screen.
+
+00:01:00.080 --> 00:01:04.260
+So really the way that our flow works is contextualization.
+
+00:01:04.260 --> 00:01:05.560
+I'm gonna write this down.
+
+00:01:06.760 --> 00:01:12.230
+Then plan picker, then login.
+
+00:01:13.510 --> 00:01:20.830
+Here I'll put for, I'll browse plans.
+
+00:01:20.830 --> 00:01:24.870
+Login and we'll put if not logged in
+
+00:01:26.470 --> 00:01:35.250
+and then add-ons, ledger, success.
+
+00:01:36.130 --> 00:01:37.810
+Okay, I'm gonna write down all the options
+
+00:01:37.810 --> 00:01:40.210
+and then here, let me start with that one.
+
+00:01:40.210 --> 00:01:45.210
+Then we've got the activation, partner activation
+
+00:01:50.460 --> 00:01:54.380
+is contextualization.
+
+00:01:54.380 --> 00:01:56.980
+So that's why we need that contextualization screen.
+
+00:02:01.040 --> 00:02:01.960
+Let me grab a,
+
+00:02:01.960 --> 00:02:05.120
+I think I might have a good way of viewing this
+
+00:02:05.120 --> 00:02:13.420
+that I can send as well.
+
+00:02:13.420 --> 00:02:16.420
+Okay, I think you mentioned some words
+
+00:02:16.420 --> 00:02:18.740
+that I don't have mapped right now,
+
+00:02:18.740 --> 00:02:21.580
+but I can also send you like a diagram.
+
+00:02:22.500 --> 00:02:23.540
+Yeah, that'd be great.
+
+00:02:23.540 --> 00:02:26.740
+I think most of the words you mentioned
+
+00:02:26.740 --> 00:02:28.900
+are here are very present.
+
+00:02:31.100 --> 00:02:32.900
+Okay, great, yeah, that'd be great.
+
+00:02:33.900 --> 00:02:36.020
+So it'll be something like this.
+
+00:02:36.020 --> 00:02:49.990
+It just send you the diagram in the chat.
+
+00:02:49.990 --> 00:02:51.550
+I think there's, so the thing is
+
+00:02:51.550 --> 00:02:55.830
+there's one step above that that I want people to see.
+
+00:02:56.510 --> 00:03:03.210
+So here, let me show you what activation looks like.
+
+00:03:07.190 --> 00:03:12.260
+I'm gonna drop it in the chat.
+
+00:03:12.260 --> 00:03:14.060
+Okay, so this is partner activation.
+
+00:03:16.140 --> 00:03:18.100
+I'm gonna write out the steps as well.
+
+00:03:20.180 --> 00:03:25.880
+Fighter picker, and I'm gonna do mobile web
+
+00:03:25.880 --> 00:03:31.040
+just because it's easier to see.
+
+00:03:31.040 --> 00:03:33.200
+Mobile web is the same as desktop web.
+
+00:03:34.160 --> 00:03:35.000
+Okay.
+
+00:03:39.710 --> 00:03:45.400
+Sorry, it's just taking me a sec to the, so.
+
+00:03:47.040 --> 00:03:48.880
+Okay, so do you see what I just sent?
+
+00:03:50.480 --> 00:03:52.880
+So this is the activation step.
+
+00:03:52.880 --> 00:03:54.640
+So that contextualization screen
+
+00:03:54.640 --> 00:03:57.000
+really is the most important screen
+
+00:03:57.000 --> 00:03:59.240
+because that's the screen that determines
+
+00:03:59.240 --> 00:04:01.800
+where the user goes next.
+
+00:04:01.800 --> 00:04:05.120
+And so through that screen,
+
+00:04:05.120 --> 00:04:07.880
+we're able to really determine
+
+00:04:09.720 --> 00:04:11.800
+more than any other screen.
+
+00:04:13.400 --> 00:04:17.080
+Because it's kind of like, I call it the traffic cop
+
+00:04:17.080 --> 00:04:21.920
+because from that screen, people have a lot of choices
+
+00:04:21.920 --> 00:04:26.920
+and their choices are shown on the next screen.
+
+00:04:27.400 --> 00:04:30.560
+Like they won't even get to the plan card page.
+
+00:04:30.560 --> 00:04:40.660
+I'll send you a screen that shows that.
+
+00:04:40.660 --> 00:04:44.900
+Okay, but like the only way
+
+00:04:44.900 --> 00:04:47.140
+from the contextualization screen
+
+00:04:47.140 --> 00:04:49.460
+for an user to enter the sign up flow
+
+00:04:49.460 --> 00:04:53.220
+is to click browse plans, right?
+
+00:04:53.220 --> 00:04:55.980
+Because other pros are different, like the sign in.
+
+00:04:55.980 --> 00:04:59.220
+Well, browse plans work, they hit login.
+
+00:04:59.220 --> 00:05:00.900
+There is also a login option.
+
+00:05:00.900 --> 00:05:05.620
+If they hit login, it sort of does the same thing.
+
+00:05:05.620 --> 00:05:10.620
+Okay.
+
+00:05:10.620 --> 00:05:11.940
+But yeah, those are the two ways
+
+00:05:11.940 --> 00:05:15.740
+to enter the purchase flow, exactly right.
+
+00:05:15.740 --> 00:05:16.860
+And then the other option,
+
+00:05:16.860 --> 00:05:18.620
+so like signing with TV provider
+
+00:05:19.860 --> 00:05:22.060
+can actually do two things.
+
+00:05:22.060 --> 00:05:25.380
+It can either log them in through partner activation
+
+00:05:25.380 --> 00:05:28.220
+or it can log them in through TVE
+
+00:05:29.460 --> 00:05:41.240
+which are different processes.
+
+00:05:41.240 --> 00:05:44.080
+Okay, and then, yeah, I'm seeing the other image.
+
+00:05:44.080 --> 00:05:49.080
+And then again, the user can land in the sign up flow
+
+00:05:49.080 --> 00:05:50.760
+by using browse my plans
+
+00:05:50.760 --> 00:05:52.760
+and trying to log in with an account
+
+00:05:52.760 --> 00:05:56.160
+that is not right now in the system, right?
+
+00:06:00.180 --> 00:06:03.340
+Like what do you mean by what's not in the system, sorry.
+
+00:06:03.340 --> 00:06:05.660
+So for example, for Disney Plus,
+
+00:06:05.660 --> 00:06:09.180
+if a user goes to the browse plans
+
+00:06:09.180 --> 00:06:12.460
+and he tries to sign in or something like that,
+
+00:06:12.460 --> 00:06:14.060
+we're displaying the sign in flow
+
+00:06:14.060 --> 00:06:17.980
+but internally we're validating that
+
+00:06:17.980 --> 00:06:20.060
+if the email is already in the system,
+
+00:06:20.060 --> 00:06:21.580
+then the user is signing in.
+
+00:06:21.580 --> 00:06:25.620
+And if not, we're basically sending that user to sign up.
+
+00:06:25.620 --> 00:06:27.580
+Does that work like the same?
+
+00:06:27.580 --> 00:06:28.780
+Okay.
+
+00:06:28.780 --> 00:06:29.620
+Yeah, that's correct.
+
+00:06:29.620 --> 00:06:50.430
+Yeah, thank you, clarifying.
+
+00:06:50.430 --> 00:06:54.950
+Okay, and I don't know if you have
+
+00:06:54.950 --> 00:06:56.990
+like the context of this question
+
+00:06:56.990 --> 00:06:58.790
+but because I'm thinking,
+
+00:06:58.790 --> 00:07:03.790
+I know some of these pages for ESPN currently
+
+00:07:04.430 --> 00:07:09.430
+does not live in the CAP application.
+
+00:07:09.750 --> 00:07:12.390
+Do you know if this contextualization screen
+
+00:07:12.390 --> 00:07:15.990
+lives like inside CGI, inside the CAP?
+
+00:07:15.990 --> 00:07:18.350
+It does not, it lives in ESPN.
+
+00:07:18.350 --> 00:07:22.270
+Well, so it's part of the unified platform
+
+00:07:22.270 --> 00:07:26.070
+but ESPN is the one that updates it and owns it.
+
+00:07:27.150 --> 00:07:27.990
+Okay.
+
+00:07:27.990 --> 00:07:28.910
+And same with the plan card page.
+
+00:07:28.910 --> 00:07:30.510
+It's owned the same way the plan card,
+
+00:07:30.510 --> 00:07:32.190
+the plan picker as you're calling it,
+
+00:07:32.190 --> 00:07:34.150
+those are both the same.
+
+00:07:34.150 --> 00:07:37.910
+The ledger is managed by Disney.
+
+00:07:37.910 --> 00:07:39.630
+They're all part of the unified platform though.
+
+00:07:39.630 --> 00:07:42.350
+The entire flow is part of the unified platform.
+
+00:07:44.750 --> 00:07:46.430
+Oh, okay, okay, got it, yeah.
+
+00:07:51.380 --> 00:07:55.500
+Okay, so I think I have what I need.
+
+00:07:55.500 --> 00:07:59.540
+Not sure if you want to share something else with me
+
+00:07:59.540 --> 00:08:04.540
+but I think I have the response for the questions I did.
+
+00:08:04.540 --> 00:08:08.780
+And also I will try and make sure to start
+
+00:08:08.940 --> 00:08:13.620
+the data dog from the contextualization screen.
+
+00:08:14.700 --> 00:08:16.060
+Okay, yeah, that's great.
+
+00:08:16.060 --> 00:08:17.580
+That'd be a big help right from there
+
+00:08:17.580 --> 00:08:18.820
+because that's typically the screen
+
+00:08:18.820 --> 00:08:21.300
+where we start all of our flows.
+
+00:08:21.300 --> 00:08:23.300
+That's what we consider.
+
+00:08:23.300 --> 00:08:26.740
+Okay, okay, perfect.
+
+00:08:26.740 --> 00:08:27.580
+Sweet.
+
+00:08:28.460 --> 00:08:30.980
+Yeah, if you need any help, just let me know.
+
+00:08:30.980 --> 00:08:33.580
+Okay, yeah, I will thank you if I need your help.
+
+00:08:33.580 --> 00:08:35.780
+Thank you, thank you so much.
+
+00:08:35.780 --> 00:08:37.620
+All right, thank you, have a good day.
+
+00:08:37.620 --> 00:08:39.220
+Thank you, bye.
+
+00:08:39.220 --> 00:08:40.060
+Bye.

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "id": "page1",
+      "title": "Order fulfillment",
+      "settings": {
+        "size": { "type": "custom", "w": 1080, "h": 680 }
+      },
+      "shapes": [
+        {
+          "id": "swim",
+          "type": "swimLanes",
+          "boundingBox": { "x": 40, "y": 40, "w": 1000, "h": 600 },
+          "style": { "stroke": { "color": "#333333", "width": 2 } },
+          "magnetize": true,
+          "vertical": false,
+          "titleBar": { "height": 40, "verticalText": true },
+          "lanes": [
+            { "title": "<span style='color:#ffffff; font-weight:bold; font-size:12pt'>User</span>", "width": 200, "headerFill": "#4a86e8", "laneFill": "#ffffff" },
+            { "title": "<span style='color:#ffffff; font-weight:bold; font-size:12pt'>API</span>", "width": 200, "headerFill": "#6aa84f", "laneFill": "#f4fbf0" },
+            { "title": "<span style='color:#ffffff; font-weight:bold; font-size:12pt'>Data</span>", "width": 200, "headerFill": "#e69138", "laneFill": "#fdf4ea" }
+          ]
+        },
+        {
+          "id": "u_submit",
+          "type": "process",
+          "boundingBox": { "x": 140, "y": 120, "w": 180, "h": 60 },
+          "style": { "fill": { "type": "color", "color": "#dae8fc" }, "stroke": { "color": "#6c8ebf", "width": 2 } },
+          "text": "<span style='font-size:11pt'>Submit order</span>"
+        },
+        {
+          "id": "a_validate",
+          "type": "process",
+          "boundingBox": { "x": 140, "y": 320, "w": 180, "h": 60 },
+          "style": { "fill": { "type": "color", "color": "#d9ead3" }, "stroke": { "color": "#6aa84f", "width": 2 } },
+          "text": "<span style='font-size:11pt'>Validate order</span>"
+        },
+        {
+          "id": "a_charge",
+          "type": "process",
+          "boundingBox": { "x": 440, "y": 320, "w": 180, "h": 60 },
+          "style": { "fill": { "type": "color", "color": "#d9ead3" }, "stroke": { "color": "#6aa84f", "width": 2 } },
+          "text": "<span style='font-size:11pt'>Charge payment</span>"
+        },
+        {
+          "id": "a_confirm",
+          "type": "process",
+          "boundingBox": { "x": 740, "y": 320, "w": 180, "h": 60 },
+          "style": { "fill": { "type": "color", "color": "#d9ead3" }, "stroke": { "color": "#6aa84f", "width": 2 } },
+          "text": "<span style='font-size:11pt'>Send confirmation</span>"
+        },
+        {
+          "id": "d_write",
+          "type": "database",
+          "boundingBox": { "x": 440, "y": 520, "w": 180, "h": 80 },
+          "style": { "fill": { "type": "color", "color": "#fce5cd" }, "stroke": { "color": "#e69138", "width": 2 } },
+          "text": "<span style='font-size:11pt'>Persist order</span>"
+        }
+      ],
+      "lines": [
+        {
+          "id": "e_submit_validate",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "u_submit" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "a_validate" }
+        },
+        {
+          "id": "e_validate_charge",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "a_validate" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "a_charge" }
+        },
+        {
+          "id": "e_charge_write",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "a_charge" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "d_write" }
+        },
+        {
+          "id": "e_write_confirm",
+          "lineType": "elbow",
+          "stroke": { "color": "#333333", "width": 2, "style": "solid" },
+          "endpoint1": { "type": "shapeEndpoint", "style": "none", "shapeId": "d_write" },
+          "endpoint2": { "type": "shapeEndpoint", "style": "arrow", "shapeId": "a_confirm" }
+        }
+      ]
+    }
+  ]
+}

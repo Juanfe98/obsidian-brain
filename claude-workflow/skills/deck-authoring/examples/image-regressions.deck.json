@@ -1,0 +1,65 @@
+{
+  "title": "Image Regression Deck",
+  "mode": "live",
+  "theme": "dee",
+  "slides": [
+    {
+      "layout": "title",
+      "title": "Image regression checks",
+      "subtitle": "Bleed, deduplication, and caption contrast"
+    },
+    {
+      "layout": "agenda",
+      "title": "What this fixture proves",
+      "items": [
+        "Agenda side images may bleed vertically",
+        "Repeated source images publish once",
+        "Full-bleed captions retain a scrim"
+      ],
+      "image": {
+        "src": "assets/image-regression.png",
+        "alt": "AIX logo used as a local image fixture"
+      }
+    },
+    {
+      "layout": "section-divider",
+      "label": "Bleed"
+    },
+    {
+      "layout": "bullets",
+      "title": "Side-image geometry is intentional",
+      "items": [
+        "The image begins slightly above the canvas",
+        "Its bottom edge extends slightly below the canvas"
+      ],
+      "image": {
+        "src": "assets/image-regression.png",
+        "alt": "The repeated AIX logo fixture"
+      }
+    },
+    {
+      "layout": "section-divider",
+      "label": "Deduplication"
+    },
+    {
+      "layout": "statement",
+      "claim": "Three image occurrences should create one published asset and one PPTX media part."
+    },
+    {
+      "layout": "section-divider",
+      "label": "Caption contrast"
+    },
+    {
+      "layout": "full-bleed-image",
+      "image": {
+        "src": "assets/image-regression.png",
+        "alt": "The AIX logo fixture filling the slide"
+      },
+      "caption": "A mode-independent scrim keeps this light-deck caption readable."
+    },
+    {
+      "layout": "closing-cta",
+      "ask": "Keep image tests green"
+    }
+  ]
+}

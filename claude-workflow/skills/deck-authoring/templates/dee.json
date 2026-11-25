@@ -1,0 +1,27 @@
+{
+  "version": "2025-09",
+  "source": "https://dee.technology/brand-assets",
+  "canvasPt": { "width": 1920, "height": 1080 },
+  "powerpoint": {
+    "light": {
+      "sha256": "bbb8e9f83ed19bbdbe0b8d3eb6d2e66876a8491d08c4999118c2d093d68fa0d9",
+      "masters": 1,
+      "layouts": 51
+    },
+    "dark": {
+      "sha256": "e353099fdad9bb98b5c9a58f9b4ac56b1c8079d514dff5a8fe294458f14e7014",
+      "masters": 1,
+      "layouts": 46
+    }
+  },
+  "google": {
+    "apps.disney.com": {
+      "light": "1jXztPYGilO7LwW2eUY2oUDdYM6Y3LSBNdXJpLrZuHEM",
+      "dark": "1OUL4iIS-IPM5dzGmPNp9bLVYXsk4HOvlE0PdEtUnMxY"
+    },
+    "disneystreaming.com": {
+      "light": "1eUNIvt58Wkkt6_vd5fm48wA3d3t4nUSXiLtLPMI9MNk",
+      "dark": "1qjWHuUFQ1OMRITeXBXKOx0PBoGnkBfoLIjMkOWtwbeg"
+    }
+  }
+}

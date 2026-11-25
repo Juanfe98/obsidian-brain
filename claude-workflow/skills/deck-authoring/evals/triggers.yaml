@@ -1,0 +1,25 @@
+schema_version: 1
+skill: deck-authoring
+reviewed: false
+should_trigger:
+  - Build out the customer success QBR deck from our standard template, preserving the table formatting and logo artwork exactly.
+  - Can you populate the all-hands template with this quarter's headcount and revenue tables without breaking the layout?
+  - Fill in this presentation template with our latest survey data, keeping the typography and diagrams unchanged, then export a check render.
+  - I need to build a pitch deck for our Series B using the Google Slides template our design team approved—can you populate the slides with the latest metrics?
+  - Inspect the source slides in this PowerPoint template and tell me what placeholders need filling for the exec pitch.
+  - Please generate the presentation for tomorrow's board readout and confirm the images and mockups on each slide render correctly.
+  - Reconstruct this pitch deck as HTML and PPTX from the mockup screenshots the design team sent over.
+  - Render the final version of the readout deck and check every slide to make sure nothing shifted before I send it out.
+  - Take our approved PowerPoint template and fill in the Q3 QBR numbers for the ABC-123 account review, keeping all the fonts and chart styles intact.
+  - We have a native Google Slides template for pre-reads—please fill it in with the roadmap details for next sprint and make sure the diagrams still look right.
+should_not_trigger:
+  - Analyze the sentiment of feedback comments left on our last pitch presentation.
+  - Build a Google Sheet that tracks our QBR metrics for the last four quarters.
+  - Draft the speaker notes and talking points I should say during Friday's all-hands presentation.
+  - Extract all the text content from this PDF slide deck into a plain text file.
+  - Proofread the tone and grammar of this readout document I wrote in Google Docs.
+  - Set up a recurring calendar invite for our weekly all-hands sync tracked under ABC-123.
+  - Summarize the key takeaways from this 50-slide investor deck into a short email.
+  - Turn this finished PowerPoint into a narrated video for asynchronous viewing.
+  - What font pairing would look most modern for a startup pitch deck?
+  - Write a Python script using python-pptx to auto-generate PowerPoint charts from CSV data.

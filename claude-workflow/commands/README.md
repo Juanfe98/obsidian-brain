@@ -6,7 +6,7 @@ Slash command workflows for the Git-controlled Claude setup.
 
 | Category | Commands | Edit behavior |
 |---|---|---|
-| Read-only / advisory | `/workflow-router`, `/repo-onboarding`, `/explain-code`, `/review-diff`, `/spec-review`, `/spec-plan-review`, `/spec-task-review`, `/spec-status`, `/product-idea`, `/product-discovery`, `/product-brief`, `/product-requirements` | Do not edit files unless the user explicitly asks to persist an artifact or apply a specific change. |
+| Read-only / advisory | `/workflow-router`, `/repo-onboarding`, `/explain-code`, `/review-diff`, `/spec-review`, `/spec-plan-review`, `/spec-task-review`, `/spec-status`, `/product-idea`, `/product-discovery`, `/product-brief`, `/product-requirements`, `/daily-status` | Do not edit files unless the user explicitly asks to persist an artifact or apply a specific change. |
 | Implementation-capable | `/direct`, `/debug-failure`, `/spec-implement-task` | May edit files after required exploration, readiness checks, approval rules, and scoped plan. |
 | Session / handoff | `/close-session`, `/spec-close` | Summary-only by default. May persist session notes only with explicit approval. |
 
@@ -42,6 +42,7 @@ When in doubt, treat a command as read-only and ask before editing.
 | `/review-diff` | Reviewing current uncommitted diff before commit/PR | High-signal senior review; does not edit unless explicitly asked. |
 | `/explain-code` | Understanding a code path without edits | Traces flow, responsibilities, dependencies, risks. |
 | `/close-session` | Ending a task/session | Summarizes work and asks before persisting session notes. |
+| `/daily-status` | You need to send your daily status | Read-only. Drafts one block per Jira ticket assigned to you in the open sprint, from Jira, PRs, Teams and memory, in your voice, with a "Check before sending" list. Never posts anywhere. |
 
 ## Spec-Driven Workflow
 

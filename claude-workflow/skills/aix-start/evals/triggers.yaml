@@ -1,0 +1,25 @@
+schema_version: 1
+skill: aix-start
+reviewed: false
+should_trigger:
+  - GitHub isn't authenticating for me in Cursor through AIX, what's the auth cascade I need to go through?
+  - How do I adopt our team's AIX modules so I follow the org's standards instead of the defaults?
+  - How do I install and authenticate AIX from the terminal? I keep seeing weird tool errors.
+  - I added a new skill on the platform, how do I resync my tools so Claude Code picks it up?
+  - I just joined the team and I'm working in Claude Code — what is AIX and how do I get set up with it?
+  - In Codex, how do I connect PagerDuty so I can trigger an incident lookup?
+  - My Jira integration isn't working in Cursor — how do I check why it's not authenticated?
+  - Never used AIX before and I'm in a plain terminal, not Cowork — how does the whole setup actually work here?
+  - What Disney services and tools can I actually use through AIX right now — Jira, Snowflake, anything else?
+  - Working from the terminal, can you walk me through the AIX Manager app and the auth cascade so I can connect my accounts?
+should_not_trigger:
+  - Can you pull up my last Teams meeting transcript and summarize the action items?
+  - Check my Outlook calendar for any conflicts tomorrow afternoon.
+  - Find the Q3 budget spreadsheet in Google Drive for me.
+  - How do I configure a new MCP server in Cursor for a service that's not on the supported list yet?
+  - How do I get MCP access approved for Conviva Pulse so I can query streaming metrics?
+  - I'm getting a 401 error calling our internal payments API in production, can you help me debug the auth headers?
+  - I'm on the marketing team using Claude Desktop chat for the first time — how do I get started with Cowork and AIX?
+  - In Cowork, how do I pull up the Figma file for our latest design review?
+  - Search Confluence for the runbook on our deployment process.
+  - What's the ticker AIX doing on the stock market today?

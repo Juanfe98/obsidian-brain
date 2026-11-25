@@ -1,0 +1,25 @@
+schema_version: 1
+skill: outlook
+reviewed: false
+should_trigger:
+  - Can you check my inbox for anything from finance this week?
+  - Forward that Q3 budget email thread to the whole team.
+  - List all my mail folders so I can see where old messages got archived.
+  - Look up the contact details for our vendor in my address book.
+  - My mail tool says it's read-only when I try to send a message, how do I fix that?
+  - Reply to my manager's latest email confirming I'll join the call.
+  - Schedule a meeting invite for the design team next Tuesday at 10am.
+  - Search my mail for anything mentioning contract ABC-123.
+  - Set up a rule so anything from example.com skips the inbox and goes straight to a folder.
+  - What's on my calendar tomorrow afternoon?
+should_not_trigger:
+  - Can you list my recent Teams chat messages with the marketing group?
+  - Can you pull up our Figma design file for the new dashboard?
+  - Find the Confluence page about our onboarding process.
+  - How do I get started using AIX tools from the terminal?
+  - Query Snowflake for the row count in our customers table.
+  - Run a SQL query against Databricks to get last month's sales totals.
+  - Search Google Drive for the latest budget spreadsheet.
+  - Set up automatic email notifications in our CI/CD pipeline for build failures.
+  - What can Cowork help me do as a non-technical user getting started with AIX?
+  - Write a marketing email newsletter draft for our upcoming product launch.

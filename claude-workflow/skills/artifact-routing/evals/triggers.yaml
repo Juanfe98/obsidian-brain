@@ -1,0 +1,25 @@
+schema_version: 1
+skill: artifact-routing
+reviewed: false
+should_trigger:
+  - Are we even allowed to use artifacts for Disney work, or is there a different place I should be sharing this kind of thing?
+  - Build me a quick prototype landing page - can this just live in the chat or does it need to go somewhere more permanent?
+  - Can you create a one-page prototype mockup of our new onboarding flow that I can point people to later?
+  - Can you draw up an architecture diagram for our new service and get it somewhere my team can access later?
+  - Can you make a status dashboard for the ABC-123 migration and tell me where it should live so my whole team can see it?
+  - I need to put together a system design report for the payments refactor - where should this be published so reviewers can leave comments?
+  - I want to share a project plan for review with stakeholders - what's the right way to publish it internally?
+  - I'm about to generate a report on our codebase health - should this stay in the conversation or does it need a permanent home?
+  - Make a simple status board showing sprint progress that other people on my team can link to directly.
+  - Where should I put this spec doc so people outside our immediate team can review it and leave inline comments?
+should_not_trigger:
+  - Build and deploy a nonprod prototype app on aix-proto that lets users submit feedback forms.
+  - Can you help me debug why my aix-proto app's static page isn't loading behind MyID?
+  - Can you walk me through shipping a dynamic aix-proto app all the way to a nonprod environment?
+  - Draft a project charter and save it to our Confluence space for the team.
+  - How do I open Figma from Claude Cowork to review the new design mockups?
+  - I need help reaching the Lucid diagramming tool from Claude desktop chat for a whiteboarding session.
+  - Refactor this payment processing function in my service to fix the null pointer bug.
+  - Scaffold a new aix-proto starter app and get it running behind MyID so our team can test it.
+  - Update the README in this repo to reflect the new API endpoints for my service.
+  - Write up meeting notes from today's standup and put them in a Google Doc for the stakeholders.

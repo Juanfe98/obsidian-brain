@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:01.200 --> 00:00:05.800
+<v Priya Raman>Morning everyone, let's go round. Marcus, you want to start?
+
+00:00:06.100 --> 00:00:14.500
+<v Marcus Lee>Sure. Yesterday I finished the cancel landing changes for the delta offers cancel all. PR is up, I just need one more approval.
+
+00:00:14.900 --> 00:00:19.300
+<v Priya Raman>Okay. Juan, can you take a look at Marcus's PR today?
+
+00:00:19.600 --> 00:00:31.200
+<v Juan Felipe Montana Perdomo>Yes, I can review it after lunch. On my side, yesterday I was working on the reacquisition service, the L4L treatment one. I added the cadence selector step but I am blocked because the template is not deployed in staging yet.
+
+00:00:31.500 --> 00:00:38.900
+<v Priya Raman>Who owns the template deploy for that one? I think Sofia merged the templates PR.
+
+00:00:39.200 --> 00:00:47.600
+<v Sofia Gomez>Yeah, I merged it yesterday but the S3 sync failed. I will re-run the pipeline this morning and ping Juan when it's in staging.
+
+00:00:47.900 --> 00:00:58.400
+<v Juan Felipe Montana Perdomo>Perfect, thank you. Also a question, for the Glimpse action, should the resubscribe button now send the cadence action or still the ledger action?
+
+00:00:58.700 --> 00:01:12.300
+<v Marcus Lee>For treatment one it should be the cadence action, because the destination changed. Control stays ledger. The metrics data builder takes the destination, so you just pass the screen type. Use the V2 interaction builder, buildInteractionMetricsDataV2.
+
+00:01:12.600 --> 00:01:16.000
+<v Juan Felipe Montana Perdomo>Okay, got it, I will update that and add tests.
+
+00:01:16.300 --> 00:01:27.900
+<v Sofia Gomez>For me, today I'm working on the ESPN Adobe metrics for the signup preview. No blockers. Marcus, can you send me the link to the Datadog dashboard you showed last week?
+
+00:01:28.200 --> 00:01:30.100
+<v Marcus Lee>Yep, I'll drop it in the chat.
+
+00:01:30.400 --> 00:01:41.800
+<v Priya Raman>Great. One reminder: code freeze for the November release is Thursday, so anything that needs to go out has to be merged by Wednesday end of day. Let's sync tomorrow. Thanks all.

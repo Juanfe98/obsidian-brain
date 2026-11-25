@@ -1,0 +1,25 @@
+schema_version: 1
+skill: confluence
+reviewed: false
+should_trigger:
+  - Can you create a new page in the wiki summarizing today's meeting notes?
+  - Can you find the wiki page about our onboarding process and summarize it?
+  - Find the VPN setup page in our wiki knowledge base and read it back to me
+  - Grab the content of the wiki release notes page for version 12345 and paste it here
+  - I need the CQL query that finds all pages labeled 'deprecated' in the Platform space
+  - List all the spaces available in our wiki so I can figure out where to add new documentation
+  - Pull up the page tree under the Engineering space so I can see how docs are organized
+  - Search Confluence for anything related to the ABC-123 deployment runbook
+  - The tool says it's read-only when I try to update a page - what does that mean and how do I fix it?
+  - What comments are on the API design doc page, and who added the 'needs-review' label?
+should_not_trigger:
+  - Find the Teams chat where we discussed the migration timeline
+  - Get the transcript from yesterday's Teams meeting recording
+  - How do I access Figma design files from Cowork since I don't have a terminal?
+  - List the calendar events on my Outlook calendar for next week
+  - List the recent emails in my Outlook inbox from this morning
+  - Run a SELECT query against Databricks to get last month's sales totals
+  - Search my Drive folder tree to find where the design assets are stored
+  - Search my Google Drive for the quarterly budget spreadsheet
+  - Set up my local environment so AIX CLIs are on PATH and callable with --agent
+  - Show me the Snowflake tables available in the analytics database

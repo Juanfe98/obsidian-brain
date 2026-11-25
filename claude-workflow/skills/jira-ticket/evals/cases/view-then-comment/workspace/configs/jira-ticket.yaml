@@ -1,0 +1,9 @@
+# Test config for jira-ticket evals.
+# Intentionally has NO defaults.project to test that the skill asks for one.
+
+defaults:
+  type: Story
+  server: https://jira.example.com
+
+custom_fields:
+  story-points: customfield_10047

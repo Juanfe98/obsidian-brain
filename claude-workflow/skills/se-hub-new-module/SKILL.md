@@ -44,7 +44,14 @@ Read mock-data.ts. Check the matching academy entry. If a route with the same sl
 Create `src/modules/<ACADEMY_SLUG>/modules/<MODULE_SLUG>.tsx`:
 
 ```tsx
+import MermaidDiagram from "@/components/diagrams/MermaidDiagram";
+import { CodeBlock } from "@/components/ui";
 import type { TocItem } from "@/lib/types/academy";
+
+// Define diagrams as String.raw constants BEFORE the component (not inline).
+const conceptDiagram = String.raw`flowchart TD
+  A["Start"] --> B["Step"]
+  B --> C["End"]`;
 
 export const toc: TocItem[] = [
   { id: "intro", title: "Introduction", level: 2 },
@@ -62,10 +69,20 @@ export default function <PascalCaseModuleName>() {
 
       <h2 id="intro">Introduction</h2>
       <p>...</p>
+      <MermaidDiagram
+        chart={conceptDiagram}
+        title="Descriptive Title"
+        caption="One sentence telling the reader what to notice."
+        minHeight={400}
+      />
 
       <h2 id="section-two">Section Two</h2>
       <p>...</p>
-      <pre><code>{`// Example code block`}</code></pre>
+      <CodeBlock
+        code={`// Example code block`}
+        lang="typescript"
+        filename="example.ts"
+      />
 
       <h2 id="section-three">Section Three</h2>
       <p>...</p>
@@ -86,6 +103,20 @@ Rules:
 - The content MUST be real educational content, not placeholder text
 - Write at minimum 3 H2 sections with actual paragraphs
 - Include at least one code block with real example code for the topic
+- Use `<CodeBlock code={...} lang="..." />` for ALL code — never `<pre><code>`
+  - `code`: raw code string. `lang`: Shiki id (`"typescript"`, `"javascript"`, `"bash"`, `"json"`, `"html"`, `"css"`, `"tsx"`). `filename`: optional header label.
+  - `CodeBlock` is an async Server Component — safe inside module files (also Server Components).
+- **New pages use Archify diagrams, not Mermaid** (migration decided 2026-11-11; existing Mermaid pages stay until migrated). Where the template and rules below say `MermaidDiagram`, use `ArchifyDiagram` instead:
+  - Write each diagram source as `src/modules/<academy>/diagrams/<name>.<type>.json` (Archify native candidate: `workflow`, `sequence`, `lifecycle`, ...; load the `archify` skill for the format). Set `meta.output` to `.archify-build/<academy>/<name>.html`.
+  - Build with `scripts/build-archify-diagrams.sh <academy> [name ...]`. It runs Archify's finalize checks and copies the HTML to `public/archify/<academy>/`.
+  - Embed with `<ArchifyDiagram academy="<academy>" name="<name>" title="..." caption="..." height={560} />` from `@/components/diagrams/ArchifyDiagram`.
+  - Reference implementation: `src/modules/disney-plus-signup-flow/` (11 diagrams).
+  - Gotchas: workflow nodes sit on a lane and a column 0 to 5; let routes be automatic; custom `meta.legend.entries` labels work on workflow but fail schema on sequence; sequence cannot draw alternatives, so put other outcomes in cards.
+- **Mermaid diagrams are required — engineers learn best from visuals.** Include **≥ 2 `<MermaidDiagram>`** per module whenever the topic has any flow, sequence, hierarchy, or state. Default assumption: every module has at least 2.
+  - Define each chart as a `String.raw\`...\`` constant BEFORE the component function — never inline.
+  - Props: `chart` (the diagram string), `title`, `caption` (what to notice), `minHeight`.
+  - Supported types: `flowchart TD/LR`, `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`, `erDiagram`.
+  - Use for: event loops, request lifecycles, cache layers, auth flows, build pipelines, state machines, class hierarchies — anything with arrows.
 - Key Takeaways section is required — 4–6 bullet points
 - `toc` IDs must exactly match the `id` attributes on heading elements
 

@@ -1,0 +1,25 @@
+schema_version: 1
+skill: gdrive
+reviewed: false
+should_trigger:
+  - Can you find the quarterly budget spreadsheet somewhere in my Google Drive?
+  - Can you rename the file 'draft_v1' to 'final_report' in Google Drive?
+  - Copy that Google Sheet into a new folder and give it a proper name
+  - Export that Google Slides deck as a PDF for me
+  - I need you to read through the content of a Google Doc titled Project Roadmap and summarize it
+  - I tried reading a file and it said the Drive tool is read-only, can you fix that?
+  - Please list all the folders inside our shared drive called Marketing Assets
+  - Search my drive for any files mentioning 'vendor contract' from last year
+  - Star the onboarding doc in Drive so I can find it easily later
+  - Upload this report to my Drive and share it with the finance team
+should_not_trigger:
+  - Check my Outlook calendar for any meetings scheduled tomorrow afternoon
+  - Find the meeting notes page in Confluence about the migration project
+  - Get the transcript from our last Teams meeting about the launch
+  - How do I get the Disney design MCPs like TokenForge working in Claude Code?
+  - List the unread messages in my Outlook inbox from this week
+  - Pull up the latest release notes page from our Confluence space
+  - Query Snowflake for the top 10 customers by revenue this quarter
+  - Run a SELECT query against the Databricks warehouse to get last month's sales totals
+  - Show me the chat history from the Teams channel for engineering
+  - Walk me through onboarding to AIX tools on the terminal for a new developer

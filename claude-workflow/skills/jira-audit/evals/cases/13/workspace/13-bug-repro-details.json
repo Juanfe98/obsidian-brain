@@ -1,0 +1,26 @@
+{
+  "eval_id": 13,
+  "mode": "ticket",
+  "tickets": [
+    {
+      "key": "FD-3300",
+      "summary": "Login fails silently on Safari 17 when cookies are blocked",
+      "type": "Bug",
+      "status": "Open",
+      "priority": "P2",
+      "assignee": "T. Nguyen",
+      "story_points": null,
+      "components": ["web-frontend"],
+      "labels": ["bug", "auth"],
+      "epic": "FD-180 Activity Feed",
+      "description": "Users on Safari 17 with third-party cookies disabled see a blank screen after clicking Login. No error is shown.",
+      "acceptance_criteria": null,
+      "test_plan": null,
+      "reproduction_steps": null,
+      "expected_behavior": null,
+      "actual_behavior": null,
+      "environment": "Safari 17",
+      "updated": "2026-04-28"
+    }
+  ]
+}

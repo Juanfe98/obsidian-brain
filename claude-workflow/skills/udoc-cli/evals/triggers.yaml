@@ -1,0 +1,25 @@
+schema_version: 1
+skill: udoc-cli
+reviewed: false
+should_trigger:
+  - Add a new slide with the Q4 roadmap to the presentation deck.
+  - Can you whip up a quick spreadsheet to track our office supply inventory?
+  - Export the presentation as a PDF so I can email it to the client.
+  - Grab the numbers from column B in the budget sheet and sum them up for me.
+  - How many slides are currently in the presentation file, and can you list their titles?
+  - I need to combine two docs into a single universal doc I can keep editing.
+  - Insert a row for the new hire into the onboarding spreadsheet.
+  - Rename the second sheet in the workbook to 'Final Numbers'.
+  - Set up a document template for our weekly status reports going forward.
+  - Update the project doc with the latest deadline changes we agreed on.
+should_not_trigger:
+  - Add a new record to the Airtable base for this week's leads.
+  - Can you list all the skills currently installed so I know what's available?
+  - Can you review this legal contract document and flag any risky clauses?
+  - Can you share the Google Drive link to that file with the marketing team?
+  - Create a flowchart in Lucidchart mapping out our onboarding process.
+  - Look up which team owns the billing service in our service catalog.
+  - Move ticket ABC-123 to the current sprint board.
+  - Print out a hard copy of my passport and ID documents for the visa application.
+  - Pull up the latest test report from our automation launches in ReportPortal.
+  - Show me the latest deployment events in the infrastructure event graph.

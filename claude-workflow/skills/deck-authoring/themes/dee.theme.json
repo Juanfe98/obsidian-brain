@@ -1,0 +1,168 @@
+{
+  "id": "dee",
+  "label": "Disney Entertainment & ESPN Product + Technology",
+  "source": "https://dee.technology/color-usage",
+  "derivedAt": "2026-07-27",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "palette": {
+    "fantasyBlue": "#1990B7",
+    "royalBlue": "#1E1C5D",
+    "black": "#000000",
+    "white": "#FFFFFF",
+    "lightSpark": "#F0F1F3",
+    "spark": "#C8D3DD",
+    "darkSpark": "#8694A6",
+    "screenGray": "#576377",
+    "darkGray": "#373F4F",
+    "darkMidnight": "#02081D",
+    "brightBlue": "#C2E9FF",
+    "starBlue": "#0E7FFF",
+    "deepBlue": "#002CD1",
+    "brightAurora": "#02D6E8",
+    "aurora": "#136878",
+    "darkBlue": "#093A52",
+    "lightAurora": "#C0E2BF",
+    "espnBet": "#20F4CA",
+    "huluGreen": "#1CE783",
+    "espnGreen": "#41AD49",
+    "green": "#1F7954",
+    "darkGreen": "#004940",
+    "starryYellow": "#FFC000",
+    "starOrange": "#FF8000",
+    "espnRed": "#E52534",
+    "darkRed": "#730000",
+    "lightPlum": "#DDAFF6",
+    "plumPurple": "#9429B2",
+    "deepPurple": "#5E19C1",
+    "darkPurple": "#4D0069"
+  },
+  "modes": {
+    "light": {
+      "canvas": "#FFFFFF",
+      "surface": "#F0F1F3",
+      "ink": "#373F4F",
+      "inkSecondary": "#576377",
+      "inkMuted": "#576377",
+      "rule": "#C8D3DD",
+      "accent": "#136878",
+      "accentInk": "#FFFFFF",
+      "positive": "#1F7954",
+      "negative": "#E52534",
+      "warning": "#B35900",
+      "codeBg": "#02081D",
+      "codeInk": "#F0F1F3",
+      "series": [
+        "#136878",
+        "#B35900",
+        "#1F7954",
+        "#9429B2",
+        "#002CD1",
+        "#730000",
+        "#093A52",
+        "#4D0069"
+      ],
+      "seriesOnAccent": [
+        "#FFFFFF",
+        "#FFC000",
+        "#C2E9FF",
+        "#DDAFF6",
+        "#02D6E8",
+        "#1CE783"
+      ]
+    },
+    "dark": {
+      "canvas": "#02081D",
+      "surface": "#1E1C5D",
+      "ink": "#F0F1F3",
+      "inkSecondary": "#C8D3DD",
+      "inkMuted": "#8694A6",
+      "rule": "#373F4F",
+      "accent": "#02D6E8",
+      "accentInk": "#02081D",
+      "positive": "#1CE783",
+      "negative": "#E52534",
+      "warning": "#FFC000",
+      "codeBg": "#000000",
+      "codeInk": "#F0F1F3",
+      "series": [
+        "#02D6E8",
+        "#FFC000",
+        "#1CE783",
+        "#DDAFF6",
+        "#0E7FFF",
+        "#FF8000",
+        "#20F4CA",
+        "#C0E2BF"
+      ],
+      "seriesOnAccent": [
+        "#02081D",
+        "#1E1C5D",
+        "#730000",
+        "#4D0069",
+        "#093A52",
+        "#002CD1",
+        "#373F4F"
+      ]
+    }
+  },
+  "derived": {
+    "#B35900": "Star Orange (#FF8000) darkened to clear WCAG 4.5:1 on white (4.832:1). NOT an official palette entry: no official DEE amber is legible as light-mode text (Starry Yellow 1.642:1, Star Orange 2.518:1). Use official Star Orange as a FILL with darkMidnight ink (7.904:1) when the brand color itself must appear."
+  },
+  "gradients": {
+    "dramatic": {
+      "from": "#1990B7",
+      "to": "#02081D",
+      "use": "Pairs well with darker colors, creates dramatic impact"
+    },
+    "welcoming": {
+      "from": "#1990B7",
+      "to": "#1E1C5D",
+      "use": "Pairs well with lighter colors, creates a welcoming atmosphere"
+    },
+    "touchOfMagic": {
+      "from": "#FFC000",
+      "to": "#FF8000",
+      "use": "Apply to milestones and celebratory moments"
+    },
+    "touchOfFantasy": {
+      "from": "#C2E9FF",
+      "to": "#1990B7",
+      "use": "Apply to progress markers and innovative moments"
+    }
+  },
+  "fontDisplay": "'Avenir Medium', 'Avenir Next Medium', 'Avenir', 'Nimbus Sans', Arial, Helvetica, sans-serif",
+  "fontBody": "'Avenir Book', 'Avenir Next', 'Avenir', 'Nimbus Sans', Arial, Helvetica, sans-serif",
+  "fontMono": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+  "pptxFontDisplay": "Avenir Medium",
+  "pptxFontBody": "Avenir Book",
+  "pptxFontFallback": "Arial",
+  "onImageScrim": {
+    "color": "#02081D",
+    "opacity": 0.72
+  },
+  "type": {
+    "display": 104,
+    "title": 72,
+    "sectionTitle": 64,
+    "subtitle": 48,
+    "body": 40,
+    "bodySmall": 32,
+    "caption": 28
+  },
+  "grid": {
+    "marginX": 50,
+    "marginY": 44,
+    "columns": 12,
+    "gutter": 48,
+    "baseline": 8,
+    "$comment": "Derived from the official template: title/body slots start at x=50, the slide number's right inset is 44px."
+  },
+  "radius": 16,
+  "motion": {
+    "durationMs": 240,
+    "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+  }
+}

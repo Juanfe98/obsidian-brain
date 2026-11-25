@@ -1,0 +1,29 @@
+{
+  "eval_id": 15,
+  "mode": "project",
+  "context": "Post-audit scenario: the audit has already been run and found that 12/15 tickets are missing components/labels. The user is now in the resolution phase.",
+  "project": "CORE",
+  "available_components": ["core-api", "core-web", "core-worker"],
+  "failing_check": {
+    "name": "Components/Labels",
+    "slug": "components-labels",
+    "severity": "Medium",
+    "failure_count": 12,
+    "total_audited": 15,
+    "failure_rate": 0.80
+  },
+  "tickets": [
+    {"key": "CORE-100", "summary": "Migrate user sessions to Redis", "type": "Task", "inferred_component": "core-api"},
+    {"key": "CORE-101", "summary": "Add RBAC to admin endpoints", "type": "Story", "inferred_component": "core-api"},
+    {"key": "CORE-102", "summary": "Fix N+1 query in dashboard", "type": "Bug", "inferred_component": "core-web"},
+    {"key": "CORE-103", "summary": "Implement audit log", "type": "Story", "inferred_component": "core-api"},
+    {"key": "CORE-104", "summary": "Update dependencies", "type": "Task", "inferred_component": "core-api"},
+    {"key": "CORE-105", "summary": "Add email templates", "type": "Story", "inferred_component": "core-web"},
+    {"key": "CORE-106", "summary": "Performance improvements", "type": "Task", "inferred_component": "core-api"},
+    {"key": "CORE-107", "summary": "Refactor data layer", "type": "Task", "inferred_component": "core-api"},
+    {"key": "CORE-108", "summary": "Add CSV export to reports", "type": "Story", "inferred_component": "core-web"},
+    {"key": "CORE-109", "summary": "Fix timeout on large queries", "type": "Bug", "inferred_component": "core-api"},
+    {"key": "CORE-110", "summary": "Add caching layer", "type": "Story", "inferred_component": "core-api"},
+    {"key": "CORE-111", "summary": "Database cleanup", "type": "Task", "inferred_component": "core-web"}
+  ]
+}

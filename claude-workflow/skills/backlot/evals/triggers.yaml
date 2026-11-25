@@ -1,0 +1,25 @@
+schema_version: 1
+skill: backlot
+reviewed: false
+should_trigger:
+  - Add a status field to each milestone on the roadmap I shared last week.
+  - Bump the version on my static site before I share the new link internally.
+  - Can you publish my portfolio site to Backlot so the rest of the team can view it?
+  - I finished the Rive loading animation — get it uploaded to Backlot for review.
+  - I need to publish v2 of the interactive demo but keep the old version reachable too.
+  - Push the updated campaign video cut and get me a link I can send around the office.
+  - Remix the marketing site creation a teammate shared, I want to tweak the hero section.
+  - Share this project roadmap to Backlot and make sure the design team can edit it.
+  - Turn this static prototype into something the design org can view and comment on.
+  - Upload these product shots so I can send a shareable internal URL to marketing.
+should_not_trigger:
+  - Build me a static site generator config using Hugo for a personal blog.
+  - Compress these video files before I email them to a client at example.com.
+  - Create a Rive animation of a bouncing ball for our onboarding screen.
+  - Deploy my site to Vercel and give me the production URL.
+  - Draft a project roadmap with quarterly milestones for the new feature launch.
+  - Help me write a good git commit message for these image asset changes.
+  - Remix this audio sample into a new beat for the podcast intro.
+  - Resize these product images so they fit the website banner dimensions.
+  - Set up version control for my Python project using git tags.
+  - Write a status update note for my manager about the ABC-123 milestone deadline.

@@ -1,0 +1,25 @@
+schema_version: 1
+skill: aix-start-cowork
+reviewed: false
+should_trigger:
+  - Can you walk me through the tabs in the AIX Manager app and how I connect and sign in to a tool from Home?
+  - Give me some tips so I get better results out of Cowork instead of it just guessing at what I want.
+  - I asked Claude to build me a little app and it said I need aix-proto or Claude Code - what does that mean for someone like me who doesn't code?
+  - I just opened Cowork for the first time and have absolutely no idea what to do next - can you walk me through it?
+  - I want Claude to actually make changes for me instead of just reading things - how do I turn on write access safely?
+  - I work in finance - what are some real examples of everyday workflows Cowork could help me with?
+  - I'm in operations and just got access to Cowork - what can Claude actually do for me here?
+  - One of my tools shows as not connected in AIX Manager - what does that mean and how do I fix it?
+  - Someone mentioned a one-time Cowork Global setup step I need to do - what is that exactly?
+  - What should I actually try in my first 15 minutes using Cowork as someone with zero technical background?
+should_not_trigger:
+  - Can you list my unread Outlook emails from this morning and summarize them?
+  - Can you write a shell script that checks whether our internal tools are connected before each CI run?
+  - How do I get a Conviva Pulse account and connect the Conviva MCP server from Claude Code?
+  - How do I pull my recent Microsoft Teams meeting transcripts using Claude in chat?
+  - I'm a designer trying to reach Figma through Cowork - can you help me connect to TokenForge for our streaming design system?
+  - I'm a developer in VS Code wiring up API calls for our new aix-proto microservice - can you help debug the connection code?
+  - I'm setting up Disney's AIX CLI tools in my terminal for Claude Code - how do I configure the --agent flag for structured JSON output?
+  - Pull the metadata for a spreadsheet sitting in my Google Drive folder.
+  - Search Confluence for the latest architecture doc on our streaming service and pull the page tree.
+  - What's the quarterly review process look like for the person managing our AIX Manager product team?

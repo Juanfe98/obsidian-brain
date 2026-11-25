@@ -1,0 +1,25 @@
+schema_version: 1
+skill: weaponx-cli
+reviewed: false
+should_trigger:
+  - Compare the two pricing experiments on stream days and tell me which one won.
+  - Find the experiments that significantly moved stream days this quarter.
+  - hey what experiments are currently running right now, can you list them
+  - How is the onboarding redesign A/B experiment doing? Pull its results so far.
+  - Is the premium-upsell flag limited to the internal-employees audience, or is it on for everyone?
+  - List every feature flag that's currently active in the staging environment.
+  - Pull the audit log for the new-checkout feature flag so I can see who changed it last.
+  - Show me the details of the beta-testers audience, including who it targets.
+  - What rollout percentage is the search-redesign toggle at right now?
+  - Which audience is the referral-bonus experiment targeting?
+should_not_trigger:
+  - Can you explain how A/B testing sample size and statistical significance are calculated?
+  - Create a ticket ABC-123 on the sprint board for that login bug we found.
+  - Draw a flowchart in Lucidchart showing our current deployment pipeline stages.
+  - Find the quarterly planning doc in our Google Drive and share the link with me.
+  - Get the latest test automation results for the nightly test run launch report.
+  - I'm doing a chemistry experiment for a school project, can you help me write the lab report?
+  - List all the discovery tools available on the universal dispatcher for this project.
+  - Look up which services are registered in the service catalog for the billing team.
+  - Pull all records from the Customers table in our airtable base and summarize them.
+  - Show me the recent deployment events in the infrastructure event graph from last night.
